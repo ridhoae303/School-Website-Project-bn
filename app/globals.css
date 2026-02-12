@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+@layer components {
+  .container-max {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 8% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 8% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 8% 12%;
+    --primary: 230 35% 25%;
+    --primary-foreground: 45 98% 95%;
+    --secondary: 45 98% 56%;
+    --secondary-foreground: 240 8% 12%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 45 98% 56%;
+    --accent-foreground: 240 8% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 88%;
+    --input: 0 0% 95%;
+    --ring: 230 35% 25%;
+    --chart-1: 230 35% 25%;
+    --chart-2: 45 98% 56%;
+    --chart-3: 200 60% 50%;
+    --chart-4: 260 60% 55%;
+    --chart-5: 15 80% 55%;
+    --radius: 0.5rem;
+    --sidebar-background: 230 35% 25%;
+    --sidebar-foreground: 45 98% 95%;
+    --sidebar-primary: 45 98% 56%;
+    --sidebar-primary-foreground: 230 35% 25%;
+    --sidebar-accent: 200 60% 50%;
+    --sidebar-accent-foreground: 45 98% 95%;
+    --sidebar-border: 230 35% 35%;
+    --sidebar-ring: 45 98% 56%;
+  }
+  .dark {
+    --background: 240 8% 12%;
+    --foreground: 45 98% 95%;
+    --card: 230 35% 20%;
+    --card-foreground: 45 98% 95%;
+    --popover: 230 35% 20%;
+    --popover-foreground: 45 98% 95%;
+    --primary: 45 98% 56%;
+    --primary-foreground: 240 8% 12%;
+    --secondary: 230 35% 25%;
+    --secondary-foreground: 45 98% 95%;
+    --muted: 240 10% 25%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 45 98% 56%;
+    --accent-foreground: 240 8% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 8% 25%;
+    --input: 240 8% 20%;
+    --ring: 45 98% 56%;
+    --chart-1: 45 98% 56%;
+    --chart-2: 200 60% 50%;
+    --chart-3: 260 60% 55%;
+    --chart-4: 15 80% 55%;
+    --chart-5: 120 60% 50%;
+    --sidebar-background: 230 35% 25%;
+    --sidebar-foreground: 45 98% 95%;
+    --sidebar-primary: 45 98% 56%;
+    --sidebar-primary-foreground: 230 35% 25%;
+    --sidebar-accent: 200 60% 50%;
+    --sidebar-accent-foreground: 45 98% 95%;
+    --sidebar-border: 230 35% 35%;
+    --sidebar-ring: 45 98% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
