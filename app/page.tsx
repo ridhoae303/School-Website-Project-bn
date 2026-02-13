@@ -79,12 +79,14 @@ interface ModalItem {
 function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [autoplay, setAutoplay] = useState(true)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
 
   useEffect(() => {
     if (!autoplay) return
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-    }, 5000)
+    }, 7000)
     return () => clearInterval(timer)
   }, [autoplay])
 
@@ -103,8 +105,30 @@ function HeroSlider() {
     setAutoplay(false)
   }
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEnd(e.changedTouches[0].clientX)
+    handleSwipe()
+  }
+
+  const handleSwipe = () => {
+    if (touchStart - touchEnd > 50) {
+      nextSlide()
+    }
+    if (touchEnd - touchStart > 50) {
+      prevSlide()
+    }
+  }
+
   return (
-    <div className="relative w-full h-96 md:h-screen bg-muted overflow-hidden rounded-lg">
+    <div 
+      className="relative w-full bg-muted overflow-hidden rounded-lg aspect-video cursor-grab active:cursor-grabbing"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -118,6 +142,8 @@ function HeroSlider() {
             src={heroSlides[currentSlide].src}
             alt={heroSlides[currentSlide].alt}
             className="w-full h-full object-cover"
+            width={1200}
+            height={500}
           />
         </motion.div>
       </AnimatePresence>

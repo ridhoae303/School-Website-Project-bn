@@ -35,7 +35,7 @@ const NAV_ITEMS = [
 
 function DesktopMenu() {
   return (
-    <div className="hidden md:flex items-center gap-0.5 flex-wrap justify-center">
+    <div className="hidden lg:flex items-center gap-0 flex-nowrap overflow-x-auto">
       {NAV_ITEMS.map((item) => (
         <div key={item.label} className="relative group">
           <Link href={item.href || '#'}>

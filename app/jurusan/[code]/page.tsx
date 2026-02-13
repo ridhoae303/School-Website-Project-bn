@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import React from 'react'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -36,8 +37,9 @@ const jurusanData: Record<string, any> = {
   },
 }
 
-export default function JurusanDetailPage({ params }: { params: { code: string } }) {
-  const data = jurusanData[params.code] || jurusanData.tkj
+export default function JurusanDetailPage({ params }: { params: Promise<{ code: string }> }) {
+  const { code } = React.use(params)
+  const data = jurusanData[code?.toLowerCase()] || jurusanData.tkj
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   const images = Array(4).fill('https://via.placeholder.com/600x400')

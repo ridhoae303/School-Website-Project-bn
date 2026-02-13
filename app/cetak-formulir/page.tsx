@@ -162,11 +162,12 @@ export default function CetakFormulirPage() {
                 Cetak ke Printer
               </Button>
               <Button
-                onClick={handleDownloadPDF}
-                className="w-full bg-secondary hover:bg-secondary/90 text-white gap-2"
+                onClick={handleDownload}
+                disabled={downloadCountdown > 0}
+                className="w-full bg-secondary hover:bg-secondary/90 text-white gap-2 disabled:opacity-50"
               >
                 <Download size={20} />
-                Download PDF
+                {downloadCountdown > 0 ? `Tunggu ${downloadCountdown}s` : 'Download PDF'}
               </Button>
             </motion.div>
 
