@@ -4,25 +4,41 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
+import { ujianLoginSchema } from '@/lib/validators'
 
 export default function UjianOnlineLogin() {
   const [formData, setFormData] = useState({ username: '', password: '' })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
   const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    setValidationErrors(prev => ({ ...prev, [name]: '' }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setValidationErrors({})
     setError('')
 
+    // Validate form
+    const validation = ujianLoginSchema.safeParse(formData)
+    if (!validation.success) {
+      const errors: Record<string, string> = {}
+      validation.error.errors.forEach(err => {
+        const field = err.path[0] as string
+        errors[field] = err.message
+      })
+      setValidationErrors(errors)
+      return
+    }
+
+    setIsLoading(true)
+
     try {
-      // TODO: Replace dengan API endpoint login Anda
       const response = await fetch('/api/ujian/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -34,7 +50,8 @@ export default function UjianOnlineLogin() {
         localStorage.setItem('ujianToken', token)
         router.push('/ujian-online/dashboard')
       } else {
-        setError('Username atau password salah')
+        const data = await response.json()
+        setError(data.message || 'Username atau password salah')
       }
     } catch (err) {
       setError('Terjadi kesalahan. Coba lagi nanti.')
@@ -67,9 +84,14 @@ export default function UjianOnlineLogin() {
               value={formData.username}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+                validationErrors.username ? 'border-red-500' : 'border-border'
+              }`}
               placeholder="Masukkan NIP/NIS"
             />
+            {validationErrors.username && (
+              <p className="text-red-500 text-sm mt-1">{validationErrors.username}</p>
+            )}
           </div>
 
           <div>
@@ -82,9 +104,14 @@ export default function UjianOnlineLogin() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+                validationErrors.password ? 'border-red-500' : 'border-border'
+              }`}
               placeholder="Masukkan password"
             />
+            {validationErrors.password && (
+              <p className="text-red-500 text-sm mt-1">{validationErrors.password}</p>
+            )}
           </div>
 
           {error && (

@@ -3,31 +3,55 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
+import { ppdbRegisterSchema } from '@/lib/validators'
 
 export default function PPDBDaftarPage() {
   const [formData, setFormData] = useState({
-    name: '',
+    nama: '',
+    nisn: '',
+    asalSekolah: '',
+    jurusan: 'TKJ',
+    nomorTelepon: '',
     email: '',
-    phone: '',
-    jurusan: '',
-    message: '',
   })
   const [isLoading, setIsLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setErrors({})
+
+    // Validate
+    const validation = ppdbRegisterSchema.safeParse(formData)
+    if (!validation.success) {
+      const newErrors: Record<string, string> = {}
+      validation.error.errors.forEach(err => {
+        const field = err.path[0] as string
+        newErrors[field] = err.message
+      })
+      setErrors(newErrors)
+      return
+    }
+
     setIsLoading(true)
     try {
-      // TODO: Replace dengan API endpoint Anda
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setSubmitted(true)
-      setFormData({ name: '', email: '', phone: '', jurusan: '', message: '' })
+      const response = await fetch('/api/ppdb/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ nama: '', nisn: '', asalSekolah: '', jurusan: 'TKJ', nomorTelepon: '', email: '' })
+      }
     } finally {
       setIsLoading(false)
     }

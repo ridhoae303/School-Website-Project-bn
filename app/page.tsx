@@ -166,26 +166,50 @@ function SequentialQuotes() {
   }, [])
 
   return (
-    <motion.div
-      className="bg-gradient-to-r from-secondary to-secondary/80 text-white py-6 rounded-lg text-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={currentQuote}
-          className="text-xl md:text-2xl font-semibold px-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.5 }}
+    <div className="space-y-4">
+      {/* Sequential Quotes */}
+      <motion.div
+        className="bg-gradient-to-r from-secondary to-secondary/80 text-white py-6 rounded-lg text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={currentQuote}
+            className="text-xl md:text-2xl font-semibold px-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5 }}
+          >
+            "{quotes[currentQuote]}"
+          </motion.p>
+        </AnimatePresence>
+        <p className="text-sm text-white/70 mt-2">{currentQuote + 1} dari {quotes.length}</p>
+      </motion.div>
+
+      {/* Marquee with 2 second delay */}
+      <div className="bg-primary text-white py-4 rounded-lg overflow-hidden">
+        <motion.div
+          className="flex gap-8 whitespace-nowrap px-4"
+          initial={{ x: '100%' }}
+          animate={{ x: '-100%' }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'linear',
+            delay: 2,
+          }}
         >
-          "{quotes[currentQuote]}"
-        </motion.p>
-      </AnimatePresence>
-      <p className="text-sm text-white/70 mt-2">{currentQuote + 1} dari {quotes.length}</p>
-    </motion.div>
+          {quotes.map((quote, i) => (
+            <span key={i} className="text-lg font-medium min-w-max">
+              {quote} •
+            </span>
+          ))}
+        </motion.div>
+      </div>
+    </div>
   )
 }
 

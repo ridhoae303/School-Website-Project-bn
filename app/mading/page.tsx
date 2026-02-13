@@ -3,10 +3,25 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 
-const mockMadingItems = Array.from({ length: 12 }, (_, i) => ({
+const madingTitles = [
+  'Hari Guru',
+  'Praktek Kejuruan',
+  'Kunjungan Industri',
+  'LDKS',
+  'Peringatan Sumpah Pemuda',
+  'Juara LKS',
+  'Bakti Sosial',
+  'Class Meeting',
+  'Ujian Praktik',
+  'Workshop Coding',
+  'Penerimaan Raport',
+  'Perpisahan Kelas XII',
+]
+
+const mockMadingItems = madingTitles.map((title, i) => ({
   id: i + 1,
-  title: `Berita Mading ${i + 1}`,
-  image: 'https://via.placeholder.com/300x300',
+  title,
+  image: `https://picsum.photos/300/200?random=${i}`,
   date: new Date(2024, 0, 15 - i).toLocaleDateString('id-ID'),
   category: ['Akademik', 'Prestasi', 'Kegiatan'][i % 3],
 }))
@@ -34,10 +49,12 @@ export default function MadingPage() {
               whileHover={{ y: -5 }}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-lg bg-muted h-64 mb-4">
+              <div className="relative overflow-hidden rounded-lg bg-muted h-48 mb-4 w-full">
                 <img
                   src={item.image}
                   alt={item.title}
+                  width={300}
+                  height={200}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

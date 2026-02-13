@@ -2,24 +2,82 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Printer, Download } from 'lucide-react'
+import { cetakFormulirSchema } from '@/lib/validators'
 
 export default function CetakFormulirPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    nisn: '',
-    birthDate: '',
-    phone: '',
+    noPendaftaran: '',
+    tglLahir: '',
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isLoading, setIsLoading] = useState(false)
+  const [lastDownloadTime, setLastDownloadTime] = useState(0)
+  const [downloadCountdown, setDownloadCountdown] = useState(0)
+  const [resultData, setResultData] = useState<any>(null)
+
+  useEffect(() => {
+    if (downloadCountdown > 0) {
+      const timer = setTimeout(() => setDownloadCountdown(downloadCountdown - 1), 1000)
+      return () => clearInterval(timer)
+    }
+  }, [downloadCountdown])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    setErrors(prev => ({ ...prev, [name]: '' }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setErrors({})
+
+    // Validate
+    const validation = cetakFormulirSchema.safeParse(formData)
+    if (!validation.success) {
+      const newErrors: Record<string, string> = {}
+      validation.error.errors.forEach(err => {
+        const field = err.path[0] as string
+        newErrors[field] = err.message
+      })
+      setErrors(newErrors)
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/cetak-formulir', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+      if (response.ok) {
+        setResultData(data.data)
+      } else {
+        setErrors({ form: data.message || 'Data tidak ditemukan' })
+      }
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleDownload = () => {
+    const now = Date.now()
+    if (now - lastDownloadTime < 10000) {
+      setDownloadCountdown(Math.ceil((10000 - (now - lastDownloadTime)) / 1000))
+      return
+    }
+    setLastDownloadTime(now)
+    window.open('/files/formulir-ppdb.pdf', '_blank')
+    setDownloadCountdown(10)
+  }
 
   const handlePrint = () => {
     window.print()
-  }
-
-  const handleDownloadPDF = async () => {
-    // TODO: Implement PDF download
-    alert('Fitur download PDF akan segera tersedia')
   }
 
   return (
