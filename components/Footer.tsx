@@ -87,10 +87,10 @@ export function Footer() {
               <Link href="/" className="block text-sm hover:text-secondary transition-colors">
                 Profile
               </Link>
-              <Link href="/" className="block text-sm hover:text-secondary transition-colors">
+              <Link href="/sekilas-info" className="block text-sm hover:text-secondary transition-colors">
                 Sekilas Info
               </Link>
-              <Link href="/mading-smk" className="block text-sm hover:text-secondary transition-colors">
+              <Link href="/mading" className="block text-sm hover:text-secondary transition-colors">
                 Mading SMK
               </Link>
               <Link href="/jurusan/tkj" className="block text-sm hover:text-secondary transition-colors">
@@ -132,13 +132,13 @@ export function Footer() {
 
         {/* Bottom Footer */}
         <motion.div
-          className="border-t border-primary-foreground/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm"
+          className="border-t border-primary-foreground/20 pt-8 flex flex-col text-center text-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p>
-            © {currentYear} <strong>SMK PATRIOT 1 BEKASI</strong>. All rights reserved.
+          <p className="mb-2">
+            Created by Ridhoae303 team © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
           </p>
           <p className="text-xs">
             Powered by <strong>ridhoae303 Inc.</strong>
