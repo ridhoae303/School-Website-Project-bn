@@ -9,6 +9,7 @@ import { Button } from './ui/button'
 import { MobileMenu } from './MobileMenu'
 
 const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
   { label: 'Profile', href: '#', submenu: [{ label: 'Visi dan Misi', href: '/visi-misi' }] },
   { label: 'Mading SMK', href: '/mading' },
   { label: 'Jurusan', href: '#', submenu: [
@@ -20,8 +21,8 @@ const NAV_ITEMS = [
   { label: 'Direktori', href: '#', submenu: [
     { label: 'Daftar Online PPDB', href: '/ppdb/daftar' },
     { label: 'Cetak Formulir', href: '/cetak-formulir' },
+    { label: 'Download Formulir PPDB', href: '/download-formulir' },
   ]},
-  { label: 'Download Formulir PPDB', href: '/download-formulir' },
   { label: 'Galeri', href: '#', submenu: [
     { label: 'Galeri Foto', href: '/galeri/foto' },
     { label: 'Galeri Video', href: '/galeri/video' },
@@ -33,28 +34,31 @@ const NAV_ITEMS = [
 ]
 
 function DesktopMenu() {
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
-
   return (
-    <div className="hidden lg:flex items-center gap-1">
+    <div className="hidden md:flex items-center gap-0.5 flex-wrap justify-center">
       {NAV_ITEMS.map((item) => (
         <div key={item.label} className="relative group">
           <Link href={item.href || '#'}>
-            <Button variant="ghost" className="text-sm gap-1 text-white hover:bg-secondary/80">
+            <Button 
+              variant="ghost" 
+              className="text-sm gap-1 text-white hover:bg-white/20 px-3 py-2"
+            >
               {item.label}
-              {item.submenu && <ChevronDown size={16} />}
+              {item.submenu && <ChevronDown size={14} />}
             </Button>
           </Link>
           
           {item.submenu && (
             <motion.div
-              className="absolute left-0 mt-0 w-48 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+              className="absolute left-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
               initial={{ opacity: 0, y: -10 }}
-              whileHover={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
             >
-              {item.submenu.map((subitem) => (
+              {item.submenu.map((subitem, idx) => (
                 <Link key={subitem.href} href={subitem.href}>
-                  <div className="px-4 py-2 hover:bg-muted text-sm first:rounded-t-lg last:rounded-b-lg text-foreground">
+                  <div className={`px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors ${
+                    idx === 0 ? 'rounded-t-lg' : ''
+                  } ${idx === item.submenu!.length - 1 ? 'rounded-b-lg' : ''}`}>
                     {subitem.label}
                   </div>
                 </Link>
@@ -105,7 +109,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="md:hidden text-white hover:bg-white/20"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

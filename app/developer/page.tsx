@@ -50,9 +50,9 @@ export default function DeveloperPage() {
             className="flex justify-center lg:justify-start"
           >
             <motion.div
-              className="relative w-48 h-48"
-              whileHover={{ scale: 1.05 }}
-              onHoverStart={() => {}}
+              className="relative w-48 h-48 cursor-pointer"
+              whileHover={{ scale: 1.15 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 10 }}
             >
               <motion.div
                 className="w-full h-full rounded-full bg-gradient-to-br from-primary to-secondary overflow-hidden border-4 border-white shadow-lg"
@@ -178,9 +178,13 @@ export default function DeveloperPage() {
                 className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
               >
                 <div className="flex gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                  <motion.div
+                    className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 cursor-pointer"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+                  >
                     {friend.name.split(' ').map(n => n[0]).join('')}
-                  </div>
+                  </motion.div>
                   <div>
                     <h3 className="text-xl font-bold">{friend.name}</h3>
                     <p className="text-sm text-secondary font-semibold">Teman Setia</p>
