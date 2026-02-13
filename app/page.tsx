@@ -284,15 +284,7 @@ export default function Home() {
                   </label>
                 ))}
               </div>
-              <Button className="w-full mt-6">Kirim Pendapat</Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <ContactForm />
+              <Button className="w-full mt-6 bg-secondary hover:bg-secondary/90">Kirim Pendapat</Button>
             </motion.div>
           </div>
         </div>

@@ -198,3 +198,41 @@ export const bounceVariants: Variants = {
     },
   },
 }
+
+// Marquee animation with 2 second delay
+export const marqueeVariants = {
+  animate: {
+    x: [0, -1000],
+    transition: {
+      duration: 20,
+      repeat: Infinity,
+      ease: 'linear',
+      delay: 2, // 2 second delay before animation starts
+    },
+  },
+}
+
+// Scroll reveal animations
+export const scrollRevealVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+}
+
+// Skill bar animation (fills from 0% to target width)
+export const skillBarVariants: Variants = {
+  hidden: { width: 0 },
+  visible: (customWidth: number) => ({
+    width: `${customWidth}%`,
+    transition: {
+      duration: 1,
+      ease: 'easeOut',
+    },
+  }),
+}
