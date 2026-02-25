@@ -340,30 +340,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Staff Section */}
+      {/* Contact Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row items-center justify-between gap-6"
           >
-            <div>
-              <h2 className="text-3xl font-bold mb-2">Staff Sekolah</h2>
-              <p className="text-muted-foreground">Kunjungi blog Kusnadi, S.Kom untuk informasi lebih lanjut</p>
+            <h2 className="text-3xl font-bold mb-2 text-foreground">INFO PENDAFTARAN HUBUNGI</h2>
+            <p className="text-muted-foreground mb-8">Hubungi kami untuk informasi lebih lanjut tentang pendaftaran SPMB</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-primary to-primary/80 text-white p-6 rounded-lg">
+                <h3 className="font-bold text-xl mb-3">Bp. Trisno</h3>
+                <p className="mb-3">
+                  <span className="font-semibold">Telepon:</span> 081-294-146-501
+                </p>
+                <a
+                  href="https://wa.me/6281294146501"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-primary px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  Chat via WhatsApp
+                </a>
+              </div>
+
+              <div className="bg-gradient-to-br from-secondary to-secondary/80 text-white p-6 rounded-lg">
+                <h3 className="font-bold text-xl mb-3">Ibu. Essy S</h3>
+                <p className="mb-3">
+                  <span className="font-semibold">Telepon:</span> 0812-9677386
+                </p>
+                <a
+                  href="https://wa.me/628129677386"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-secondary px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  Chat via WhatsApp
+                </a>
+              </div>
             </div>
-            <motion.a
-              href="https://blogspot.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button className="bg-secondary hover:bg-secondary/90 text-white px-8 py-6 text-lg font-semibold">
-                Kunjungi Blog Kusnadi, S.Kom
-              </Button>
-            </motion.a>
           </motion.div>
         </div>
       </section>

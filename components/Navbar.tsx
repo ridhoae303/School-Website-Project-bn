@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import { SCHOOL_INFO } from '@/lib/constants'
-import { Button } from './ui/button'
 import { MobileMenu } from './MobileMenu'
 
 const NAV_ITEMS = [
@@ -48,12 +45,7 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav
-        className={`sticky top-0 z-40 transition-all duration-300 bg-secondary text-white shadow-md`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
+      <nav className="sticky top-0 z-40 transition-all duration-300 bg-secondary text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -103,7 +95,7 @@ export function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu */}
       <MobileMenu
