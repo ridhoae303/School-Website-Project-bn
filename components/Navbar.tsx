@@ -33,44 +33,6 @@ const NAV_ITEMS = [
   { label: 'Developer', href: '/developer' },
 ]
 
-function DesktopMenu() {
-  return (
-    <div className="hidden lg:flex items-center gap-0 flex-nowrap overflow-x-auto">
-      {NAV_ITEMS.map((item) => (
-        <div key={item.label} className="relative group">
-          <Link href={item.href || '#'}>
-            <Button 
-              variant="ghost" 
-              className="text-sm gap-1 text-white hover:bg-white/20 px-3 py-2"
-            >
-              {item.label}
-              {item.submenu && <ChevronDown size={14} />}
-            </Button>
-          </Link>
-          
-          {item.submenu && (
-            <motion.div
-              className="absolute left-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              {item.submenu.map((subitem, idx) => (
-                <Link key={subitem.href} href={subitem.href}>
-                  <div className={`px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors ${
-                    idx === 0 ? 'rounded-t-lg' : ''
-                  } ${idx === item.submenu!.length - 1 ? 'rounded-b-lg' : ''}`}>
-                    {subitem.label}
-                  </div>
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </div>
-      ))}
-    </div>
-  )
-}
-
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -103,17 +65,42 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <DesktopMenu />
+            <div className="hidden lg:flex items-center gap-0 flex-nowrap">
+              {NAV_ITEMS.map((item) => (
+                <div key={item.label} className="relative group">
+                  <Link href={item.href || '#'}>
+                    <button 
+                      className="text-sm gap-1 text-white hover:bg-white/20 px-3 py-2 flex items-center rounded transition-colors"
+                    >
+                      {item.label}
+                      {item.submenu && <ChevronDown size={14} className="ml-1" />}
+                    </button>
+                  </Link>
+                  
+                  {item.submenu && (
+                    <div className="absolute left-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      {item.submenu.map((subitem, idx) => (
+                        <Link key={subitem.href} href={subitem.href}>
+                          <div className={`px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors ${
+                            idx === 0 ? 'rounded-t-lg' : ''
+                          } ${idx === item.submenu!.length - 1 ? 'rounded-b-lg' : ''}`}>
+                            {subitem.label}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
 
             {/* Mobile Menu Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-white hover:bg-white/20"
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-white hover:bg-white/20 p-2 rounded transition-colors"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
+            </button>
           </div>
         </div>
       </motion.nav>
