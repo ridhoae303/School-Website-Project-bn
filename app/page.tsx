@@ -115,11 +115,13 @@ function HeroSlider() {
   }
 
   const handleSwipe = () => {
+    // Swipe right (touchStart > touchEnd) = go to previous slide (show previous image on right)
     if (touchStart - touchEnd > 50) {
-      nextSlide()
-    }
-    if (touchEnd - touchStart > 50) {
       prevSlide()
+    }
+    // Swipe left (touchEnd > touchStart) = go to next slide (show next image on left)
+    if (touchEnd - touchStart > 50) {
+      nextSlide()
     }
   }
 

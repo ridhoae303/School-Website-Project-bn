@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
+import { X } from 'lucide-react'
 
 const madingTitles = [
   'Hari Guru',
@@ -21,12 +22,14 @@ const madingTitles = [
 const mockMadingItems = madingTitles.map((title, i) => ({
   id: i + 1,
   title,
-  image: `https://picsum.photos/300/200?random=${i}`,
+  image: `https://picsum.photos/400/300?random=${i}`,
   date: new Date(2024, 0, 15 - i).toLocaleDateString('id-ID'),
   category: ['Akademik', 'Prestasi', 'Kegiatan'][i % 3],
 }))
 
 export default function MadingPage() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
   return (
     <div className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,10 +49,12 @@ export default function MadingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="relative overflow-hidden rounded-lg bg-muted h-48 mb-4 w-full">
+              <div 
+                className="relative overflow-hidden rounded-lg bg-muted h-48 mb-4 w-full cursor-pointer"
+                onClick={() => setSelectedImage(item.image)}
+              >
                 <img
                   src={item.image}
                   alt={item.title}
@@ -57,11 +62,6 @@ export default function MadingPage() {
                   height={200}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Button variant="outline" className="border-white text-white hover:bg-white/20">
-                    Lihat Detail
-                  </Button>
-                </div>
               </div>
               <div>
                 <span className="text-xs font-semibold text-secondary">{item.category}</span>
@@ -72,6 +72,28 @@ export default function MadingPage() {
           ))}
         </div>
       </div>
+
+      {/* Image Preview Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative bg-white rounded-lg max-w-2xl w-full">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-4 -right-4 z-10 bg-secondary text-white p-2 rounded-full hover:bg-secondary/90 transition-colors"
+            >
+              <X size={20} />
+            </button>
+            <img
+              src={selectedImage}
+              alt="Preview"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
