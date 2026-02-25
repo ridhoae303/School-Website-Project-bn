@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
+import { Button } from './ui/button'
 
 interface NavItem {
   label: string
