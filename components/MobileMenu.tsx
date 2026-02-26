@@ -20,23 +20,52 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
 
-  if (!isOpen) return null
-
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/50 lg:hidden z-30"
-        onClick={onClose}
-      />
+      <style>{`
+        @keyframes slideIn {
+          from { transform: translateX(-100%); }
+          to { transform: translateX(0); }
+        }
+        @keyframes slideOut {
+          from { transform: translateX(0); }
+          to { transform: translateX(-100%); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
+        .mobile-menu-open {
+          animation: slideIn 0.3s ease-out forwards;
+        }
+        .mobile-menu-closed {
+          animation: slideOut 0.3s ease-out forwards;
+        }
+        .mobile-backdrop-open {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+        .mobile-backdrop-closed {
+          animation: fadeOut 0.3s ease-out forwards;
+          pointer-events: none;
+        }
+      `}</style>
 
-      {/* Menu */}
-      <div
-        className="fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto transition-transform duration-300"
-        style={{
-          transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
-        }}
-      >
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 bg-black/50 lg:hidden z-30 mobile-backdrop-open`}
+            onClick={onClose}
+          />
+
+          {/* Menu */}
+          <div
+            className={`fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto mobile-menu-open`}
+          >
             <div className="p-4 space-y-2">
               {items.map((item) => (
                 <div key={item.label}>
@@ -77,8 +106,9 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                 </div>
               ))}
             </div>
-      </div>
+          </div>
+        </>
+      )}
     </>
-
   )
 }
