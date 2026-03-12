@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button'
 
 export default function DeveloperPage() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
+  const [expandedProfile, setExpandedProfile] = useState<string | null>(null)
 
   const skills = [
     { name: 'Full Stack Developer', percentage: 90 },
-    { name: 'Network/Crapping', percentage: 10 },
+    { name: 'Wiring/Cabling', percentage: 10 },
     { name: 'DJ/Remixing', percentage: 96 },
     { name: 'Reverse Engineering', percentage: 100 },
   ]
@@ -52,18 +53,24 @@ export default function DeveloperPage() {
             <motion.div
               className="relative w-48 h-48 cursor-pointer"
               whileHover={{ scale: 1.15 }}
+              onClick={() => setExpandedProfile(expandedProfile === 'main' ? null : 'main')}
               transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+              animate={{
+                scale: expandedProfile === 'main' ? 1.2 : 1,
+              }}
             >
               <motion.div
                 className="w-full h-full rounded-full bg-gradient-to-br from-primary to-secondary overflow-hidden border-4 border-white shadow-lg"
                 animate={{
-                  boxShadow: [
-                    '0 0 20px rgba(30, 144, 255, 0.3)',
-                    '0 0 40px rgba(30, 144, 255, 0.6)',
-                    '0 0 20px rgba(30, 144, 255, 0.3)',
-                  ],
+                  boxShadow: expandedProfile === 'main' 
+                    ? '0 0 40px rgba(30, 144, 255, 0.8)' 
+                    : [
+                      '0 0 20px rgba(30, 144, 255, 0.3)',
+                      '0 0 40px rgba(30, 144, 255, 0.6)',
+                      '0 0 20px rgba(30, 144, 255, 0.3)',
+                    ]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: expandedProfile === 'main' ? 0.3 : 3, repeat: expandedProfile === 'main' ? 1 : Infinity }}
               >
                 <div className="w-full h-full bg-white flex items-center justify-center">
                   <span className="text-6xl font-bold text-primary">MR</span>
@@ -174,13 +181,21 @@ export default function DeveloperPage() {
             {friends.map((friend) => (
               <motion.div
                 key={friend.name}
-                whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+                whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)' }}
+                onClick={() => setExpandedProfile(expandedProfile === friend.name ? null : friend.name)}
+                animate={{
+                  y: expandedProfile === friend.name ? -10 : 0,
+                  boxShadow: expandedProfile === friend.name ? '0 10px 30px rgba(0, 0, 0, 0.2)' : 'none',
+                }}
+                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border cursor-pointer transition-all"
               >
                 <div className="flex gap-4 mb-4">
                   <motion.div
-                    className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 cursor-pointer"
+                    className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0"
                     whileHover={{ scale: 1.2 }}
+                    animate={{
+                      scale: expandedProfile === friend.name ? 1.2 : 1,
+                    }}
                     transition={{ type: 'spring', stiffness: 300, damping: 10 }}
                   >
                     {friend.name.split(' ').map(n => n[0]).join('')}

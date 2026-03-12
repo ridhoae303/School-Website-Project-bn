@@ -178,22 +178,27 @@ export default function HubungiKamiPage() {
                   <h3 className="font-bold text-lg">Jam Operasional</h3>
                 </div>
                 <p className="text-muted-foreground ml-9">
-                  Senin - Jumat: 07:00 - 15:30 WIB<br/>
+                  Senin - Jumat: 07:00 - 13:00 WIB<br/>
                   Sabtu: 07:00 - 12:00 WIB<br/>
                   Minggu: Tutup
                 </p>
               </div>
 
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="font-bold text-lg mb-3">WhatsApp</h3>
-                <a
-                  href={SCHOOL_INFO.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-                >
-                  Chat via WhatsApp
-                </a>
+                <h3 className="font-bold text-lg mb-3">Kontak Pendaftaran</h3>
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <p className="font-semibold">Bp. Trisno</p>
+                    <a href="tel:081294146501" className="text-primary hover:underline">081-294-146-501</a>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Ibu. Essy S</p>
+                    <a href="tel:081296773860" className="text-primary hover:underline">0812-9677386</a>
+                  </div>
+                  <p className="text-muted-foreground text-xs mt-3">
+                    Jika nomor pertama tidak terdaftar, silakan hubungi nomor kedua.
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
