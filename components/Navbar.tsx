@@ -42,27 +42,6 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false)
 
-  // Lock scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [mobileMenuOpen])
-
-  // Close More dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = () => setMoreDropdownOpen(false)
-    if (moreDropdownOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
-    }
-  }, [moreDropdownOpen])
-
   return (
     <>
       <nav className="sticky top-0 z-40 bg-secondary text-white shadow-md">

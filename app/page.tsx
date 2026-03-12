@@ -81,35 +81,26 @@ function HeroSlider() {
   const [autoplay, setAutoplay] = useState(true)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const [direction, setDirection] = useState<'left' | 'right'>('left')
 
   useEffect(() => {
     if (!autoplay) return
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-      setDirection('left')
     }, 7000)
     return () => clearInterval(timer)
   }, [autoplay])
 
   const goToSlide = (index: number) => {
-    if (index > currentSlide) {
-      setDirection('left')
-    } else if (index < currentSlide) {
-      setDirection('right')
-    }
     setCurrentSlide(index)
     setAutoplay(false)
   }
 
   const nextSlide = () => {
-    setDirection('left')
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     setAutoplay(false)
   }
 
   const prevSlide = () => {
-    setDirection('right')
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
     setAutoplay(false)
   }
@@ -144,9 +135,9 @@ function HeroSlider() {
         <motion.div
           key={currentSlide}
           className="absolute inset-0"
-          initial={{ x: direction === 'left' ? 1000 : -1000 }}
+          initial={{ x: 1000 }}
           animate={{ x: 0 }}
-          exit={{ x: direction === 'left' ? -1000 : 1000 }}
+          exit={{ x: -1000 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <img
@@ -233,14 +224,13 @@ function SequentialQuotes() {
           initial={{ x: '100%' }}
           animate={{ x: '-100%' }}
           transition={{
-            duration: 30,
+            duration: 20,
             repeat: Infinity,
             ease: 'linear',
             delay: 2,
           }}
         >
-          {/* Duplicate for seamless loop */}
-          {[...quotes, ...quotes].map((quote, i) => (
+          {quotes.map((quote, i) => (
             <span key={i} className="text-lg font-medium min-w-max">
               {quote} •
             </span>

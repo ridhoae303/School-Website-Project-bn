@@ -178,31 +178,22 @@ export default function HubungiKamiPage() {
                   <h3 className="font-bold text-lg">Jam Operasional</h3>
                 </div>
                 <p className="text-muted-foreground ml-9">
-                  Senin – Jumat: 07:00 – 13:00 WIB<br/>
-                  Sabtu: 07:00 – 12:00 WIB<br/>
+                  Senin - Jumat: 07:00 - 15:30 WIB<br/>
+                  Sabtu: 07:00 - 12:00 WIB<br/>
                   Minggu: Tutup
                 </p>
               </div>
 
-              <div className="bg-muted p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-bold text-lg mb-2">Kontak Pendaftaran</h3>
-                  <div className="space-y-3 text-muted-foreground">
-                    <div>
-                      <p className="font-semibold text-foreground">Bp. Trisno</p>
-                      <a href="tel:081294146501" className="hover:text-primary">081-294-146-501</a><br/>
-                      <a href="https://wa.me/6281294146501" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-primary">Chat WhatsApp</a>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground">Ibu. Essy S</p>
-                      <a href="tel:08129677386" className="hover:text-primary">0812-9677386</a><br/>
-                      <a href="https://wa.me/628129677386" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-primary">Chat WhatsApp</a>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground border-t border-border pt-3 mt-3">
-                  <strong>Catatan:</strong> Jika nomor WhatsApp pertama tidak terdaftar, silakan hubungi nomor kedua.
-                </p>
+              <div className="bg-muted p-6 rounded-lg">
+                <h3 className="font-bold text-lg mb-3">WhatsApp</h3>
+                <a
+                  href={SCHOOL_INFO.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                >
+                  Chat via WhatsApp
+                </a>
               </div>
             </div>
           </motion.div>
