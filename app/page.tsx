@@ -81,26 +81,31 @@ function HeroSlider() {
   const [autoplay, setAutoplay] = useState(true)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  const [direction, setDirection] = useState(1)
 
   useEffect(() => {
     if (!autoplay) return
     const timer = setInterval(() => {
+      setDirection(1)
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     }, 7000)
     return () => clearInterval(timer)
   }, [autoplay])
 
   const goToSlide = (index: number) => {
+    setDirection(index > currentSlide ? 1 : -1)
     setCurrentSlide(index)
     setAutoplay(false)
   }
 
   const nextSlide = () => {
+    setDirection(1)
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     setAutoplay(false)
   }
 
   const prevSlide = () => {
+    setDirection(-1)
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
     setAutoplay(false)
   }
@@ -135,9 +140,9 @@ function HeroSlider() {
         <motion.div
           key={currentSlide}
           className="absolute inset-0"
-          initial={{ x: 1000 }}
-          animate={{ x: 0 }}
-          exit={{ x: -1000 }}
+          initial={{ x: direction > 0 ? 1000 : -1000, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: direction > 0 ? -1000 : 1000, opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <img
@@ -218,10 +223,10 @@ function SequentialQuotes() {
       </motion.div>
 
       {/* Marquee with 2 second delay */}
-      <div className="bg-primary text-white py-4 rounded-lg overflow-hidden">
+      <div className="bg-primary text-white py-4 rounded-lg overflow-hidden" suppressHydrationWarning>
         <motion.div
           className="flex gap-8 whitespace-nowrap px-4"
-          initial={{ x: 0 }}
+          initial={{ x: '100%' }}
           animate={{ x: '-100%' }}
           transition={{
             duration: 25,
@@ -230,10 +235,11 @@ function SequentialQuotes() {
             delay: 2,
             repeatDelay: 1,
           }}
+          key="marquee-animation"
         >
           {/* Duplicate quotes to create seamless loop */}
           {[...quotes, ...quotes].map((quote, i) => (
-            <span key={i} className="text-lg font-medium min-w-max">
+            <span key={`quote-${i}`} className="text-lg font-medium min-w-max">
               {quote} •
             </span>
           ))}

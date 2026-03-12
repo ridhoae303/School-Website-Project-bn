@@ -85,7 +85,7 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
 
           {/* Menu */}
           <div
-            className={`fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto ${isClosing ? 'mobile-menu-closed' : 'mobile-menu-open'}`}
+            className={`fixed left-0 top-0 h-screen w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto ${isClosing ? 'mobile-menu-closed' : 'mobile-menu-open'}`}
           >
             <div className="p-4 space-y-2">
               {items.map((item) => (

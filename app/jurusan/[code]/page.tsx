@@ -111,7 +111,10 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
             {images.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentImageIndex(i)}
+                onClick={() => {
+                  setDirection(i > currentImageIndex ? 1 : -1)
+                  setCurrentImageIndex(i)
+                }}
                 className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${
                   i === currentImageIndex ? 'border-primary' : 'border-border'
                 }`}

@@ -11,7 +11,7 @@ export default function DeveloperPage() {
 
   const skills = [
     { name: 'Full Stack Developer', percentage: 90 },
-    { name: 'Kemampuan Tangan / Perkabelan', percentage: 10 },
+    { name: 'Manual dexterity / Wiring', percentage: 10 },
     { name: 'DJ/Remixing', percentage: 96 },
     { name: 'Reverse Engineering', percentage: 100 },
   ]
