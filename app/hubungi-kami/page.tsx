@@ -190,10 +190,13 @@ export default function HubungiKamiPage() {
                   href={SCHOOL_INFO.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                  className="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-colors mb-3"
                 >
                   Chat via WhatsApp
                 </a>
+                <p className="text-sm text-muted-foreground mt-3">
+                  <strong>Catatan:</strong> Jika nomor pertama tidak terdaftar, silahkan hubungi nomor kedua.
+                </p>
               </div>
             </div>
           </motion.div>

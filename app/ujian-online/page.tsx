@@ -76,7 +76,7 @@ export default function UjianOnlineLogin() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-semibold mb-2 text-foreground">
-              NIP (Guru) / NIS (Siswa)
+              Username
             </label>
             <input
               type="text"

@@ -42,6 +42,18 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false)
 
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   return (
     <>
       <nav className="sticky top-0 z-40 bg-secondary text-white shadow-md">
@@ -86,7 +98,7 @@ export function Navbar() {
             </div>
 
             {/* Desktop Navigation - More Dropdown */}
-            <div className="hidden lg:block relative">
+            <div className="hidden lg:block relative" onMouseLeave={() => setMoreDropdownOpen(false)}>
               <button
                 onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
                 className="text-sm text-white hover:bg-white/20 px-3 py-2 flex items-center rounded transition-colors"
@@ -96,7 +108,7 @@ export function Navbar() {
               </button>
               
               {moreDropdownOpen && (
-                <div className="absolute right-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg z-50">
+                <div className="absolute right-0 top-full mt-1 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg z-50">
                   {SECONDARY_NAV_ITEMS.map((item, idx) => (
                     <div key={item.label}>
                       {item.submenu ? (
