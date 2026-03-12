@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button'
 
 export default function DeveloperPage() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
+  const [expandedProfile, setExpandedProfile] = useState<string | null>(null)
 
   const skills = [
     { name: 'Full Stack Developer', percentage: 90 },
-    { name: 'Network/Crapping', percentage: 10 },
+    { name: 'Kemampuan Tangan / Perkabelan', percentage: 10 },
     { name: 'DJ/Remixing', percentage: 96 },
     { name: 'Reverse Engineering', percentage: 100 },
   ]
@@ -51,7 +52,10 @@ export default function DeveloperPage() {
           >
             <motion.div
               className="relative w-48 h-48 cursor-pointer"
-              whileHover={{ scale: 1.15 }}
+              onClick={() => setExpandedProfile(expandedProfile === 'ridho' ? null : 'ridho')}
+              onMouseEnter={() => setExpandedProfile('ridho')}
+              onMouseLeave={() => setExpandedProfile(null)}
+              animate={{ scale: expandedProfile === 'ridho' ? 1.15 : 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 10 }}
             >
               <motion.div
@@ -180,7 +184,10 @@ export default function DeveloperPage() {
                 <div className="flex gap-4 mb-4">
                   <motion.div
                     className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 cursor-pointer"
-                    whileHover={{ scale: 1.2 }}
+                    onClick={() => setExpandedProfile(expandedProfile === friend.name ? null : friend.name)}
+                    onMouseEnter={() => setExpandedProfile(friend.name)}
+                    onMouseLeave={() => setExpandedProfile(null)}
+                    animate={{ scale: expandedProfile === friend.name ? 1.2 : 1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 10 }}
                   >
                     {friend.name.split(' ').map(n => n[0]).join('')}

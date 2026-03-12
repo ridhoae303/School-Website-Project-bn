@@ -19,6 +19,27 @@ interface MobileMenuProps {
 
 export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
+  const [isClosing, setIsClosing] = useState(false)
+
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      setIsClosing(false)
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  const handleClose = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      onClose()
+      setIsClosing(false)
+    }, 300)
+  }
 
   return (
     <>
@@ -54,17 +75,17 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
         }
       `}</style>
 
-      {isOpen && (
+      {(isOpen || isClosing) && (
         <>
           {/* Backdrop */}
           <div
-            className={`fixed inset-0 bg-black/50 lg:hidden z-30 mobile-backdrop-open`}
-            onClick={onClose}
+            className={`fixed inset-0 bg-black/50 lg:hidden z-30 ${isClosing ? 'mobile-backdrop-closed' : 'mobile-backdrop-open'}`}
+            onClick={handleClose}
           />
 
           {/* Menu */}
           <div
-            className={`fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto mobile-menu-open`}
+            className={`fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-border lg:hidden z-40 overflow-y-auto ${isClosing ? 'mobile-menu-closed' : 'mobile-menu-open'}`}
           >
             <div className="p-4 space-y-2">
               {items.map((item) => (
@@ -84,7 +105,7 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                       {expandedMenu === item.label && (
                         <div className="bg-muted rounded-lg ml-4 mt-1 space-y-1 overflow-hidden transition-all">
                           {item.submenu.map((subitem) => (
-                            <Link key={subitem.href} href={subitem.href} onClick={onClose}>
+                            <Link key={subitem.href} href={subitem.href} onClick={handleClose}>
                               <div className="px-4 py-2 text-sm hover:bg-background rounded-lg transition-colors">
                                 {subitem.label}
                               </div>
@@ -94,7 +115,7 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                       )}
                     </>
                   ) : (
-                    <Link href={item.href} onClick={onClose}>
+                    <Link href={item.href} onClick={handleClose}>
                       <Button
                         variant="ghost"
                         className="w-full justify-start text-base"

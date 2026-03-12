@@ -12,14 +12,14 @@ const jurusanData: Record<string, any> = {
     description: 'Program keahlian yang mempersiapkan siswa untuk bekerja di bidang teknologi informasi dan jaringan komputer.',
     duration: '3 tahun',
     subjects: ['Sistem Operasi', 'Networking', 'Server', 'Cybersecurity', 'Web Development'],
-    facilities: ['Lab Komputer', 'Lab Jaringan', 'Server Room'],
+    facilities: ['Lab Komputer', 'Lab Jaringan'],
   },
   tkr: {
     name: 'TKR (Teknik Kendaraan Ringan Otomotif)',
     description: 'Program keahlian yang melatih siswa menjadi teknisi otomotif profesional.',
     duration: '3 tahun',
     subjects: ['Mesin Kendaraan', 'Sistem Kelistrikan', 'Transmisi', 'Suspensi', 'Perbaikan Kendaraan'],
-    facilities: ['Workshop Bengkel', 'Alat Diagnostik', 'Lift Hidrolik'],
+    facilities: ['Workshop Bengkel', 'Alat Diagnostik'],
   },
   tp: {
     name: 'TP (Teknik Permesinan)',
@@ -41,8 +41,23 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
   const { code } = React.use(params)
   const data = jurusanData[code?.toLowerCase()] || jurusanData.tkj
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [direction, setDirection] = useState(0) // 1 for next, -1 for prev
   
   const images = Array(4).fill('https://via.placeholder.com/600x400')
+
+  const handleNext = () => {
+    if (currentImageIndex < images.length - 1) {
+      setDirection(1)
+      setCurrentImageIndex(currentImageIndex + 1)
+    }
+  }
+
+  const handlePrev = () => {
+    if (currentImageIndex > 0) {
+      setDirection(-1)
+      setCurrentImageIndex(currentImageIndex - 1)
+    }
+  }
 
   return (
     <div className="py-16 bg-white">
@@ -71,20 +86,21 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
                 src={images[currentImageIndex]}
                 alt={`Slide ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover"
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
+                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                transition={{ duration: 0.3 }}
               />
             </AnimatePresence>
             
             <button
-              onClick={() => setCurrentImageIndex(Math.max(0, currentImageIndex - 1))}
+              onClick={handlePrev}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
             >
               <ChevronLeft size={24} />
             </button>
             <button
-              onClick={() => setCurrentImageIndex(Math.min(images.length - 1, currentImageIndex + 1))}
+              onClick={handleNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
             >
               <ChevronRight size={24} />

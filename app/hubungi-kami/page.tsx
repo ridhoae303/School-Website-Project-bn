@@ -100,7 +100,74 @@ export default function HubungiKamiPage() {
             <h3 className="text-xl font-bold mb-2">Alamat</h3>
             <p>{SCHOOL_INFO.address}</p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-gradient-to-br from-secondary/60 to-primary/60 text-white p-6 rounded-lg"
+          >
+            <Clock size={32} className="mb-4" />
+            <h3 className="text-xl font-bold mb-2">Jam Operasional</h3>
+            <p className="text-sm">Senin – Jumat: 07:00 – 13:00</p>
+            <p className="text-sm">Sabtu: 07:00 – 12:00</p>
+            <p className="text-sm">Minggu: Tutup</p>
+          </motion.div>
         </div>
+
+        {/* Contact Persons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gradient-to-br from-primary to-primary/80 text-white p-6 rounded-lg"
+          >
+            <h3 className="font-bold text-xl mb-3">Bp. Trisno</h3>
+            <p className="mb-3">
+              <span className="font-semibold">Telepon:</span> 081-294-146-501
+            </p>
+            <a
+              href="https://wa.me/6281294146501"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-primary px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Chat via WhatsApp
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-gradient-to-br from-secondary to-secondary/80 text-white p-6 rounded-lg"
+          >
+            <h3 className="font-bold text-xl mb-3">Ibu. Essy S</h3>
+            <p className="mb-3">
+              <span className="font-semibold">Telepon:</span> 0812-9677386
+            </p>
+            <a
+              href="https://wa.me/628129677386"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-secondary px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Chat via WhatsApp
+            </a>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-12"
+        >
+          <p className="text-blue-900 text-sm">
+            <strong>Catatan:</strong> Jika nomor WhatsApp pertama tidak terdaftar, silakan hubungi nomor kedua.
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}

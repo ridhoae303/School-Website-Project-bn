@@ -21,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id">
+    <html lang="id" className="overflow-x-hidden">
       <head />
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased overflow-x-hidden">
         <Navbar />
         <main className="min-h-screen">
           {children}

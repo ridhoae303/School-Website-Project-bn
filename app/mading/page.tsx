@@ -30,6 +30,18 @@ const mockMadingItems = madingTitles.map((title, i) => ({
 export default function MadingPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
+  // Lock background scroll when modal is open
+  React.useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [selectedImage])
+
   return (
     <div className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

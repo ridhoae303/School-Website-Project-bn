@@ -221,16 +221,18 @@ function SequentialQuotes() {
       <div className="bg-primary text-white py-4 rounded-lg overflow-hidden">
         <motion.div
           className="flex gap-8 whitespace-nowrap px-4"
-          initial={{ x: '100%' }}
+          initial={{ x: 0 }}
           animate={{ x: '-100%' }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: 'linear',
             delay: 2,
+            repeatDelay: 1,
           }}
         >
-          {quotes.map((quote, i) => (
+          {/* Duplicate quotes to create seamless loop */}
+          {[...quotes, ...quotes].map((quote, i) => (
             <span key={i} className="text-lg font-medium min-w-max">
               {quote} •
             </span>
