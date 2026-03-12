@@ -42,6 +42,16 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false)
 
+  // Close menu when user scrolls or navigates
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mobileMenuOpen) setMobileMenuOpen(false)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [mobileMenuOpen])
+
   return (
     <>
       <nav className="sticky top-0 z-40 bg-secondary text-white shadow-md">
