@@ -70,13 +70,13 @@ export default function UjianOnlineLogin() {
       >
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-primary mb-2">Ujian Online</h1>
-          <p className="text-muted-foreground">Masuk dengan NIP/NIS dan Password</p>
+          <p className="text-muted-foreground">Masuk dengan Username dan Password</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-semibold mb-2 text-foreground">
-              NIP (Guru) / NIS (Siswa)
+              Username
             </label>
             <input
               type="text"
@@ -87,7 +87,7 @@ export default function UjianOnlineLogin() {
               className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 validationErrors.username ? 'border-red-500' : 'border-border'
               }`}
-              placeholder="Masukkan NIP/NIS"
+              placeholder="Masukkan username"
             />
             {validationErrors.username && (
               <p className="text-red-500 text-sm mt-1">{validationErrors.username}</p>
