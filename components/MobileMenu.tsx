@@ -20,17 +20,6 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
 
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
-
   return (
     <>
       <style>{`

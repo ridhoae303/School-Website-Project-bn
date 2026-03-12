@@ -219,26 +219,23 @@ function SequentialQuotes() {
 
       {/* Marquee with 2 second delay */}
       <div className="bg-primary text-white py-4 rounded-lg overflow-hidden">
-        <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-          }
-          .marquee-content {
-            animation: marquee 25s linear 2s infinite;
-            display: flex;
-            gap: 2rem;
-            white-space: nowrap;
-            padding: 0 1rem;
-          }
-        `}</style>
-        <div className="marquee-content">
+        <motion.div
+          className="flex gap-8 whitespace-nowrap px-4"
+          initial={{ x: '100%' }}
+          animate={{ x: '-100%' }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'linear',
+            delay: 2,
+          }}
+        >
           {quotes.map((quote, i) => (
             <span key={i} className="text-lg font-medium min-w-max">
               {quote} •
             </span>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )
@@ -247,17 +244,6 @@ function SequentialQuotes() {
 export default function Home() {
   const [selectedNews, setSelectedNews] = useState<ModalItem | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  useEffect(() => {
-    if (selectedNews) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [selectedNews])
 
   return (
     <>
