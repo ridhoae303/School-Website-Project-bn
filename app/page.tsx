@@ -81,13 +81,11 @@ function HeroSlider() {
   const [autoplay, setAutoplay] = useState(true)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left')
 
   useEffect(() => {
     if (!autoplay) return
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-      setSlideDirection('left')
     }, 7000)
     return () => clearInterval(timer)
   }, [autoplay])
@@ -98,13 +96,11 @@ function HeroSlider() {
   }
 
   const nextSlide = () => {
-    setSlideDirection('left')
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
     setAutoplay(false)
   }
 
   const prevSlide = () => {
-    setSlideDirection('right')
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
     setAutoplay(false)
   }
@@ -119,11 +115,11 @@ function HeroSlider() {
   }
 
   const handleSwipe = () => {
-    // Swipe right (touchStart > touchEnd) = go to previous slide
+    // Swipe right (touchStart > touchEnd) = go to previous slide (show previous image on right)
     if (touchStart - touchEnd > 50) {
       prevSlide()
     }
-    // Swipe left (touchEnd > touchStart) = go to next slide
+    // Swipe left (touchEnd > touchStart) = go to next slide (show next image on left)
     if (touchEnd - touchStart > 50) {
       nextSlide()
     }
@@ -139,9 +135,9 @@ function HeroSlider() {
         <motion.div
           key={currentSlide}
           className="absolute inset-0"
-          initial={{ x: slideDirection === 'left' ? 1000 : -1000 }}
+          initial={{ x: 1000 }}
           animate={{ x: 0 }}
-          exit={{ x: slideDirection === 'left' ? -1000 : 1000 }}
+          exit={{ x: -1000 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <img
@@ -228,14 +224,13 @@ function SequentialQuotes() {
           initial={{ x: '100%' }}
           animate={{ x: '-100%' }}
           transition={{
-            duration: 30,
+            duration: 20,
             repeat: Infinity,
             ease: 'linear',
             delay: 2,
           }}
         >
-          {/* Duplicate content for seamless loop */}
-          {[...quotes, ...quotes].map((quote, i) => (
+          {quotes.map((quote, i) => (
             <span key={i} className="text-lg font-medium min-w-max">
               {quote} •
             </span>

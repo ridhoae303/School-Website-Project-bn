@@ -41,28 +41,8 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
   const { code } = React.use(params)
   const data = jurusanData[code?.toLowerCase()] || jurusanData.tkj
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left')
   
   const images = Array(4).fill('https://via.placeholder.com/600x400')
-
-  const goToSlide = (index: number) => {
-    if (index > currentImageIndex) {
-      setSlideDirection('left')
-    } else {
-      setSlideDirection('right')
-    }
-    setCurrentImageIndex(index)
-  }
-
-  const prevSlide = () => {
-    setSlideDirection('right')
-    setCurrentImageIndex(Math.max(0, currentImageIndex - 1))
-  }
-
-  const nextSlide = () => {
-    setSlideDirection('left')
-    setCurrentImageIndex(Math.min(images.length - 1, currentImageIndex + 1))
-  }
 
   return (
     <div className="py-16 bg-white">
@@ -91,20 +71,20 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
                 src={images[currentImageIndex]}
                 alt={`Slide ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover"
-                initial={{ opacity: 0, x: slideDirection === 'left' ? 100 : -100 }}
+                initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: slideDirection === 'left' ? -100 : 100 }}
+                exit={{ opacity: 0, x: -100 }}
               />
             </AnimatePresence>
             
             <button
-              onClick={prevSlide}
+              onClick={() => setCurrentImageIndex(Math.max(0, currentImageIndex - 1))}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
             >
               <ChevronLeft size={24} />
             </button>
             <button
-              onClick={nextSlide}
+              onClick={() => setCurrentImageIndex(Math.min(images.length - 1, currentImageIndex + 1))}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
             >
               <ChevronRight size={24} />
@@ -115,7 +95,7 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
             {images.map((_, i) => (
               <button
                 key={i}
-                onClick={() => goToSlide(i)}
+                onClick={() => setCurrentImageIndex(i)}
                 className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${
                   i === currentImageIndex ? 'border-primary' : 'border-border'
                 }`}
