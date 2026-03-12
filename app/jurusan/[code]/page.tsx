@@ -80,36 +80,16 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
           className="mb-12"
         >
           <div className="relative bg-muted rounded-lg overflow-hidden h-96 mb-4">
-            <AnimatePresence mode="wait" custom={direction}>
+            <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}
                 src={images[currentImageIndex]}
                 alt={`Slide ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover"
-                custom={direction}
-                variants={{
-                  enter: (dir: number) => ({
-                    x: dir > 0 ? 1000 : -1000,
-                    opacity: 0,
-                  }),
-                  center: {
-                    zIndex: 1,
-                    x: 0,
-                    opacity: 1,
-                  },
-                  exit: (dir: number) => ({
-                    zIndex: 0,
-                    x: dir > 0 ? -1000 : 1000,
-                    opacity: 0,
-                  }),
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
-                }}
+                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                transition={{ duration: 0.3 }}
               />
             </AnimatePresence>
             
