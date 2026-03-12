@@ -120,13 +120,18 @@ function HeroSlider() {
   }
 
   const handleSwipe = () => {
-    // Swipe right (touchStart > touchEnd) = go to previous slide (show previous image on right)
-    if (touchStart - touchEnd > 50) {
-      prevSlide()
-    }
-    // Swipe left (touchEnd > touchStart) = go to next slide (show next image on left)
-    if (touchEnd - touchStart > 50) {
+    const swipeThreshold = 50
+    const swipeDelta = touchStart - touchEnd
+    
+    // Swipe left (touchStart > touchEnd): move thumb from right to left = show next slide
+    if (swipeDelta > swipeThreshold) {
+      setDirection(1)
       nextSlide()
+    }
+    // Swipe right (touchEnd > touchStart): move thumb from left to right = show previous slide
+    else if (swipeDelta < -swipeThreshold) {
+      setDirection(-1)
+      prevSlide()
     }
   }
 
