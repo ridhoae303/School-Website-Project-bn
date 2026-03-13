@@ -72,9 +72,9 @@ export default function CetakFormulirPage() {
       return
     }
     setLastDownloadTime(now)
-    // Download the actual form PDF from public directory
+    // Download the actual form PDF from docs directory
     const link = document.createElement('a')
-    link.href = '/Formulir-SPMB-2024.pdf'
+    link.href = '/docs/Formulir-SPMB-2024.pdf'
     link.download = 'Formulir-SPMB-2024.pdf'
     document.body.appendChild(link)
     link.click()
