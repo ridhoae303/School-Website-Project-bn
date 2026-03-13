@@ -16,7 +16,7 @@ const heroSlides = HOME_IMAGES.heroSlides.map((src, i) => ({
 
 const quotes = heroSlides.map(s => s.quote)
 
-// 4 News Items - menggunakan images dari /public/images/home/news-{1-4}.jpg
+// 6 News Items - menggunakan images dari /public/images/home/news-{1-6}.jpg
 const newsItems = [
   {
     id: '1',
@@ -45,23 +45,20 @@ const newsItems = [
     excerpt: 'Acara classmeet telah berhasil dilaksanakan...',
     image: HOME_IMAGES.news[3],
     date: '2024-01-01',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
   {
     id: '5',
     title: 'Semangat untuk Ujian',
     excerpt: 'Mari kita dukung semangat siswa dalam menghadapi ujian...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[4],
     date: '2023-12-28',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
   {
     id: '6',
     title: 'Acara Wisuda Kelas XII',
     excerpt: 'Acara wisuda tahun ini berlangsung meriah dan penuh kebahagiaan...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[5],
     date: '2023-12-20',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
 ]
 

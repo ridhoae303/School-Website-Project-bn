@@ -86,6 +86,8 @@ export const HOME_IMAGES = {
     '/images/home/news-2.jpg',
     '/images/home/news-3.jpg',
     '/images/home/news-4.jpg',
+    '/images/home/news-5.jpg',
+    '/images/home/news-6.jpg',
   ],
 }
 
