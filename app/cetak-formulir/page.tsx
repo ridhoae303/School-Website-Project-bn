@@ -72,7 +72,13 @@ export default function CetakFormulirPage() {
       return
     }
     setLastDownloadTime(now)
-    window.open('/files/formulir-ppdb.pdf', '_blank')
+    // Download the actual form PDF from public directory
+    const link = document.createElement('a')
+    link.href = '/Formulir-SPMB-2024.pdf'
+    link.download = 'Formulir-SPMB-2024.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
     setDownloadCountdown(10)
   }
 
