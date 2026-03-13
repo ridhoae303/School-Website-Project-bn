@@ -420,43 +420,14 @@ export default function Home() {
             </div>
 
             <div className="p-6">
-              {/* Image Slider untuk Preview */}
-              {selectedNews.images && selectedNews.images.length > 0 && (
+              {/* Main Image */}
+              {selectedNews.image && (
                 <div className="mb-6">
-                  <div className="relative w-full h-80 bg-muted rounded-lg overflow-hidden mb-4">
-                    <img
-                      src={selectedNews.images[currentImageIndex]}
-                      alt={`Image ${currentImageIndex + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-between p-4">
-                      <button
-                        onClick={() => setCurrentImageIndex(Math.max(0, currentImageIndex - 1))}
-                        className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
-                      >
-                        ←
-                      </button>
-                      <button
-                        onClick={() => setCurrentImageIndex(Math.min(selectedNews.images!.length - 1, currentImageIndex + 1))}
-                        className="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
-                      >
-                        →
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 overflow-x-auto">
-                    {selectedNews.images.map((img, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setCurrentImageIndex(i)}
-                        className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 ${
-                          i === currentImageIndex ? 'border-primary' : 'border-border'
-                        }`}
-                      >
-                        <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
-                      </button>
-                    ))}
-                  </div>
+                  <img
+                    src={selectedNews.image}
+                    alt={selectedNews.title}
+                    className="w-full h-80 object-cover rounded-lg mb-4"
+                  />
                 </div>
               )}
               <p className="text-muted-foreground text-lg leading-relaxed">
