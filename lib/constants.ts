@@ -59,13 +59,75 @@ export const API_ENDPOINTS = {
   getStaffByRole: (role: string) => `/staff?role=${role}`,
 }
 
-// Image Placeholders
+// Image Placeholders - Local Image Paths
 export const IMAGE_PLACEHOLDERS = {
-  hero: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
-  team: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop',
-  achievement: 'https://images.unsplash.com/photo-1541339907198-e41de11261db?w=400&h=400&fit=crop',
-  gallery: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=400&fit=crop',
+  hero: '/images/home/hero-slide-default.jpg',
+  team: '/images/developer/profile-default.jpg',
+  achievement: '/images/home/news-default.jpg',
+  gallery: '/images/mading/gallery-default.jpg',
 }
+
+// Home Page Images
+export const HOME_IMAGES = {
+  heroSlides: [
+    '/images/home/hero-slide-1.jpg',
+    '/images/home/hero-slide-2.jpg',
+    '/images/home/hero-slide-3.jpg',
+    '/images/home/hero-slide-4.jpg',
+    '/images/home/hero-slide-5.jpg',
+    '/images/home/hero-slide-6.jpg',
+    '/images/home/hero-slide-7.jpg',
+    '/images/home/hero-slide-8.jpg',
+    '/images/home/hero-slide-9.jpg',
+    '/images/home/hero-slide-10.jpg',
+  ],
+  news: [
+    '/images/home/news-1.jpg',
+    '/images/home/news-2.jpg',
+    '/images/home/news-3.jpg',
+    '/images/home/news-4.jpg',
+  ],
+}
+
+// Jurusan Page Images
+export const JURUSAN_IMAGES = {
+  tkj: [
+    '/images/jurusan/tkj/slide-1.jpg',
+    '/images/jurusan/tkj/slide-2.jpg',
+    '/images/jurusan/tkj/slide-3.jpg',
+    '/images/jurusan/tkj/slide-4.jpg',
+  ],
+  tkr: [
+    '/images/jurusan/tkr/slide-1.jpg',
+    '/images/jurusan/tkr/slide-2.jpg',
+    '/images/jurusan/tkr/slide-3.jpg',
+    '/images/jurusan/tkr/slide-4.jpg',
+  ],
+  tp: [
+    '/images/jurusan/tp/slide-1.jpg',
+    '/images/jurusan/tp/slide-2.jpg',
+    '/images/jurusan/tp/slide-3.jpg',
+    '/images/jurusan/tp/slide-4.jpg',
+  ],
+  titl: [
+    '/images/jurusan/titl/slide-1.jpg',
+    '/images/jurusan/titl/slide-2.jpg',
+    '/images/jurusan/titl/slide-3.jpg',
+    '/images/jurusan/titl/slide-4.jpg',
+  ],
+}
+
+// Developer Page Images
+export const DEVELOPER_IMAGES = {
+  mohammedRidho: '/images/developer/mohammed-ridho.jpg',
+  abyanRuby: '/images/developer/abyan-ruby.jpg',
+}
+
+// Mading Gallery Images
+export const MADING_IMAGES = Array.from(
+  { length: 12 },
+  (_, i) => `/images/mading/gallery-${i + 1}.jpg`
+)
 
 // Animation Durations
 export const ANIMATION_DURATION = {

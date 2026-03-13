@@ -5,6 +5,7 @@ import { useState } from 'react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { JURUSAN_IMAGES } from '@/lib/constants'
 
 const jurusanData: Record<string, any> = {
   tkj: {
@@ -39,11 +40,13 @@ const jurusanData: Record<string, any> = {
 
 export default function JurusanDetailPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = React.use(params)
-  const data = jurusanData[code?.toLowerCase()] || jurusanData.tkj
+  const codeKey = code?.toLowerCase() as keyof typeof JURUSAN_IMAGES || 'tkj'
+  const data = jurusanData[codeKey] || jurusanData.tkj
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [direction, setDirection] = useState(0) // 1 for next, -1 for prev
   
-  const images = Array(4).fill('https://via.placeholder.com/600x400')
+  // Load images dari /public/images/jurusan/{code}/
+  const images = JURUSAN_IMAGES[codeKey] || JURUSAN_IMAGES.tkj
 
   const handleNext = () => {
     if (currentImageIndex < images.length - 1) {

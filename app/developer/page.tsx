@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Instagram } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { DEVELOPER_IMAGES } from '@/lib/constants'
 
 export default function DeveloperPage() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
@@ -59,7 +61,7 @@ export default function DeveloperPage() {
               transition={{ type: 'spring', stiffness: 300, damping: 10 }}
             >
               <motion.div
-                className="w-full h-full rounded-full bg-gradient-to-br from-primary to-secondary overflow-hidden border-4 border-white shadow-lg"
+                className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg"
                 animate={{
                   boxShadow: [
                     '0 0 20px rgba(30, 144, 255, 0.3)',
@@ -69,9 +71,14 @@ export default function DeveloperPage() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <div className="w-full h-full bg-white flex items-center justify-center">
-                  <span className="text-6xl font-bold text-primary">MR</span>
-                </div>
+                <Image
+                  src={DEVELOPER_IMAGES.mohammedRidho}
+                  alt="Mohammed Ridho"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </motion.div>
             </motion.div>
           </motion.div>
@@ -183,14 +190,20 @@ export default function DeveloperPage() {
               >
                 <div className="flex gap-4 mb-4">
                   <motion.div
-                    className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 cursor-pointer"
+                    className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 cursor-pointer border-2 border-primary"
                     onClick={() => setExpandedProfile(expandedProfile === friend.name ? null : friend.name)}
                     onMouseEnter={() => setExpandedProfile(friend.name)}
                     onMouseLeave={() => setExpandedProfile(null)}
                     animate={{ scale: expandedProfile === friend.name ? 1.2 : 1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 10 }}
                   >
-                    {friend.name.split(' ').map(n => n[0]).join('')}
+                    <Image
+                      src={DEVELOPER_IMAGES.abyanRuby}
+                      alt={friend.name}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
                   </motion.div>
                   <div>
                     <h3 className="text-xl font-bold">{friend.name}</h3>

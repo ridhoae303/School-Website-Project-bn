@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SCHOOL_INFO, IMAGE_PLACEHOLDERS } from '@/lib/constants'
+import { SCHOOL_INFO, HOME_IMAGES } from '@/lib/constants'
 
-// 10 Slide Foto dengan Quotes
-const heroSlides = Array.from({ length: 10 }, (_, i) => ({
-  src: IMAGE_PLACEHOLDERS.hero,
+// 10 Slide Foto dengan Quotes - menggunakan image dari /public/images/home/
+const heroSlides = HOME_IMAGES.heroSlides.map((src, i) => ({
+  src,
   alt: `Slide ${i + 1}`,
   title: `Slide foto ${i + 1}`,
   quote: `Setiap usaha membawa hasil, terus berjuang! Quote ${i + 1}`,
@@ -16,37 +16,34 @@ const heroSlides = Array.from({ length: 10 }, (_, i) => ({
 
 const quotes = heroSlides.map(s => s.quote)
 
-// 6 News Items
+// 4 News Items - menggunakan images dari /public/images/home/news-{1-4}.jpg
 const newsItems = [
   {
     id: '1',
     title: 'Ujian Sekolah Hari Ke Dua',
     excerpt: 'Pelaksanaan ujian sekolah tahap kedua berjalan lancar...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[0],
     date: '2024-01-15',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
   {
     id: '2',
     title: 'Ujian Sekolah',
     excerpt: 'Rangkaian ujian sekolah telah dimulai dengan tertib...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[1],
     date: '2024-01-10',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
   {
     id: '3',
     title: 'Workshop Teknologi',
     excerpt: 'Workshop teknologi terbaru untuk semua siswa...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[2],
     date: '2024-01-05',
-    images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },
   {
     id: '4',
     title: 'Classmeet di SMK PATRIOT 1 Berjalan Lancar dan Sukses',
     excerpt: 'Acara classmeet telah berhasil dilaksanakan...',
-    image: IMAGE_PLACEHOLDERS.hero,
+    image: HOME_IMAGES.news[3],
     date: '2024-01-01',
     images: Array(6).fill(IMAGE_PLACEHOLDERS.hero),
   },

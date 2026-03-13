@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import React from 'react'
 import { X } from 'lucide-react'
+import { MADING_IMAGES } from '@/lib/constants'
 
 const madingTitles = [
   'Hari Guru',
@@ -19,10 +21,11 @@ const madingTitles = [
   'Perpisahan Kelas XII',
 ]
 
+// Load images dari /public/images/mading/gallery-{1-12}.jpg
 const mockMadingItems = madingTitles.map((title, i) => ({
   id: i + 1,
   title,
-  image: `https://picsum.photos/400/300?random=${i}`,
+  image: MADING_IMAGES[i],
   date: new Date(2024, 0, 15 - i).toLocaleDateString('id-ID'),
   category: ['Akademik', 'Prestasi', 'Kegiatan'][i % 3],
 }))
