@@ -67,9 +67,6 @@ export const IMAGE_PLACEHOLDERS = {
   gallery: '/images/mading/gallery-default.jpg',
 }
 
-// Logo Image
-export const LOGO_IMAGE = '/images/logo.png'
-
 // Home Page Images
 export const HOME_IMAGES = {
   heroSlides: [
