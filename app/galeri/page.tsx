@@ -2,24 +2,21 @@ import React from 'react'
 import { Metadata } from 'next'
 import { HeroSection } from '@/components/HeroSection'
 import { Container } from '@/components/Container'
-import { IMAGE_PLACEHOLDERS } from '@/lib/constants'
+import { GALLERY_IMAGES } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Galeri - SMK PATRIOT 1 BEKASI',
   description: 'Galeri foto kegiatan dan fasilitas SMK PATRIOT 1 BEKASI',
 }
 
-const galleryImages = [
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Kampus utama', category: 'Fasilitas' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Lab komputer', category: 'Fasilitas' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Workshop mesin', category: 'Fasilitas' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Upacara bendera', category: 'Kegiatan' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Pramuka', category: 'Ekstrakurikuler' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'OSIS gathering', category: 'Kegiatan' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Kompetisi siswa', category: 'Prestasi' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Kelas praktik', category: 'Pembelajaran' },
-  { src: IMAGE_PLACEHOLDERS.gallery, alt: 'Wisuda siswa', category: 'Kegiatan' },
-]
+const galleryCategories = ['Fasilitas', 'Fasilitas', 'Fasilitas', 'Kegiatan', 'Ekstrakurikuler', 'Kegiatan', 'Prestasi', 'Pembelajaran', 'Kegiatan']
+const galleryAltTexts = ['Kampus utama', 'Lab komputer', 'Workshop mesin', 'Upacara bendera', 'Pramuka', 'OSIS gathering', 'Kompetisi siswa', 'Kelas praktik', 'Wisuda siswa']
+
+const galleryImages = GALLERY_IMAGES.map((src, i) => ({
+  src,
+  alt: galleryAltTexts[i],
+  category: galleryCategories[i],
+}))
 
 export default function GaleriPage() {
   return (

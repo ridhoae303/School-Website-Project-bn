@@ -59,6 +59,9 @@ export const API_ENDPOINTS = {
   getStaffByRole: (role: string) => `/staff?role=${role}`,
 }
 
+// Logo Image Path
+export const LOGO_PATH = '/images/logo/smk-patriot-logo.png'
+
 // Image Placeholders - Local Image Paths
 export const IMAGE_PLACEHOLDERS = {
   hero: '/images/home/hero-slide-default.jpg',
@@ -129,6 +132,18 @@ export const DEVELOPER_IMAGES = {
 export const MADING_IMAGES = Array.from(
   { length: 12 },
   (_, i) => `/images/mading/gallery-${i + 1}.jpg`
+)
+
+// General Gallery Images (Galeri page)
+export const GALLERY_IMAGES = Array.from(
+  { length: 9 },
+  (_, i) => `/images/gallery/gallery-${i + 1}.jpg`
+)
+
+// Achievement/Prestasi Images
+export const ACHIEVEMENT_IMAGES = Array.from(
+  { length: 8 },
+  (_, i) => `/images/achievements/achievement-${i + 1}.jpg`
 )
 
 // Animation Durations

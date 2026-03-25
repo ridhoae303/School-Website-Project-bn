@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { HeroSection } from '@/components/HeroSection'
 import { Container } from '@/components/Container'
 import { AchievementCard } from '@/components/AchievementCard'
-import { IMAGE_PLACEHOLDERS } from '@/lib/constants'
+import { ACHIEVEMENT_IMAGES } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Prestasi - SMK PATRIOT 1 BEKASI',
@@ -14,7 +14,7 @@ const achievements = [
   {
     title: 'Juara 1 Kompetisi Robotika Nasional',
     description: 'Tim robotika SMK PATRIOT meraih medali emas di ajang kompetisi robotika tingkat nasional',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[0],
     year: 2024,
     category: 'Robotika',
     level: 'gold',
@@ -22,7 +22,7 @@ const achievements = [
   {
     title: 'Penghargaan Sekolah Adiwiyata',
     description: 'Pengakuan atas komitmen sekolah terhadap lingkungan dan pembangunan berkelanjutan',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[1],
     year: 2024,
     category: 'Lingkungan',
     level: 'gold',
@@ -30,7 +30,7 @@ const achievements = [
   {
     title: 'Medali Perak Kompetisi Programing',
     description: 'Peserta didik berhasil meraih medali perak dalam kompetisi programming nasional',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[2],
     year: 2023,
     category: 'Informatika',
     level: 'silver',
@@ -38,7 +38,7 @@ const achievements = [
   {
     title: 'Juara Karate Tingkat Provinsi',
     description: 'Atlet karate dari sekolah kami meraih juara dalam turnamen tingkat provinsi',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[3],
     year: 2023,
     category: 'Olahraga',
     level: 'gold',
@@ -46,7 +46,7 @@ const achievements = [
   {
     title: 'Penghargaan Sekolah Terbaik Kategori Kejuruan',
     description: 'SMK PATRIOT 1 terpilih sebagai sekolah kejuruan terbaik di wilayah Bekasi',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[4],
     year: 2023,
     category: 'Umum',
     level: 'gold',
@@ -54,7 +54,7 @@ const achievements = [
   {
     title: 'Medali Perunggu LKS Kabupaten',
     description: 'Siswa SMK PATRIOT meraih medali perunggu dalam Lomba Kompetensi Siswa tingkat kabupaten',
-    image: IMAGE_PLACEHOLDERS.achievement,
+    image: ACHIEVEMENT_IMAGES[5],
     year: 2022,
     category: 'Kompetensi',
     level: 'bronze',
