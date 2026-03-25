@@ -88,21 +88,21 @@ export function Footer() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-lg font-bold mb-6">Navigasi</h3>
-            <div className="space-y-2">
-              <Link href="/" className="block text-sm hover:text-secondary transition-colors">
-                Profile
+            <div className="space-y-3">
+              <Link href="/" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Profile
               </Link>
-              <Link href="/sekilas-info" className="block text-sm hover:text-secondary transition-colors">
-                Sekilas Info
+              <Link href="/sekilas-info" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Sekilas Info
               </Link>
-              <Link href="/mading" className="block text-sm hover:text-secondary transition-colors">
-                Mading SMK
+              <Link href="/mading" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Mading SMK
               </Link>
-              <Link href="/jurusan/tkj" className="block text-sm hover:text-secondary transition-colors">
-                Jurusan
+              <Link href="/jurusan/tkj" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Jurusan
               </Link>
-              <Link href="/galeri/foto" className="block text-sm hover:text-secondary transition-colors">
-                Galeri
+              <Link href="/galeri/foto" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Galeri
               </Link>
             </div>
           </motion.div>
