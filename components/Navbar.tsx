@@ -51,17 +51,20 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 font-bold text-lg hover:opacity-80 transition-opacity flex-shrink-0">
-              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-white flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-white flex items-center justify-center">
                 <Image
                   src={LOGO_PATH}
                   alt="SMK PATRIOT 1 Logo"
                   width={40}
                   height={40}
                   className="w-full h-full object-contain"
-                  priority
-                  quality={100}
-                  unoptimized
+                  onError={(e) => {
+                    // Fallback to CSS-based logo if image fails to load
+                    e.currentTarget.style.display = 'none'
+                  }}
                 />
+                {/* Fallback CSS Logo */}
+                <span className="text-secondary font-bold text-lg" id="logo-fallback">P</span>
               </div>
               <span className="text-white font-bold">SMK PATRIOT 1</span>
             </Link>
