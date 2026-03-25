@@ -10,11 +10,14 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com/ridhoae303_', label: 'Instagram' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: Facebook, href: 'https://facebook.com/smkpatriot1bekasi', label: 'Facebook' },
+    { icon: Twitter, href: 'https://twitter.com/smkpatriot1', label: 'Twitter' },
+    { icon: Instagram, href: 'https://instagram.com/smkpatriot1bekasi', label: 'Instagram' },
+    { icon: Youtube, href: 'https://youtube.com/@smkpatriot1bekasi', label: 'YouTube' },
   ]
+
+  // Google Maps link
+  const mapsLink = 'https://maps.google.com/?q=Jl.+Kalibaru+Timur,+Kec.+Medan+Satria+Kota+Bekasi'
 
   return (
     <motion.footer
@@ -49,7 +52,9 @@ export function Footer() {
             <div className="space-y-4">
               <div className="flex gap-3">
                 <MapPin size={20} className="flex-shrink-0 mt-1" />
-                <p className="text-sm">{SCHOOL_INFO.address}</p>
+                <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="text-sm hover:underline hover:text-secondary transition-colors">
+                  {SCHOOL_INFO.address}
+                </a>
               </div>
               <div className="flex gap-3">
                 <Phone size={20} className="flex-shrink-0 mt-1" />

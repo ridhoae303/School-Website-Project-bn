@@ -349,6 +349,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA - Daftar Section */}
+      <section className="py-24 bg-gradient-to-r from-primary to-primary/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Tertarik Mendaftar?</h2>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Daftarkan diri Anda sekarang dan jadilah bagian dari keluarga besar SMK PATRIOT 1 BEKASI
+            </p>
+            <Link href="/ppdb/daftar">
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-6 text-lg"
+              >
+                Daftar Sekarang
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -146,6 +146,46 @@ export const ACHIEVEMENT_IMAGES = Array.from(
   (_, i) => `/images/achievements/achievement-${i + 1}.jpg`
 )
 
+// YouTube Videos - YouTube Embed IDs or fallback to local video directory
+export const YOUTUBE_VIDEOS = [
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Tour Kampus SMK PATRIOT 1', 
+    description: 'Kunjungan virtual kampus SMK PATRIOT 1 BEKASI',
+    fallbackVideo: '/videos/tour-kampus.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Upacara Bendera', 
+    description: 'Pelaksanaan upacara bendera rutin minggu pagi',
+    fallbackVideo: '/videos/upacara-bendera.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Praktek Kejuruan', 
+    description: 'Sesi praktek kejuruan siswa TKJ',
+    fallbackVideo: '/videos/praktek-kejuruan.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Kunjungan Industri', 
+    description: 'Kunjungan industri ke PT Elektronik',
+    fallbackVideo: '/videos/kunjungan-industri.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'LDKS Siswa Baru', 
+    description: 'Latihan Dasar Kepemimpinan Siswa',
+    fallbackVideo: '/videos/ldks-siswa-baru.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Kompetisi LKS', 
+    description: 'Siswa meraih juara pada kompetisi LKS',
+    fallbackVideo: '/videos/kompetisi-lks.mp4'
+  },
+]
+
 // Animation Durations
 export const ANIMATION_DURATION = {
   fast: 0.2,
