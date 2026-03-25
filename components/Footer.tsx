@@ -90,10 +90,7 @@ export function Footer() {
             <h3 className="text-lg font-bold mb-6">Navigasi</h3>
             <div className="space-y-3">
               <Link href="/" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
-                → Profile
-              </Link>
-              <Link href="/sekilas-info" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
-                → Sekilas Info
+                → Beranda
               </Link>
               <Link href="/mading" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
                 → Mading SMK
@@ -103,6 +100,9 @@ export function Footer() {
               </Link>
               <Link href="/galeri/foto" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
                 → Galeri
+              </Link>
+              <Link href="/developer" className="block py-2 px-3 rounded text-sm hover:bg-primary-foreground/10 hover:text-secondary transition-all cursor-pointer font-medium">
+                → Developer
               </Link>
             </div>
           </motion.div>
