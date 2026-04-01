@@ -9,7 +9,7 @@ export default function SPMBDaftarPage() {
 
   return (
     <div className="py-16 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,48 +35,45 @@ export default function SPMBDaftarPage() {
           </a>
         </motion.div>
 
-        {/* Informasi Kontak */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg mb-8"
-        >
-          <h2 className="text-2xl font-bold mb-6">Hubungi Kami untuk Bantuan</h2>
+        {/* Contact Cards - Hubungi Kami Style */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-8 text-center">Hubungi Kami untuk Bantuan</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Bp. Trisno */}
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                  <Phone size={24} />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-1">Bp. Trisno</h3>
-                <p className="text-muted-foreground mb-2">Koordinator SPMB</p>
-                <a href="tel:+6285691706159" className="text-primary hover:underline font-medium">
-                  +62 856-917-06159
-                </a>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gradient-to-br from-primary to-primary/80 text-white p-6 rounded-lg"
+            >
+              <Phone size={32} className="mb-4" />
+              <h3 className="font-bold text-xl mb-3">Bp. Trisno</h3>
+              <p className="mb-3">
+                <span className="font-semibold">Koordinator SPMB</span>
+              </p>
+              <a href="tel:+6285691706159" className="text-lg font-medium hover:underline">
+                +62 856-917-06159
+              </a>
+            </motion.div>
 
             {/* Essy */}
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-secondary text-white">
-                  <Mail size={24} />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-1">Essy</h3>
-                <p className="text-muted-foreground mb-2">Tim Administrasi SPMB</p>
-                <a href="mailto:spmb@smkpatriot1bekasi.sch.id" className="text-primary hover:underline font-medium">
-                  spmb@smkpatriot1bekasi.sch.id
-                </a>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-gradient-to-br from-secondary to-secondary/80 text-white p-6 rounded-lg"
+            >
+              <Mail size={32} className="mb-4" />
+              <h3 className="font-bold text-xl mb-3">Essy</h3>
+              <p className="mb-3">
+                <span className="font-semibold">Tim Administrasi SPMB</span>
+              </p>
+              <a href="mailto:spmb@smkpatriot1bekasi.sch.id" className="text-lg font-medium hover:underline">
+                spmb@smkpatriot1bekasi.sch.id
+              </a>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Informasi Penting */}
         <motion.div
