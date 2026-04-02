@@ -2,180 +2,116 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
-import { ppdbRegisterSchema } from '@/lib/validators'
+import { Phone, MessageCircle } from 'lucide-react'
 
-export default function PPDBDaftarPage() {
-  const [formData, setFormData] = useState({
-    nama: '',
-    nisn: '',
-    asalSekolah: '',
-    jurusan: 'TKJ',
-    nomorTelepon: '',
-    email: '',
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [errors, setErrors] = useState<Record<string, string>>({})
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-    setErrors(prev => ({ ...prev, [name]: '' }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setErrors({})
-
-    // Validate
-    const validation = ppdbRegisterSchema.safeParse(formData)
-    if (!validation.success) {
-      const newErrors: Record<string, string> = {}
-      validation.error.errors.forEach(err => {
-        const field = err.path[0] as string
-        newErrors[field] = err.message
-      })
-      setErrors(newErrors)
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/ppdb/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-        setFormData({ nama: '', nisn: '', asalSekolah: '', jurusan: 'TKJ', nomorTelepon: '', email: '' })
-      }
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
+export default function SPMBDaftarPage() {
   return (
     <div className="py-16 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-12 text-center"
         >
-          <h1 className="text-5xl font-bold text-primary mb-4">Daftar Online PPDB</h1>
+          <h1 className="text-5xl font-bold text-primary mb-4">Daftar Online SPMB</h1>
           <p className="text-xl text-muted-foreground">Daftarkan diri Anda di SMK PATRIOT 1 BEKASI</p>
         </motion.div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          onSubmit={handleSubmit}
-          className="bg-muted p-8 rounded-lg space-y-6"
-        >
-          <div>
-            <label className="block text-sm font-semibold mb-2">Nama Lengkap</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Nama Anda"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold mb-2">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Email Anda"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-2">No. Telepon</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="08xx"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2">Pilih Jurusan</label>
-            <select
-              name="jurusan"
-              value={formData.jurusan}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              <option value="">-- Pilih Jurusan --</option>
-              <option value="tkj">TKJ (Teknik Komputer & Jaringan)</option>
-              <option value="tkr">TKR (Teknik Kendaraan Ringan Otomotif)</option>
-              <option value="tp">TP (Teknik Permesinan)</option>
-              <option value="titl">TITL (Teknik Instalasi Tenaga Listrik)</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2">Pesan</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-              placeholder="Tulis pesan atau pertanyaan Anda"
-            />
-          </div>
-
-          {submitted && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg"
-            >
-              Pendaftaran Anda telah diterima. Kami akan menghubungi Anda segera.
-            </motion.div>
-          )}
-
-          <Button
-            type="submit"
-            disabled={isLoading || submitted}
-            className="w-full"
-            size="lg"
+        {/* Contact Cards - Hubungi Kami Style */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-6 text-center">Hubungi Kami untuk Daftar</h2>
+          
+          {/* Warning Note */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-center mb-8 text-sm text-muted-foreground italic"
           >
-            {isLoading ? 'Mengirim...' : submitted ? 'Pendaftaran Selesai' : 'Daftar Sekarang'}
-          </Button>
-        </motion.form>
+            <p>Kalau nomor pertama tidak aktif, silahkan hubungi nomor 2</p>
+          </motion.div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Bp. Trisno */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gradient-to-br from-primary to-primary/80 text-white p-6 rounded-lg"
+            >
+              <Phone size={32} className="mb-4" />
+              <h3 className="font-bold text-xl mb-3">Bp. Trisno</h3>
+              <p className="mb-4">
+                <span className="font-semibold">Koordinator SPMB</span>
+              </p>
+              <div className="space-y-3">
+                <a href="tel:+6281294156501" className="block text-lg font-medium hover:underline">
+                  +62 812-9415-6501
+                </a>
+                <a href="https://wa.me/6281294156501" target="_blank" rel="noopener noreferrer">
+                  <Button size="sm" className="w-full bg-green-500 hover:bg-green-600 text-white">
+                    <MessageCircle size={18} className="mr-2" />
+                    WhatsApp
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Essy */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-gradient-to-br from-secondary to-secondary/80 text-white p-6 rounded-lg"
+            >
+              <Phone size={32} className="mb-4" />
+              <h3 className="font-bold text-xl mb-3">Essy</h3>
+              <p className="mb-4">
+                <span className="font-semibold">Tim Administrasi SPMB</span>
+              </p>
+              <div className="space-y-3">
+                <a href="tel:+628129677386" className="block text-lg font-medium hover:underline">
+                  +62 812-9677-386
+                </a>
+                <a href="https://wa.me/628129677386" target="_blank" rel="noopener noreferrer">
+                  <Button size="sm" className="w-full bg-green-500 hover:bg-green-600 text-white">
+                    <MessageCircle size={18} className="mr-2" />
+                    WhatsApp
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Informasi Penting */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg"
+          className="bg-white border-2 border-primary/20 p-8 rounded-lg"
         >
           <h2 className="text-2xl font-bold mb-4">Informasi Penting</h2>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>• Pendaftaran dibuka setiap tahun pada bulan Juni</li>
-            <li>• Calon siswa harus memiliki Ijazah SMP atau yang sederajat</li>
-            <li>• Verifikasi data dilakukan dalam 3 hari kerja</li>
-            <li>• Pengumuman hasil seleksi akan diinformasikan melalui email dan SMS</li>
+          <ul className="space-y-3 text-muted-foreground">
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">•</span>
+              <span>Pendaftaran SPMB dibuka setiap tahun pada bulan Juni</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">•</span>
+              <span>Calon siswa harus memiliki Ijazah SMP atau yang sederajat</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">•</span>
+              <span>Verifikasi data dilakukan dalam 3 hari kerja</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">•</span>
+              <span>Pengumuman hasil seleksi akan diinformasikan melalui email dan SMS</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">•</span>
+              <span>Hubungi Bp. Trisno atau Essy untuk bantuan teknis atau pertanyaan</span>
+            </li>
           </ul>
         </motion.div>
       </div>
