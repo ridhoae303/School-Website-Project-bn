@@ -44,10 +44,10 @@ export default function SPMBDaftarPage() {
                 <span className="font-semibold">Koordinator SPMB</span>
               </p>
               <div className="space-y-3">
-                <a href="tel:+6285691706159" className="block text-lg font-medium hover:underline">
-                  +62 856-917-06159
+                <a href="tel:+6281294156501" className="block text-lg font-medium hover:underline">
+                  +62 812-9415-6501
                 </a>
-                <a href="https://wa.me/6285691706159" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/6281294156501" target="_blank" rel="noopener noreferrer">
                   <Button size="sm" className="w-full bg-green-500 hover:bg-green-600 text-white">
                     <MessageCircle size={18} className="mr-2" />
                     WhatsApp
@@ -69,10 +69,10 @@ export default function SPMBDaftarPage() {
                 <span className="font-semibold">Tim Administrasi SPMB</span>
               </p>
               <div className="space-y-3">
-                <p className="text-lg font-medium">
-                  +62 856-917-061XX
-                </p>
-                <a href="https://wa.me/62856917061XX" target="_blank" rel="noopener noreferrer">
+                <a href="tel:+628129677386" className="block text-lg font-medium hover:underline">
+                  +62 812-9677-386
+                </a>
+                <a href="https://wa.me/628129677386" target="_blank" rel="noopener noreferrer">
                   <Button size="sm" className="w-full bg-green-500 hover:bg-green-600 text-white">
                     <MessageCircle size={18} className="mr-2" />
                     WhatsApp

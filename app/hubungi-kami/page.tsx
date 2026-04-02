@@ -125,10 +125,10 @@ export default function HubungiKamiPage() {
           >
             <h3 className="font-bold text-xl mb-3">Bp. Trisno</h3>
             <p className="mb-3">
-              <span className="font-semibold">Telepon:</span> 081-294-146-501
+              <span className="font-semibold">Telepon:</span> +62 812-9415-6501
             </p>
             <a
-              href="https://wa.me/6281294146501"
+              href="https://wa.me/6281294156501"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-white text-primary px-4 py-2 rounded font-semibold hover:bg-gray-100 transition-colors"
@@ -143,9 +143,9 @@ export default function HubungiKamiPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-gradient-to-br from-secondary to-secondary/80 text-white p-6 rounded-lg"
           >
-            <h3 className="font-bold text-xl mb-3">Ibu. Essy S</h3>
+            <h3 className="font-bold text-xl mb-3">Ibu. Essy</h3>
             <p className="mb-3">
-              <span className="font-semibold">Telepon:</span> 0812-9677386
+              <span className="font-semibold">Telepon:</span> +62 812-9677-386
             </p>
             <a
               href="https://wa.me/628129677386"
