@@ -48,7 +48,7 @@ export default function CetakFormulirPage() {
 
     setIsLoading(true)
     try {
-      const response = await fetch('https://smkspatriot1bekasi.my.id/api/cetak-formulir', {
+      const response = await fetch('/api/cetak-formulir', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

@@ -14,7 +14,7 @@ export const SCHOOL_INFO = {
 
 // API Configuration
 export const API_CONFIG = {
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://smkspatriot1bekasi.my.id/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
   timeout: 30000,
 }
 
