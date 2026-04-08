@@ -47,10 +47,8 @@ export default function VisiMisiPage() {
             className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg border-l-4 border-primary"
           >
             <h2 className="text-3xl font-bold text-primary mb-4">Visi</h2>
-            <p className="text-lg text-foreground leading-relaxed">
-              Menjadi sekolah menengah kejuruan yang menghasilkan tamatan bermutu, profesional, 
-              dan berakhlak mulia dalam bidang teknologi dan keterampilan, serta mampu bersaing 
-              di era global dan digital.
+            <p className="text-2xl text-foreground leading-relaxed font-semibold">
+              Teruji dalam prestasi, Terpuji dalam pekerti
             </p>
           </motion.div>
 
@@ -60,42 +58,9 @@ export default function VisiMisiPage() {
             className="bg-gradient-to-r from-secondary/10 to-primary/10 p-8 rounded-lg border-l-4 border-secondary"
           >
             <h2 className="text-3xl font-bold text-secondary mb-6">Misi</h2>
-            <ul className="space-y-4 text-lg text-foreground">
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">1.</span>
-                <span>
-                  Menyelenggarakan pendidikan dan pelatihan kejuruan yang berkualitas tinggi 
-                  dengan kurikulum yang relevan dengan kebutuhan industri.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">2.</span>
-                <span>
-                  Mengembangkan kompetensi teknis dan soft skills siswa melalui pembelajaran praktis 
-                  dan kerja sama dengan dunia industri.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">3.</span>
-                <span>
-                  Membangun karakter siswa yang berintegitas, disiplin, dan bertanggung jawab 
-                  dalam kehidupan sehari-hari.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">4.</span>
-                <span>
-                  Menyediakan fasilitas dan infrastruktur pendidikan yang modern dan mendukung 
-                  pembelajaran teknologi terkini.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">5.</span>
-                <span>
-                  Memberdayakan lulusan untuk menjadi entrepreneur muda yang inovatif dan mandiri.
-                </span>
-              </li>
-            </ul>
+            <p className="text-xl text-foreground leading-relaxed">
+              Mewujudkan institusi yang menghasilkan siswa mandiri, santun dan terampil.
+            </p>
           </motion.div>
 
           {/* Nilai-nilai Inti */}

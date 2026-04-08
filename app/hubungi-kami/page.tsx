@@ -25,8 +25,7 @@ export default function HubungiKamiPage() {
     setIsLoading(true)
 
     try {
-      // TODO: Replace dengan API endpoint Anda
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://smkspatriot1bekasi.my.id/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
