@@ -30,9 +30,19 @@ export default function VisiMisiPage() {
           className="mb-12"
         >
           <h1 className="text-5xl font-bold text-primary mb-4">Visi & Misi</h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-8">
             Komitmen SMK PATRIOT 1 BEKASI terhadap pendidikan berkualitas
           </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-lg text-center"
+          >
+            <p className="text-2xl font-bold italic leading-relaxed">
+              "SMK PATRIOT 1 BEKASI - PENTANG MUNDUR DEMI MENUNTUT ILMU, PATRIOT..... JAYA! JAYA! JAYA!"
+            </p>
+          </motion.div>
         </motion.div>
 
         <motion.div
