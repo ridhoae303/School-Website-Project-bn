@@ -72,31 +72,6 @@ export default function VisiMisiPage() {
               Mewujudkan institusi yang menghasilkan siswa mandiri, santun dan terampil.
             </p>
           </motion.div>
-
-          {/* Nilai-nilai Inti */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white border-2 border-border p-8 rounded-lg"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Nilai-nilai Inti</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: 'Integritas', desc: 'Jujur dan terpercaya dalam setiap tindakan' },
-                { title: 'Profesionalisme', desc: 'Berkompeten dan berdedikasi tinggi' },
-                { title: 'Inovasi', desc: 'Selalu mencari cara baru yang lebih baik' },
-                { title: 'Kolaborasi', desc: 'Bekerja sama dalam tim dengan harmonis' },
-              ].map((value) => (
-                <motion.div
-                  key={value.title}
-                  whileHover={{ y: -5 }}
-                  className="p-4 bg-muted rounded-lg"
-                >
-                  <h3 className="text-lg font-bold text-primary mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </div>
