@@ -27,6 +27,16 @@ export default function DeveloperPage() {
     },
   ]
 
+  const teachers = [
+    {
+      name: 'Kusnadi, S.Kom',
+      role: 'Guru & Mentor',
+      description: 'Guru yang membimbing dalam pengembangan keterampilan programming dan web development.',
+      link: 'https://kusnadi88.blogspot.com/?m=1',
+      linkLabel: 'Kunjungi Blog',
+    },
+  ]
+
   return (
     <div className="py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -169,6 +179,40 @@ export default function DeveloperPage() {
                     viewport={{ once: true }}
                   />
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Teachers/Mentors Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl font-bold mb-8">Guru & Mentor</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {teachers.map((teacher) => (
+              <motion.div
+                key={teacher.name}
+                whileHover={{ y: -10 }}
+                className="bg-gradient-to-br from-secondary/5 to-primary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-2xl font-bold mb-2">{teacher.name}</h3>
+                <p className="text-lg text-secondary font-semibold mb-4">{teacher.role}</p>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {teacher.description}
+                </p>
+                <a
+                  href={teacher.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="gap-2 bg-secondary hover:bg-secondary/90">
+                    {teacher.linkLabel}
+                  </Button>
+                </a>
               </motion.div>
             ))}
           </div>

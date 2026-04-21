@@ -39,7 +39,7 @@ export default function UjianOnlineLogin() {
     setIsLoading(true)
 
     try {
-      const response = await fetch('/api/ujian/login', {
+      const response = await fetch('https://smkspatriot1bekasi.my.id/api/ujian/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

@@ -28,8 +28,7 @@ export default function UjianDashboard() {
     // Fetch daftar ujian
     const fetchUjian = async () => {
       try {
-        // TODO: Replace dengan API endpoint Anda
-        const response = await fetch('/api/ujian/daftar', {
+        const response = await fetch('https://smkspatriot1bekasi.my.id/api/ujian/daftar', {
           headers: { Authorization: `Bearer ${token}` },
         })
 

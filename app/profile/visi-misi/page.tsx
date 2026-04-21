@@ -30,9 +30,19 @@ export default function VisiMisiPage() {
           className="mb-12"
         >
           <h1 className="text-5xl font-bold text-primary mb-4">Visi & Misi</h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-8">
             Komitmen SMK PATRIOT 1 BEKASI terhadap pendidikan berkualitas
           </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-lg text-center"
+          >
+            <p className="text-2xl font-bold italic leading-relaxed">
+              "SMK PATRIOT 1 BEKASI - PENTANG MUNDUR DEMI MENUNTUT ILMU, PATRIOT..... JAYA! JAYA! JAYA!"
+            </p>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -47,10 +57,8 @@ export default function VisiMisiPage() {
             className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg border-l-4 border-primary"
           >
             <h2 className="text-3xl font-bold text-primary mb-4">Visi</h2>
-            <p className="text-lg text-foreground leading-relaxed">
-              Menjadi sekolah menengah kejuruan yang menghasilkan tamatan bermutu, profesional, 
-              dan berakhlak mulia dalam bidang teknologi dan keterampilan, serta mampu bersaing 
-              di era global dan digital.
+            <p className="text-2xl text-foreground leading-relaxed font-semibold">
+              Teruji dalam prestasi, Terpuji dalam pekerti
             </p>
           </motion.div>
 
@@ -60,67 +68,9 @@ export default function VisiMisiPage() {
             className="bg-gradient-to-r from-secondary/10 to-primary/10 p-8 rounded-lg border-l-4 border-secondary"
           >
             <h2 className="text-3xl font-bold text-secondary mb-6">Misi</h2>
-            <ul className="space-y-4 text-lg text-foreground">
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">1.</span>
-                <span>
-                  Menyelenggarakan pendidikan dan pelatihan kejuruan yang berkualitas tinggi 
-                  dengan kurikulum yang relevan dengan kebutuhan industri.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">2.</span>
-                <span>
-                  Mengembangkan kompetensi teknis dan soft skills siswa melalui pembelajaran praktis 
-                  dan kerja sama dengan dunia industri.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">3.</span>
-                <span>
-                  Membangun karakter siswa yang berintegitas, disiplin, dan bertanggung jawab 
-                  dalam kehidupan sehari-hari.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">4.</span>
-                <span>
-                  Menyediakan fasilitas dan infrastruktur pendidikan yang modern dan mendukung 
-                  pembelajaran teknologi terkini.
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="font-bold text-primary flex-shrink-0">5.</span>
-                <span>
-                  Memberdayakan lulusan untuk menjadi entrepreneur muda yang inovatif dan mandiri.
-                </span>
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Nilai-nilai Inti */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white border-2 border-border p-8 rounded-lg"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Nilai-nilai Inti</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: 'Integritas', desc: 'Jujur dan terpercaya dalam setiap tindakan' },
-                { title: 'Profesionalisme', desc: 'Berkompeten dan berdedikasi tinggi' },
-                { title: 'Inovasi', desc: 'Selalu mencari cara baru yang lebih baik' },
-                { title: 'Kolaborasi', desc: 'Bekerja sama dalam tim dengan harmonis' },
-              ].map((value) => (
-                <motion.div
-                  key={value.title}
-                  whileHover={{ y: -5 }}
-                  className="p-4 bg-muted rounded-lg"
-                >
-                  <h3 className="text-lg font-bold text-primary mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.desc}</p>
-                </motion.div>
-              ))}
-            </div>
+            <p className="text-xl text-foreground leading-relaxed">
+              Mewujudkan institusi yang menghasilkan siswa mandiri, santun dan terampil.
+            </p>
           </motion.div>
         </motion.div>
       </div>
