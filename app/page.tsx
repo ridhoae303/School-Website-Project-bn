@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SCHOOL_INFO, HOME_IMAGES } from '@/lib/constants'
+import { SCHOOL_INFO, HOME_IMAGES, DEVELOPER_IMAGES } from '@/lib/constants'
 
 // 10 Slide Foto dengan Quotes - menggunakan image dari /public/images/home/
 const heroSlides = HOME_IMAGES.heroSlides.map((src, i) => ({
@@ -312,6 +313,76 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Kepala Sekolah Greeting Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-4xl font-bold text-foreground mb-2">Sambutan Kepala Sekolah</h2>
+            <p className="text-muted-foreground text-lg mb-8">Pesan inspiratif dari Kepala SMK PATRIOT 1 BEKASI</p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Image Container */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="rounded-lg overflow-hidden shadow-lg border-4 border-primary/20"
+              >
+                <div className="relative w-full aspect-square bg-gradient-to-br from-primary to-secondary">
+                  <Image
+                    src={DEVELOPER_IMAGES.kusnadi}
+                    alt="Kepala Sekolah"
+                    fill
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement
+                      img.style.display = 'none'
+                    }}
+                  />
+                  {/* Fallback Avatar */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold">
+                    AS
+                  </div>
+                </div>
+                <div className="bg-primary text-white p-4 text-center">
+                  <h3 className="font-bold text-xl">Agus Yuliono, S.Pd, M.Si</h3>
+                  <p className="text-sm">Kepala SMK PATRIOT 1 BEKASI</p>
+                </div>
+              </motion.div>
+
+              {/* Text Content */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="space-y-4">
+                  <p className="text-foreground leading-relaxed italic">
+                    "Assalamu'alaikum wr.wb."
+                  </p>
+                  <p className="text-foreground leading-relaxed">
+                    Puji syukur kepada Alloh SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerahNya sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab akan setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada.
+                  </p>
+                  <p className="text-foreground leading-relaxed text-sm text-muted-foreground line-clamp-3">
+                    Kami sadar sepenuhnya dalam rangka memajukan pendidikan di era berkembangnya Teknologi Informasi yang begitu pesat, sangat diperlukan berbagai sarana prasarana yang kondusif, kebutuhan berbagai informasi siswa, guru, orangtua maupun masyarakat...
+                  </p>
+                </div>
+
+                <Link href="/sambutan-kepala-sekolah">
+                  <Button className="mt-6 bg-primary hover:bg-primary/90">
+                    Selengkapnya
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

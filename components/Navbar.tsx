@@ -64,7 +64,7 @@ export function Navbar() {
                   }}
                 />
                 {/* Fallback CSS Logo */}
-                <span className="text-secondary font-bold text-lg" id="logo-fallback">P</span>
+                <span className="text-secondary font-bold text-xs" id="logo-fallback">SMK</span>
               </div>
               <span className="text-white font-bold">SMK PATRIOT 1</span>
             </Link>

@@ -20,10 +20,32 @@ export default function DeveloperPage() {
 
   const hobbies = ['Reverse Engineering', 'DJ']
 
-  const friends = [
+  const developers = [
+    {
+      name: 'Mohammed Ridho',
+      initials: 'RH',
+      role: 'Full Stack Developer',
+      image: DEVELOPER_IMAGES.mohammedRidho,
+      description: 'Pemimpin project dan Full Stack Developer yang mengembangkan website ini dari awal.',
+      github: 'https://github.com/ridhoae303',
+      instagram: 'https://instagram.com/ridhoae303_',
+    },
     {
       name: 'Abyan Ruby Firdaus',
+      initials: 'AR',
+      role: 'Frontend Developer',
+      image: DEVELOPER_IMAGES.abyanRuby,
       description: 'Teman saya yang selalu mendukung dan membuat saya saat pembangunan project web ini.',
+      github: '#',
+      instagram: '#',
+    },
+    {
+      name: 'Kusnadi, S.Kom',
+      initials: 'K',
+      role: 'Guru & Mentor',
+      image: DEVELOPER_IMAGES.kusnadi,
+      description: 'Guru yang membimbing dalam pengembangan keterampilan programming dan web development.',
+      blog: 'https://kusnadi88.blogspot.com/?m=1',
     },
   ]
 
@@ -218,45 +240,82 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* Friends Section */}
+        {/* Developers Section - 3 Column Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="mt-16"
         >
-          <h2 className="text-4xl font-bold mb-8">My Friends Support Me</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {friends.map((friend) => (
+          <h2 className="text-4xl font-bold mb-12 text-center">Tim Developer & Mentor</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {developers.map((dev) => (
               <motion.div
-                key={friend.name}
+                key={dev.name}
                 whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow flex flex-col"
               >
-                <div className="flex gap-4 mb-4">
-                  <motion.div
-                    className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 cursor-pointer border-2 border-primary"
-                    onClick={() => setExpandedProfile(expandedProfile === friend.name ? null : friend.name)}
-                    onMouseEnter={() => setExpandedProfile(friend.name)}
-                    onMouseLeave={() => setExpandedProfile(null)}
-                    animate={{ scale: expandedProfile === friend.name ? 1.2 : 1 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-                  >
+                {/* Profile Image Container with Fallback Avatar */}
+                <motion.div
+                  className="w-full aspect-square rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 border-primary mb-6 bg-gradient-to-br from-primary to-secondary"
+                  onClick={() => setExpandedProfile(expandedProfile === dev.name ? null : dev.name)}
+                  onMouseEnter={() => setExpandedProfile(dev.name)}
+                  onMouseLeave={() => setExpandedProfile(null)}
+                  animate={{ scale: expandedProfile === dev.name ? 1.05 : 1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+                >
+                  {/* Image with fallback */}
+                  <div className="w-full h-full relative">
                     <Image
-                      src={DEVELOPER_IMAGES.abyanRuby}
-                      alt={friend.name}
-                      width={64}
-                      height={64}
+                      src={dev.image}
+                      alt={dev.name}
+                      fill
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement
+                        img.style.display = 'none'
+                      }}
                     />
-                  </motion.div>
-                  <div>
-                    <h3 className="text-xl font-bold">{friend.name}</h3>
-                    <p className="text-sm text-secondary font-semibold">Teman Setia</p>
+                    {/* CSS Fallback Avatar with Initials */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
+                      {dev.initials}
+                    </div>
                   </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  {friend.description}
+                </motion.div>
+
+                {/* Profile Info */}
+                <h3 className="text-2xl font-bold mb-1">{dev.name}</h3>
+                <p className="text-secondary font-semibold mb-4">{dev.role}</p>
+                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
+                  {dev.description}
                 </p>
+
+                {/* Social Links */}
+                <div className="flex gap-3 flex-wrap">
+                  {dev.github && dev.github !== '#' && (
+                    <a href={dev.github} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="gap-2">
+                        <Github size={16} />
+                        GitHub
+                      </Button>
+                    </a>
+                  )}
+                  {dev.instagram && dev.instagram !== '#' && (
+                    <a href={dev.instagram} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="gap-2">
+                        <Instagram size={16} />
+                        Instagram
+                      </Button>
+                    </a>
+                  )}
+                  {dev.blog && (
+                    <a href={dev.blog} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
+                        Blog
+                      </Button>
+                    </a>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
