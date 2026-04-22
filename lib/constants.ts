@@ -126,6 +126,7 @@ export const JURUSAN_IMAGES = {
 export const DEVELOPER_IMAGES = {
   mohammedRidho: '/images/developer/mohammed-ridho.jpg',
   abyanRuby: '/images/developer/abyan-ruby.jpg',
+  kusnadi: '/images/developer/kusnadi.jpg',
 }
 
 // Mading Gallery Images
@@ -146,7 +147,7 @@ export const ACHIEVEMENT_IMAGES = Array.from(
   (_, i) => `/images/achievements/achievement-${i + 1}.jpg`
 )
 
-// YouTube Videos - YouTube Embed IDs or fallback to local video directory
+// YouTube Videos - YouTube Embed IDs or fallback to local video directory (Limited to 8 videos)
 export const YOUTUBE_VIDEOS = [
   { 
     id: 'dQw4w9WgXcQ', 
@@ -183,6 +184,18 @@ export const YOUTUBE_VIDEOS = [
     title: 'Kompetisi LKS', 
     description: 'Siswa meraih juara pada kompetisi LKS',
     fallbackVideo: '/videos/kompetisi-lks.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Wisata Edukatif', 
+    description: 'Program wisata edukatif siswa ke berbagai tempat bersejarah',
+    fallbackVideo: '/videos/wisata-edukatif.mp4'
+  },
+  { 
+    id: 'dQw4w9WgXcQ', 
+    title: 'Kegiatan Ekstrakurikuler', 
+    description: 'Berbagai kegiatan ekstrakurikuler siswa SMK PATRIOT 1',
+    fallbackVideo: '/videos/ekstrakurikuler.mp4'
   },
 ]
 
