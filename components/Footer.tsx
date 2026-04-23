@@ -146,7 +146,7 @@ export function Footer() {
             Created by Ridhoae303 team © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
           </p>
           <p className="text-xs">
-            Powered by <strong>ridhoae303 Inc.</strong>
+            Powered by <strong>ridhoae303 Team</strong>
           </p>
         </motion.div>
       </div>
