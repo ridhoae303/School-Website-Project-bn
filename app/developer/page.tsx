@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Instagram } from 'lucide-react'
+import { Github, Instagram, Music } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { DEVELOPER_IMAGES } from '@/lib/constants'
@@ -37,6 +37,7 @@ export default function DeveloperPage() {
       image: DEVELOPER_IMAGES.abyanRuby,
       description: 'Teman saya yang selalu mendukung dalam pembangunan project web ini.',
       instagram: 'https://www.instagram.com/_abyanrby',
+      tiktok: 'https://tiktok.com/abyanrubayyyyy',
     },
     {
       name: 'Kusnadi, S.Kom',
@@ -270,6 +271,14 @@ export default function DeveloperPage() {
                       </Button>
                     </a>
                   )}
+                  {dev.tiktok && (
+                    <a href={dev.tiktok} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="gap-2">
+                        <Music size={16} />
+                        TikTok
+                      </Button>
+                    </a>
+                  )}
                   {dev.blog && (
                     <a href={dev.blog} target="_blank" rel="noopener noreferrer">
                       <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
@@ -329,7 +338,7 @@ export default function DeveloperPage() {
           transition={{ duration: 0.5 }}
           className="mt-16 pt-16 border-t border-border"
         >
-          <h2 className="text-4xl font-bold mb-6">Terima Kasih</h2>
+          <h2 className="text-4xl font-bold mb-6">Thanks</h2>
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg">
             <p className="text-lg text-foreground leading-relaxed">
               We would like to extend our heartfelt gratitude to <strong>ridhoae303 Team</strong> for their exceptional dedication and effort in building this website. Their expertise in modern web development technologies, attention to detail, and commitment to delivering a high-quality user experience have been instrumental in creating a responsive, fast, and user-friendly platform for SMK PATRIOT 1 BEKASI. Thank you for your outstanding contributions to this project.
