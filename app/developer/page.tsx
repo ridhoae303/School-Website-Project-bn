@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Instagram } from 'lucide-react'
+import { Github, Instagram, Music } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { DEVELOPER_IMAGES } from '@/lib/constants'
@@ -23,7 +23,7 @@ export default function DeveloperPage() {
   const developers = [
     {
       name: 'Mohammed Ridho',
-      initials: 'RH',
+      initials: 'MR',
       role: 'Full Stack Developer',
       image: DEVELOPER_IMAGES.mohammedRidho,
       description: 'Pemimpin project dan Full Stack Developer yang mengembangkan website ini dari awal.',
@@ -32,31 +32,27 @@ export default function DeveloperPage() {
     },
     {
       name: 'Abyan Ruby Firdaus',
-      initials: 'AR',
-      role: 'Frontend Developer',
+      initials: 'ARF',
+      role: 'My Friend',
       image: DEVELOPER_IMAGES.abyanRuby,
-      description: 'Teman saya yang selalu mendukung dan membuat saya saat pembangunan project web ini.',
-      github: '#',
-      instagram: '#',
+      description: 'Teman saya yang selalu mendukung dalam pembangunan project web ini.',
+      instagram: 'https://www.instagram.com/_abyanrby',
+      tiktok: 'https://www.tiktok.com/@abyanrubayyyyy',
     },
     {
       name: 'Kusnadi, S.Kom',
       initials: 'K',
-      role: 'Guru & Mentor',
+      role: 'My teacher in vocational school',
       image: DEVELOPER_IMAGES.kusnadi,
-      description: 'Guru yang membimbing dalam pengembangan keterampilan programming dan web development.',
+      description: 'Guru saya di sekolah kejuruan yang membimbing dalam pengembangan keterampilan programming dan web development.',
       blog: 'https://kusnadi88.blogspot.com/?m=1',
+      tiktok: 'https://www.tiktok.com/@mr_kusnadi88',
     },
   ]
 
-  const teachers = [
-    {
-      name: 'Kusnadi, S.Kom',
-      role: 'Guru & Mentor',
-      description: 'Guru yang membimbing dalam pengembangan keterampilan programming dan web development.',
-      link: 'https://kusnadi88.blogspot.com/?m=1',
-      linkLabel: 'Kunjungi Blog',
-    },
+  const locations = [
+    { city: 'California', region: 'Mountain View', address: 'Bonita Ave.' },
+    { city: 'Jakarta Selatan', region: 'Sudirman' },
   ]
 
   return (
@@ -85,7 +81,7 @@ export default function DeveloperPage() {
             className="flex justify-center lg:justify-start"
           >
             <motion.div
-              className="relative w-48 h-48 cursor-pointer"
+              className="relative w-48 cursor-pointer flex justify-center"
               onClick={() => setExpandedProfile(expandedProfile === 'ridho' ? null : 'ridho')}
               onMouseEnter={() => setExpandedProfile('ridho')}
               onMouseLeave={() => setExpandedProfile(null)}
@@ -93,7 +89,8 @@ export default function DeveloperPage() {
               transition={{ type: 'spring', stiffness: 300, damping: 10 }}
             >
               <motion.div
-                className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg"
+                className="w-48 rounded-full overflow-hidden border-4 border-white shadow-lg"
+                style={{ aspectRatio: '1 / 1' }}
                 animate={{
                   boxShadow: [
                     '0 0 20px rgba(30, 144, 255, 0.3)',
@@ -206,48 +203,14 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* Teachers/Mentors Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-8">Guru & Mentor</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teachers.map((teacher) => (
-              <motion.div
-                key={teacher.name}
-                whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-secondary/5 to-primary/5 p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-2xl font-bold mb-2">{teacher.name}</h3>
-                <p className="text-lg text-secondary font-semibold mb-4">{teacher.role}</p>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {teacher.description}
-                </p>
-                <a
-                  href={teacher.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="gap-2 bg-secondary hover:bg-secondary/90">
-                    {teacher.linkLabel}
-                  </Button>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Developers Section - 3 Column Grid */}
+        {/* Developers Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mt-16"
         >
-          <h2 className="text-4xl font-bold mb-12 text-center">Tim Developer & Mentor</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center">Profiles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {developers.map((dev) => (
               <motion.div
@@ -257,7 +220,8 @@ export default function DeveloperPage() {
               >
                 {/* Profile Image Container with Fallback Avatar */}
                 <motion.div
-                  className="w-full aspect-square rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 border-primary mb-6 bg-gradient-to-br from-primary to-secondary"
+                  className="w-full rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 border-primary mb-6 bg-gradient-to-br from-primary to-secondary"
+                  style={{ aspectRatio: '1 / 1' }}
                   onClick={() => setExpandedProfile(expandedProfile === dev.name ? null : dev.name)}
                   onMouseEnter={() => setExpandedProfile(dev.name)}
                   onMouseLeave={() => setExpandedProfile(null)}
@@ -308,6 +272,14 @@ export default function DeveloperPage() {
                       </Button>
                     </a>
                   )}
+                  {dev.tiktok && (
+                    <a href={dev.tiktok} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="gap-2">
+                        <Music size={16} />
+                        TikTok
+                      </Button>
+                    </a>
+                  )}
                   {dev.blog && (
                     <a href={dev.blog} target="_blank" rel="noopener noreferrer">
                       <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
@@ -321,6 +293,45 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
+        {/* Organization Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-16 pt-16 border-t border-border"
+        >
+          <h2 className="text-4xl font-bold mb-8 text-center">ridhoae303 Inc.</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {locations.map((location, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border"
+              >
+                <h3 className="font-bold text-xl mb-2">{location.city}</h3>
+                <p className="text-muted-foreground">
+                  {location.region}
+                  {location.address && `, ${location.address}`}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-400 p-6 rounded text-center"
+          >
+            <p className="text-sm text-muted-foreground italic">
+              Anggota tim tidak dapat disebutkan, dan organisasi kami tidak perlu diketahui oleh siapapun.
+            </p>
+          </motion.div>
+        </motion.div>
+
         {/* About This Project */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -328,16 +339,10 @@ export default function DeveloperPage() {
           transition={{ duration: 0.5 }}
           className="mt-16 pt-16 border-t border-border"
         >
-          <h2 className="text-4xl font-bold mb-6">Tentang Project Ini</h2>
+          <h2 className="text-4xl font-bold mb-6">Thanks</h2>
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg">
-            <p className="text-lg text-foreground leading-relaxed mb-4">
-              Website SMK PATRIOT 1 BEKASI ini dibangun dengan teknologi modern dan best practices 
-              dalam web development. Dengan menggunakan Next.js 16, React 19, TypeScript, dan Tailwind CSS, 
-              kami menciptakan website yang responsif, cepat, dan user-friendly.
-            </p>
             <p className="text-lg text-foreground leading-relaxed">
-              Setiap halaman dirancang dengan mempertimbangkan user experience dan aksesibilitas. 
-              Animasi smooth dan interaksi yang intuitif membuat pengunjung merasa nyaman menggunakan website ini.
+              We would like to extend our heartfelt gratitude to <strong>ridhoae303 Team</strong> for their exceptional dedication and effort in building this website. Their expertise in modern web development technologies, attention to detail, and commitment to delivering a high-quality user experience have been instrumental in creating a responsive, fast, and user-friendly platform for SMK PATRIOT 1 BEKASI. Thank you for your outstanding contributions to this project.
             </p>
           </div>
         </motion.div>
