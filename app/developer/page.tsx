@@ -23,7 +23,7 @@ export default function DeveloperPage() {
   const developers = [
     {
       name: 'Mohammed Ridho',
-      initials: 'RH',
+      initials: 'MR',
       role: 'Full Stack Developer',
       image: DEVELOPER_IMAGES.mohammedRidho,
       description: 'Pemimpin project dan Full Stack Developer yang mengembangkan website ini dari awal.',
@@ -32,7 +32,7 @@ export default function DeveloperPage() {
     },
     {
       name: 'Abyan Ruby Firdaus',
-      initials: 'AR',
+      initials: 'ARF',
       role: 'My Friend',
       image: DEVELOPER_IMAGES.abyanRuby,
       description: 'Teman saya yang selalu mendukung dalam pembangunan project web ini.',
