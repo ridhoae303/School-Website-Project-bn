@@ -33,12 +33,24 @@ export default function DeveloperPage() {
     {
       name: 'Abyan Ruby Firdaus',
       initials: 'AR',
-      role: 'Team Member',
+      role: 'My Friend',
       image: DEVELOPER_IMAGES.abyanRuby,
       description: 'Teman saya yang selalu mendukung dalam pembangunan project web ini.',
-      github: '#',
-      instagram: '#',
+      instagram: 'https://www.instagram.com/_abyanrby',
     },
+    {
+      name: 'Kusnadi, S.Kom',
+      initials: 'K',
+      role: 'My teacher in vocational school',
+      image: DEVELOPER_IMAGES.kusnadi,
+      description: 'Guru saya di sekolah kejuruan yang membimbing dalam pengembangan keterampilan programming dan web development.',
+      blog: 'https://kusnadi88.blogspot.com/?m=1',
+    },
+  ]
+
+  const locations = [
+    { city: 'California', region: 'Mountain View', address: 'Bonita Ave.' },
+    { city: 'Jakarta Selatan', region: 'Sudirman' },
   ]
 
   return (
@@ -196,8 +208,8 @@ export default function DeveloperPage() {
           transition={{ duration: 0.5 }}
           className="mt-16"
         >
-          <h2 className="text-4xl font-bold mb-12 text-center">Tim Developer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Tim Developer & Guru</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {developers.map((dev) => (
               <motion.div
                 key={dev.name}
@@ -269,6 +281,45 @@ export default function DeveloperPage() {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Organization Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-16 pt-16 border-t border-border"
+        >
+          <h2 className="text-4xl font-bold mb-8 text-center">ridhoae303 Inc.</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {locations.map((location, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border"
+              >
+                <h3 className="font-bold text-xl mb-2">{location.city}</h3>
+                <p className="text-muted-foreground">
+                  {location.region}
+                  {location.address && `, ${location.address}`}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-400 p-6 rounded text-center"
+          >
+            <p className="text-sm text-muted-foreground italic">
+              Anggota tim tidak dapat disebutkan, dan organisasi kami tidak perlu diketahui oleh siapapun.
+            </p>
+          </motion.div>
         </motion.div>
 
         {/* About This Project */}
