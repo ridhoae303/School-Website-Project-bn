@@ -37,7 +37,7 @@ export default function DeveloperPage() {
       image: DEVELOPER_IMAGES.abyanRuby,
       description: 'Teman saya yang selalu mendukung dalam pembangunan project web ini.',
       instagram: 'https://www.instagram.com/_abyanrby',
-      tiktok: 'https://tiktok.com/abyanrubayyyyy',
+      tiktok: 'https://www.tiktok.com/@abyanrubayyyyy',
     },
     {
       name: 'Kusnadi, S.Kom',
@@ -46,6 +46,7 @@ export default function DeveloperPage() {
       image: DEVELOPER_IMAGES.kusnadi,
       description: 'Guru saya di sekolah kejuruan yang membimbing dalam pengembangan keterampilan programming dan web development.',
       blog: 'https://kusnadi88.blogspot.com/?m=1',
+      tiktok: 'https://www.tiktok.com/@mr_kusnadi88',
     },
   ]
 
@@ -300,7 +301,7 @@ export default function DeveloperPage() {
           className="mt-16 pt-16 border-t border-border"
         >
           <h2 className="text-4xl font-bold mb-8 text-center">ridhoae303 Inc.</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {locations.map((location, index) => (
               <motion.div
