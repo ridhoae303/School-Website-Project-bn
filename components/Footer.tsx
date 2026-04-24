@@ -133,7 +133,7 @@ export function Footer() {
                 Created by ridhoae303
               </p>
 
-              <p className="text-sm font-normal">
+              <p className="text-sm font-normal mt-4">
                 Note from <strong>ridhoae303</strong>:
               </p>
 
