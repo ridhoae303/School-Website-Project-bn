@@ -124,7 +124,8 @@ export const JURUSAN_IMAGES = {
 
 // Developer Page Images
 export const DEVELOPER_IMAGES = {
-  mohammedRidho: '/images/developer/mohammed-ridho.jpg',
+  mohammedRidho: '/images/developer/ridhoae303.jpg', // Avatar in grid cards
+  mohammedRidhoHero: '/images/developer/miyako.jpg', // Avatar in top profile section
   mohammedRidhoProfile: '/images/developer/ridho-profile.jpg',
   abyanRuby: '/images/developer/abyan-ruby.jpg',
   kusnadi: '/images/developer/kusnadi.jpg',
