@@ -10,38 +10,38 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-.shimmer {
-  position: absolute;
-  inset: 0;
+  .shimmer {
+    position: absolute;
+    inset: 0;
 
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(0, 255, 255, 0.45),
-      rgba(0, 120, 255, 0.35),
-      rgba(0, 255, 255, 0.45),
-      transparent);
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 255, 255, 0.45),
+        rgba(0, 120, 255, 0.35),
+        rgba(0, 255, 255, 0.45),
+        transparent);
 
-  transform: translateX(-100%);
-  animation: shimmerMove 2s infinite;
-  pointer-events: none;
+    transform: translateX(-100%);
+    animation: shimmerMove 2s infinite;
+    pointer-events: none;
+  }
+
+  .blockquote-cyan {
+    border-left: 4px solid rgb(34 211 238);
+    background: rgba(34, 211, 238, 0.06);
+    color: rgb(103 232 249);
+
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.35),
+      0 0 16px rgba(0, 150, 255, 0.15);
+  }
 }
 
 @keyframes shimmerMove {
   100% {
     transform: translateX(100%);
   }
-}
-
-.blockquote-cyan {
-  border-left: 4px solid rgb(34 211 238);
-  background: rgba(34, 211, 238, 0.06);
-  color: rgb(103 232 249);
-
-  box-shadow:
-    0 0 8px rgba(0, 255, 255, 0.35),
-    0 0 16px rgba(0, 150, 255, 0.15);
 }
 
 @layer base {
