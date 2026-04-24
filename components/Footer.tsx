@@ -129,7 +129,26 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-sm font-semibold">Created by ridhoae303</p>
+              <p className="text-sm font-semibold">
+                Created by ridhoae303
+              </p>
+
+              <p className="text-sm font-normal mt-4">
+                Note from <strong>ridhoae303</strong>:
+              </p>
+
+              <blockquote className="
+                relative overflow-hidden
+                  text-sm font-medium mt-1
+                    pl-3 italic
+                      blockquote-cyan
+                      ">
+                <span className="relative z-10">
+                  I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
+                </span>
+
+                <span className="shimmer"></span>
+              </blockquote>
             </div>
           </motion.div>
         </div>
