@@ -129,13 +129,17 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-sm font-semibold">Created by ridhoae303
+              <p className="text-sm font-semibold">
+                Created by ridhoae303
               </p>
-              <p
-                className="text-sm font-normal">Note from <strong>ridhoae303</strong>:
+
+              <p className="text-sm font-normal">
+                Note from <strong>ridhoae303</strong>:
               </p>
-              <p className="text-sm font-medium">I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
-              </p>
+
+              <blockquote className="text-sm font-medium border-l-4 pl-3 italic text-muted-foreground">
+                I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
+              </blockquote>
             </div>
           </motion.div>
         </div>
