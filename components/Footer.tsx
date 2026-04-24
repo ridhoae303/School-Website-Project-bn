@@ -130,7 +130,9 @@ export function Footer() {
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
               <p className="text-sm font-semibold">Created by ridhoae303
-                I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
+              </p>
+              <p className="text-sm
+                font-semibold">I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
               </p>
             </div>
           </motion.div>
