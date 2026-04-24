@@ -125,8 +125,10 @@ export const JURUSAN_IMAGES = {
 // Developer Page Images
 export const DEVELOPER_IMAGES = {
   mohammedRidho: '/images/developer/mohammed-ridho.jpg',
+  mohammedRidhoProfile: '/images/developer/ridho-profile.jpg',
   abyanRuby: '/images/developer/abyan-ruby.jpg',
   kusnadi: '/images/developer/kusnadi.jpg',
+  agusYuliono: '/images/developer/agus-yuliono.jpg',
 }
 
 // Mading Gallery Images
@@ -206,6 +208,50 @@ export const ANIMATION_DURATION = {
   slow: 0.5,
   verySlow: 0.8,
 }
+
+// Random Educational Quotes
+export const QUOTES = [
+  {
+    text: 'Pendidikan adalah investasi terbaik untuk masa depan yang cerah dan penuh peluang.',
+    author: 'Nelson Mandela',
+  },
+  {
+    text: 'Ilmu adalah cahaya yang menerangi jalan kesuksesan dan kemajuan bangsa.',
+    author: 'Pramoedya Ananta Toer',
+  },
+  {
+    text: 'Dengan pendidikan berkualitas, kita membangun generasi yang kompeten dan berkarakter.',
+    author: 'Ki Hajar Dewantara',
+  },
+  {
+    text: 'Belajar bukan hanya tentang meraih nilai, tetapi mengembangkan potensi diri sepenuhnya.',
+    author: 'Paulo Coelho',
+  },
+  {
+    text: 'Setiap siswa memiliki bakat unik yang perlu digali dan dikembangkan dengan optimal.',
+    author: 'Howard Gardner',
+  },
+  {
+    text: 'Keterampilan praktis yang dikuasai dengan baik membuka pintu kesempatan kerja yang luas.',
+    author: 'John Dewey',
+  },
+  {
+    text: 'Pendidikan vocasional menciptakan profesional yang siap menghadapi tantangan industri modern.',
+    author: 'Peter Drucker',
+  },
+  {
+    text: 'Kerja keras di sekolah hari ini adalah fondasi kesuksesan karir di masa depan.',
+    author: 'Malcolm Gladwell',
+  },
+  {
+    text: 'Kolaborasi dan kerja tim adalah kunci kesuksesan dalam dunia pendidikan maupun profesional.',
+    author: 'Margaret Wheatley',
+  },
+  {
+    text: 'Mimpi besar dimulai dari keputusan kecil untuk belajar dan terus berkembang setiap hari.',
+    author: 'Zig Ziglar',
+  },
+]
 
 // Site Navigation
 export const SITE_CONFIG = {

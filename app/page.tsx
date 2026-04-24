@@ -6,17 +6,17 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SCHOOL_INFO, HOME_IMAGES, DEVELOPER_IMAGES } from '@/lib/constants'
+import { SCHOOL_INFO, HOME_IMAGES, DEVELOPER_IMAGES, QUOTES } from '@/lib/constants'
 
 // 10 Slide Foto dengan Quotes - menggunakan image dari /public/images/home/
 const heroSlides = HOME_IMAGES.heroSlides.map((src, i) => ({
   src,
   alt: `Slide ${i + 1}`,
   title: `Slide foto ${i + 1}`,
-  quote: `Setiap usaha membawa hasil, terus berjuang! Quote ${i + 1}`,
+  quote: QUOTES[i % QUOTES.length].text,
 }))
 
-const quotes = heroSlides.map(s => s.quote)
+const quotes = QUOTES.map(q => q.text)
 
 // 6 News Items - menggunakan images dari /public/images/home/news-{1-6}.jpg
 const newsItems = [
@@ -337,18 +337,15 @@ export default function Home() {
               >
                 <div className="relative w-full aspect-square bg-gradient-to-br from-primary to-secondary">
                   <Image
-                    src={DEVELOPER_IMAGES.kusnadi}
-                    alt="Kepala Sekolah"
+                    src={DEVELOPER_IMAGES.agusYuliono}
+                    alt="Kepala Sekolah Agus Yuliono"
                     fill
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const img = e.target as HTMLImageElement
-                      img.style.display = 'none'
-                    }}
+                    priority
                   />
                   {/* Fallback Avatar */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold">
-                    AS
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold pointer-events-none">
+                    AY
                   </div>
                 </div>
                 <div className="bg-primary text-white p-4 text-center">

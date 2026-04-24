@@ -10,6 +10,7 @@ import { DEVELOPER_IMAGES } from '@/lib/constants'
 export default function DeveloperPage() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
   const [expandedProfile, setExpandedProfile] = useState<string | null>(null)
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({})
 
   const skills = [
     { name: 'Full Stack Developer', percentage: 90 },
@@ -25,7 +26,8 @@ export default function DeveloperPage() {
       name: 'Mohammed Ridho',
       initials: 'MR',
       role: 'Full Stack Developer',
-      image: DEVELOPER_IMAGES.mohammedRidho,
+      image: DEVELOPER_IMAGES.mohammedRidho, // Avatar image for card
+      profileImage: DEVELOPER_IMAGES.mohammedRidhoProfile, // Separate profile photo
       description: 'Pemimpin project dan Full Stack Developer yang mengembangkan website ini dari awal.',
       github: 'https://github.com/ridhoae303',
       instagram: 'https://instagram.com/ridhoae303_',
@@ -230,20 +232,24 @@ export default function DeveloperPage() {
                 >
                   {/* Image with fallback */}
                   <div className="w-full h-full relative">
-                    <Image
-                      src={dev.image}
-                      alt={dev.name}
-                      fill
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const img = e.target as HTMLImageElement
-                        img.style.display = 'none'
-                      }}
-                    />
-                    {/* CSS Fallback Avatar with Initials */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
-                      {dev.initials}
-                    </div>
+                    {!imageErrors[dev.name] && (
+                      <Image
+                        src={dev.image}
+                        alt={dev.name}
+                        fill
+                        className="w-full h-full object-cover"
+                        priority
+                        onError={() => {
+                          setImageErrors(prev => ({...prev, [dev.name]: true}))
+                        }}
+                      />
+                    )}
+                    {/* CSS Fallback Avatar with Initials - only show if image fails */}
+                    {imageErrors[dev.name] && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
+                        {dev.initials}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
 

@@ -33,18 +33,15 @@ export default function SambutanKepalaSkolahPage() {
             <div className="rounded-lg overflow-hidden shadow-lg border-4 border-primary/20">
               <div className="relative w-full aspect-square bg-gradient-to-br from-primary to-secondary">
                 <Image
-                  src={DEVELOPER_IMAGES.kusnadi}
-                  alt="Kepala Sekolah"
+                  src={DEVELOPER_IMAGES.agusYuliono}
+                  alt="Kepala Sekolah Agus Yuliono"
                   fill
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.style.display = 'none'
-                  }}
+                  priority
                 />
                 {/* Fallback Avatar */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold">
-                  AS
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold pointer-events-none">
+                  AY
                 </div>
               </div>
               <div className="bg-primary text-white p-6 text-center">

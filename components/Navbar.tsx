@@ -70,7 +70,7 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation - Primary Items */}
-            <div className="hidden lg:flex items-center gap-1 flex-1 mx-6 overflow-hidden">
+            <div className="hidden lg:flex items-center gap-0 flex-1 mx-6 overflow-visible">
               {PRIMARY_NAV_ITEMS.map((item) => (
                 <div key={item.label} className="relative group">
                   <Link href={item.href || '#'}>
@@ -83,7 +83,7 @@ export function Navbar() {
                   </Link>
                   
                   {item.submenu && (
-                    <div className="absolute left-0 top-full mt-0 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-max">
+                    <div className="absolute left-0 top-full mt-0 bg-white text-foreground border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-max pointer-events-none group-hover:pointer-events-auto">
                       {item.submenu.map((subitem, idx) => (
                         <Link key={subitem.href} href={subitem.href}>
                           <div className={`px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors ${
