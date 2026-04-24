@@ -340,11 +340,11 @@ export default function Home() {
                     src={DEVELOPER_IMAGES.agusYuliono}
                     alt="Kepala Sekolah Agus Yuliono"
                     fill
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover relative z-10"
                     priority
                   />
-                  {/* Fallback Avatar */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold pointer-events-none">
+                  {/* Fallback Avatar - hidden behind image with z-0 */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold pointer-events-none z-0">
                     AY
                   </div>
                 </div>

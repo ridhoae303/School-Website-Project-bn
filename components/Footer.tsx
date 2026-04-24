@@ -143,10 +143,10 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="mb-2">
-            Created by Ridhoae303 team © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
+            Created by ridhoae303 © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
           </p>
           <p className="text-xs">
-            Powered by <strong>ridhoae303 Team</strong>
+            Powered by <strong>ridhoae303</strong>
           </p>
         </motion.div>
       </div>

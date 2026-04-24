@@ -36,11 +36,11 @@ export default function SambutanKepalaSkolahPage() {
                   src={DEVELOPER_IMAGES.agusYuliono}
                   alt="Kepala Sekolah Agus Yuliono"
                   fill
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover relative z-10"
                   priority
                 />
-                {/* Fallback Avatar */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold pointer-events-none">
+                {/* Fallback Avatar - hidden behind image */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold pointer-events-none z-0">
                   AY
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function SambutanKepalaSkolahPage() {
                 </p>
 
                 <p>
-                  Akhirnya kami mengharapkan masukan dari berbagai pihak untuk website ini agar kami terus belajar dan meng-update diri, sehingga tampilan, isi dan mutu website akan terus berkembang dan lebih baik nantinya. Terima kasih atas kerjasamanya, maju terus untuk mencapai SMK Patriot 1 Bekasi yang lebih baik lagi.
+                  Akhirnya, kami mengharapkan masukan dari berbagai pihak untuk website ini agar kami terus belajar dan memperbarui diri. Dengan demikian, tampilan, isi, dan mutu website akan terus berkembang dan semakin baik di masa mendatang. Terima kasih atas kerja sama Anda, dan mari terus maju bersama untuk mencapai SMK Patriot 1 Bekasi yang lebih baik lagi.
                 </p>
 
                 <p className="italic font-semibold">

@@ -52,11 +52,6 @@ export default function DeveloperPage() {
     },
   ]
 
-  const locations = [
-    { city: 'California', region: 'Mountain View', address: 'Bonita Ave.' },
-    { city: 'Jakarta Selatan', region: 'Sudirman' },
-  ]
-
   return (
     <div className="py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -278,18 +273,18 @@ export default function DeveloperPage() {
                       </Button>
                     </a>
                   )}
+                  {dev.blog && (
+                    <a href={dev.blog} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
+                        Blog
+                      </Button>
+                    </a>
+                  )}
                   {dev.tiktok && (
                     <a href={dev.tiktok} target="_blank" rel="noopener noreferrer">
                       <Button size="sm" variant="outline" className="gap-2">
                         <Music size={16} />
                         TikTok
-                      </Button>
-                    </a>
-                  )}
-                  {dev.blog && (
-                    <a href={dev.blog} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
-                        Blog
                       </Button>
                     </a>
                   )}
@@ -299,57 +294,64 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* Organization Section */}
+        {/* Decorative Animation Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mt-16 pt-16 border-t border-border"
         >
-          <h2 className="text-4xl font-bold mb-8 text-center">ridhoae303 Inc.</h2>
+          <div className="space-y-12">
+            {/* Wave Animation */}
+            <div className="flex justify-center items-center h-40 relative overflow-hidden rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10">
+              <svg className="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <motion.path
+                  d="M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z"
+                  fill="url(#grad1)"
+                  animate={{
+                    d: ["M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z", "M0,70 Q300,30 600,70 T1200,70 L1200,120 L0,120 Z", "M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z"],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgba(30, 144, 255, 0.3)" />
+                      <stop offset="100%" stopColor="rgba(255, 69, 0, 0.3)" />
+                    </linearGradient>
+                  </defs>
+                </motion.path>
+              </svg>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {locations.map((location, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border"
-              >
-                <h3 className="font-bold text-xl mb-2">{location.city}</h3>
-                <p className="text-muted-foreground">
-                  {location.region}
-                  {location.address && `, ${location.address}`}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+            {/* Floating Circles Animation */}
+            <div className="flex justify-center items-center gap-4 h-24">
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary"
+                  animate={{
+                    y: [0, -20, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.2,
+                    repeat: Infinity,
+                  }}
+                />
+              ))}
+            </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-400 p-6 rounded text-center"
-          >
-            <p className="text-sm text-muted-foreground italic">
-              Anggota tim tidak dapat disebutkan, dan organisasi kami tidak perlu diketahui oleh siapapun.
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* About This Project */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-16 pt-16 border-t border-border"
-        >
-          <h2 className="text-4xl font-bold mb-6">Thanks</h2>
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg">
-            <p className="text-lg text-foreground leading-relaxed">
-              We would like to extend our heartfelt gratitude to <strong>ridhoae303 Team</strong> for their exceptional dedication and effort in building this website. Their expertise in modern web development technologies, attention to detail, and commitment to delivering a high-quality user experience have been instrumental in creating a responsive, fast, and user-friendly platform for SMK PATRIOT 1 BEKASI. Thank you for your outstanding contributions to this project.
-            </p>
+            {/* Animated Text */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <h3 className="text-2xl font-bold text-foreground mb-2">Crafted with passion</h3>
+              <p className="text-muted-foreground">Bringing your ideas to life through code and creativity</p>
+            </motion.div>
           </div>
         </motion.div>
       </div>
