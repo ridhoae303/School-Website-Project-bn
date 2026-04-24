@@ -98,7 +98,7 @@ export default function DeveloperPage() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <Image
-                  src={DEVELOPER_IMAGES.mohammedRidho}
+                  src={DEVELOPER_IMAGES.mohammedRidhoHero}
                   alt="Mohammed Ridho"
                   width={192}
                   height={192}
