@@ -65,7 +65,7 @@ export default function SambutanKepalaSkolahPage() {
 
               <div className="space-y-6 text-foreground text-lg leading-relaxed">
                 <p>
-                  Puji syukur kepada Alloh SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerahNya sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab akan setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada. Kami sadar sepenuhnya dalam rangka memajukan pendidikan di era berkembangnya Teknologi Informasi yang begitu pesat, sangat diperlukan berbagai sarana prasarana yang kondusif, kebutuhan berbagai informasi siswa, guru, orangtua maupun masyarakat, sehingga kami berusaha mewujudkan hal tersebut semaksimal mungkin.
+                  Puji syukur kepada Allah SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerah nya, sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada. Kami sadar sepenuhnya bahwa dalam rangka memajukan pendidikan di era berkembangnya teknologi informasi yang begitu pesat, sangat diperlukan berbagai sarana dan prasarana yang kondusif, serta kebutuhan berbagai informasi dari siswa, guru, orangtua, maupun masyarakat. Oleh karena itu, kami berusaha mewujudkan hal tersebut semaksimal mungkin.
                 </p>
 
                 <p>
@@ -73,7 +73,7 @@ export default function SambutanKepalaSkolahPage() {
                 </p>
 
                 <p>
-                  Besar harapan kami, sarana ini dapat memberi manfaat bagi semua pihak yang ada dilingkup pendidikan dan pemerhati pendidikan secara khusus bagi SMK Patriot 1 Bekasi.
+                  Besar harapan kami, sarana ini dapat memberi manfaat bagi semua pihak yang ada di lingkup pendidikan dan pemerhati pendidikan, secara khusus bagi SMK Patriot 1 Bekasi.
                 </p>
 
                 <p>

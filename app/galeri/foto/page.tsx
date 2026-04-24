@@ -122,28 +122,40 @@ export default function GaleriPhotoPage() {
       {/* Lightbox with Description */}
       {selectedImage && (
         <motion.div
-          className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setSelectedImage(null)}
         >
           <motion.div
-            className="relative max-w-3xl w-full"
-            initial={{ scale: 0.9, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl bg-white"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={selectedImage.image} alt={selectedImage.title} className="w-full rounded-t-lg" />
-            <div className="bg-white rounded-b-lg p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-3">{selectedImage.title}</h2>
-              <p className="text-muted-foreground leading-relaxed">{selectedImage.description}</p>
-            </div>
+            {/* Close button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-colors"
+              className="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full transition-colors z-10"
             >
               <X size={24} />
             </button>
+
+            {/* Image */}
+            <div className="w-full aspect-video bg-black overflow-hidden">
+              <img 
+                src={selectedImage.image} 
+                alt={selectedImage.title} 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+
+            {/* Info */}
+            <div className="p-8">
+              <h2 className="text-3xl font-bold text-foreground mb-3">{selectedImage.title}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{selectedImage.description}</p>
+            </div>
           </motion.div>
         </motion.div>
       )}

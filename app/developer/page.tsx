@@ -294,55 +294,51 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* Decorative Animation Section */}
+        {/* Vercel-style Wave Animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mt-16 pt-16 border-t border-border"
         >
-          <div className="space-y-12">
-            {/* Wave Animation */}
-            <div className="flex justify-center items-center h-40 relative overflow-hidden rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10">
-              <svg className="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <motion.path
-                  d="M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z"
-                  fill="url(#grad1)"
-                  animate={{
-                    d: ["M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z", "M0,70 Q300,30 600,70 T1200,70 L1200,120 L0,120 Z", "M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z"],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="rgba(30, 144, 255, 0.3)" />
-                      <stop offset="100%" stopColor="rgba(255, 69, 0, 0.3)" />
-                    </linearGradient>
-                  </defs>
-                </motion.path>
-              </svg>
-            </div>
-
-            {/* Floating Circles Animation */}
-            <div className="flex justify-center items-center gap-4 h-24">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary"
-                  animate={{
-                    y: [0, -20, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    delay: i * 0.2,
-                    repeat: Infinity,
-                  }}
-                />
-              ))}
-            </div>
-
-
+          <div className="relative w-full h-56 overflow-hidden rounded-lg bg-gradient-to-b from-primary/5 to-secondary/5">
+            <svg
+              viewBox="0 0 1200 200"
+              preserveAspectRatio="none"
+              className="absolute inset-0 w-full h-full"
+            >
+              <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgb(30, 144, 255)" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="rgb(30, 144, 255)" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+              <motion.path
+                d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z"
+                fill="url(#waveGradient)"
+                animate={{
+                  d: [
+                    "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                    "M0,120 Q300,70 600,120 T1200,120 L1200,200 L0,200 Z",
+                    "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                  ],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z"
+                fill="rgb(30, 144, 255)"
+                fillOpacity="0.1"
+                animate={{
+                  d: [
+                    "M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z",
+                    "M0,80 Q300,30 600,80 T1200,80 L1200,200 L0,200 Z",
+                    "M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z",
+                  ],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              />
+            </svg>
           </div>
         </motion.div>
       </div>
