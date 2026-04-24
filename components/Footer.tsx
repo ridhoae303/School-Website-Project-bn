@@ -132,7 +132,7 @@ export function Footer() {
               <p className="text-sm font-semibold">Created by ridhoae303
               </p>
               <p
-                className="mb-2.5">Note from <strong>ridhoae303</strong>:
+                className="mb-2">Note from <strong>ridhoae303</strong>:
               </p>
               <p className="mb-2">I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
               </p>
