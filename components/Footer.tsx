@@ -129,10 +129,12 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-sm font-semibold">Created by ridhoae303
+              <p className="text-smfont-semibold">Created by ridhoae303
               </p>
-              <p className="text-sm
-                font-semibold">I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
+              <p
+                className="mb-2.5">Note from <strong>ridhoae303</strong>:
+              </p>
+              <p className="mb-2">I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
               </p>
             </div>
           </motion.div>
