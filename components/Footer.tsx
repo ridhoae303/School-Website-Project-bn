@@ -129,7 +129,7 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-sm font-semibold">ridhoae303</p>
+              <p className="text-sm font-semibold">Created by ridhoae303</p>
             </div>
           </motion.div>
         </div>
