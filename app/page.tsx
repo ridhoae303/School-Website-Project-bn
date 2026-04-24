@@ -365,7 +365,7 @@ export default function Home() {
                     "Assalamu'alaikum wr.wb."
                   </p>
                   <p className="text-foreground leading-relaxed">
-                    Puji syukur kepada Alloh SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerahNya sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab akan setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada.
+                    Puji syukur kepada Allah SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerah nya, sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada.
                   </p>
                   <p className="text-foreground leading-relaxed text-sm text-muted-foreground line-clamp-3">
                     Kami sadar sepenuhnya dalam rangka memajukan pendidikan di era berkembangnya Teknologi Informasi yang begitu pesat, sangat diperlukan berbagai sarana prasarana yang kondusif, kebutuhan berbagai informasi siswa, guru, orangtua maupun masyarakat...
