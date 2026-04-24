@@ -342,16 +342,7 @@ export default function DeveloperPage() {
               ))}
             </div>
 
-            {/* Animated Text */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
-            >
-              <h3 className="text-2xl font-bold text-foreground mb-2">Crafted with passion</h3>
-              <p className="text-muted-foreground">Bringing your ideas to life through code and creativity</p>
-            </motion.div>
+
           </div>
         </motion.div>
       </div>

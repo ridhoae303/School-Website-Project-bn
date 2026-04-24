@@ -4,11 +4,80 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { X } from 'lucide-react'
 
-const galeryItems = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  image: 'https://via.placeholder.com/400x300',
-  title: `Foto ${i + 1}`,
-}))
+const galeryItems = [
+  {
+    id: 1,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Upacara Bendera',
+    description: 'Pelaksanaan upacara bendera rutin di lapangan sekolah dengan seluruh siswa dan guru.'
+  },
+  {
+    id: 2,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Praktik Kejuruan',
+    description: 'Siswa sedang melakukan praktik kejuruan di bengkel dengan pembimbing guru.'
+  },
+  {
+    id: 3,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Lomba Akademik',
+    description: 'Peserta lomba akademik berkompetisi dalam berbagai cabang lomba.'
+  },
+  {
+    id: 4,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Wisata Edukatif',
+    description: 'Kegiatan wisata edukatif siswa ke lokasi industri untuk mempelajari dunia kerja.'
+  },
+  {
+    id: 5,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Kegiatan Ekstrakurikuler',
+    description: 'Siswa aktif mengikuti berbagai kegiatan ekstrakurikuler di sekolah.'
+  },
+  {
+    id: 6,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Pelatihan Keterampilan',
+    description: 'Pelatihan intensif keterampilan praktis untuk meningkatkan kompetensi siswa.'
+  },
+  {
+    id: 7,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Seminar & Workshop',
+    description: 'Menghadirkan narasumber profesional dari industri untuk berbagi pengalaman.'
+  },
+  {
+    id: 8,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Kerja Sama Industri',
+    description: 'Kunjungan dan diskusi dengan mitra industri untuk penempatan kerja siswa.'
+  },
+  {
+    id: 9,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Acara Sekolah',
+    description: 'Berbagai acara besar sekolah yang melibatkan seluruh komunitas pendidikan.'
+  },
+  {
+    id: 10,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Sertifikasi Kompetensi',
+    description: 'Siswa mengikuti uji sertifikasi kompetensi untuk mendapatkan sertifikat resmi.'
+  },
+  {
+    id: 11,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Pembinaan Karakter',
+    description: 'Program pembinaan karakter dan kepemimpinan untuk semua siswa.'
+  },
+  {
+    id: 12,
+    image: 'https://via.placeholder.com/400x300',
+    title: 'Prestasi Siswa',
+    description: 'Dokumentasi prestasi dan penghargaan yang diraih siswa dalam berbagai kompetisi.'
+  },
+]
 
 export default function GaleriPhotoPage() {
   const [selectedImage, setSelectedImage] = useState<typeof galeryItems[0] | null>(null)
@@ -41,15 +110,16 @@ export default function GaleriPhotoPage() {
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <p className="text-white text-lg font-semibold">{item.title}</p>
+              {/* Title overlay at bottom-left */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <p className="text-white font-semibold">{item.title}</p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox with Description */}
       {selectedImage && (
         <motion.div
           className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4"
@@ -59,11 +129,15 @@ export default function GaleriPhotoPage() {
         >
           <motion.div
             className="relative max-w-3xl w-full"
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
+            initial={{ scale: 0.9, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={selectedImage.image} alt={selectedImage.title} className="w-full rounded-lg" />
+            <img src={selectedImage.image} alt={selectedImage.title} className="w-full rounded-t-lg" />
+            <div className="bg-white rounded-b-lg p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-3">{selectedImage.title}</h2>
+              <p className="text-muted-foreground leading-relaxed">{selectedImage.description}</p>
+            </div>
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-colors"

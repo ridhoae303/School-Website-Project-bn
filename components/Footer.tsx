@@ -129,8 +129,7 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-xs">Dikembangkan oleh:</p>
-              <p className="text-sm font-semibold">Ridhoae303 Team</p>
+              <p className="text-sm font-semibold">ridhoae303</p>
             </div>
           </motion.div>
         </div>
