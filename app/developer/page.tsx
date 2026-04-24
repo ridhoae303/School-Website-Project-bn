@@ -10,6 +10,7 @@ import { DEVELOPER_IMAGES } from '@/lib/constants'
 export default function DeveloperPage() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
   const [expandedProfile, setExpandedProfile] = useState<string | null>(null)
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({})
 
   const skills = [
     { name: 'Full Stack Developer', percentage: 90 },
@@ -25,7 +26,8 @@ export default function DeveloperPage() {
       name: 'Mohammed Ridho',
       initials: 'MR',
       role: 'Full Stack Developer',
-      image: DEVELOPER_IMAGES.mohammedRidho,
+      image: DEVELOPER_IMAGES.mohammedRidho, // Avatar image for card
+      profileImage: DEVELOPER_IMAGES.mohammedRidhoProfile, // Separate profile photo
       description: 'Pemimpin project dan Full Stack Developer yang mengembangkan website ini dari awal.',
       github: 'https://github.com/ridhoae303',
       instagram: 'https://instagram.com/ridhoae303_',
@@ -48,11 +50,6 @@ export default function DeveloperPage() {
       blog: 'https://kusnadi88.blogspot.com/?m=1',
       tiktok: 'https://www.tiktok.com/@mr_kusnadi88',
     },
-  ]
-
-  const locations = [
-    { city: 'California', region: 'Mountain View', address: 'Bonita Ave.' },
-    { city: 'Jakarta Selatan', region: 'Sudirman' },
   ]
 
   return (
@@ -230,20 +227,24 @@ export default function DeveloperPage() {
                 >
                   {/* Image with fallback */}
                   <div className="w-full h-full relative">
-                    <Image
-                      src={dev.image}
-                      alt={dev.name}
-                      fill
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const img = e.target as HTMLImageElement
-                        img.style.display = 'none'
-                      }}
-                    />
-                    {/* CSS Fallback Avatar with Initials */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
-                      {dev.initials}
-                    </div>
+                    {!imageErrors[dev.name] && (
+                      <Image
+                        src={dev.image}
+                        alt={dev.name}
+                        fill
+                        className="w-full h-full object-cover"
+                        priority
+                        onError={() => {
+                          setImageErrors(prev => ({...prev, [dev.name]: true}))
+                        }}
+                      />
+                    )}
+                    {/* CSS Fallback Avatar with Initials - only show if image fails */}
+                    {imageErrors[dev.name] && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
+                        {dev.initials}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
 
@@ -272,18 +273,18 @@ export default function DeveloperPage() {
                       </Button>
                     </a>
                   )}
+                  {dev.blog && (
+                    <a href={dev.blog} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
+                        Blog
+                      </Button>
+                    </a>
+                  )}
                   {dev.tiktok && (
                     <a href={dev.tiktok} target="_blank" rel="noopener noreferrer">
                       <Button size="sm" variant="outline" className="gap-2">
                         <Music size={16} />
                         TikTok
-                      </Button>
-                    </a>
-                  )}
-                  {dev.blog && (
-                    <a href={dev.blog} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm" className="gap-2 bg-secondary hover:bg-secondary/90">
-                        Blog
                       </Button>
                     </a>
                   )}
@@ -293,57 +294,51 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* Organization Section */}
+        {/* Vercel-style Wave Animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mt-16 pt-16 border-t border-border"
         >
-          <h2 className="text-4xl font-bold mb-8 text-center">ridhoae303 Inc.</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {locations.map((location, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border border-border"
-              >
-                <h3 className="font-bold text-xl mb-2">{location.city}</h3>
-                <p className="text-muted-foreground">
-                  {location.region}
-                  {location.address && `, ${location.address}`}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-400 p-6 rounded text-center"
-          >
-            <p className="text-sm text-muted-foreground italic">
-              Anggota tim tidak dapat disebutkan, dan organisasi kami tidak perlu diketahui oleh siapapun.
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* About This Project */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-16 pt-16 border-t border-border"
-        >
-          <h2 className="text-4xl font-bold mb-6">Thanks</h2>
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-lg">
-            <p className="text-lg text-foreground leading-relaxed">
-              We would like to extend our heartfelt gratitude to <strong>ridhoae303 Team</strong> for their exceptional dedication and effort in building this website. Their expertise in modern web development technologies, attention to detail, and commitment to delivering a high-quality user experience have been instrumental in creating a responsive, fast, and user-friendly platform for SMK PATRIOT 1 BEKASI. Thank you for your outstanding contributions to this project.
-            </p>
+          <div className="relative w-full h-56 overflow-hidden rounded-lg bg-gradient-to-b from-primary/5 to-secondary/5">
+            <svg
+              viewBox="0 0 1200 200"
+              preserveAspectRatio="none"
+              className="absolute inset-0 w-full h-full"
+            >
+              <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgb(30, 144, 255)" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="rgb(30, 144, 255)" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+              <motion.path
+                d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z"
+                fill="url(#waveGradient)"
+                animate={{
+                  d: [
+                    "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                    "M0,120 Q300,70 600,120 T1200,120 L1200,200 L0,200 Z",
+                    "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                  ],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z"
+                fill="rgb(30, 144, 255)"
+                fillOpacity="0.1"
+                animate={{
+                  d: [
+                    "M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z",
+                    "M0,80 Q300,30 600,80 T1200,80 L1200,200 L0,200 Z",
+                    "M0,110 Q300,60 600,110 T1200,110 L1200,200 L0,200 Z",
+                  ],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              />
+            </svg>
           </div>
         </motion.div>
       </div>

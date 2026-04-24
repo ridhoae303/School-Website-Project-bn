@@ -6,17 +6,17 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { SCHOOL_INFO, HOME_IMAGES, DEVELOPER_IMAGES } from '@/lib/constants'
+import { SCHOOL_INFO, HOME_IMAGES, DEVELOPER_IMAGES, QUOTES } from '@/lib/constants'
 
 // 10 Slide Foto dengan Quotes - menggunakan image dari /public/images/home/
 const heroSlides = HOME_IMAGES.heroSlides.map((src, i) => ({
   src,
   alt: `Slide ${i + 1}`,
   title: `Slide foto ${i + 1}`,
-  quote: `Setiap usaha membawa hasil, terus berjuang! Quote ${i + 1}`,
+  quote: QUOTES[i % QUOTES.length].text,
 }))
 
-const quotes = heroSlides.map(s => s.quote)
+const quotes = QUOTES.map(q => q.text)
 
 // 6 News Items - menggunakan images dari /public/images/home/news-{1-6}.jpg
 const newsItems = [
@@ -337,18 +337,15 @@ export default function Home() {
               >
                 <div className="relative w-full aspect-square bg-gradient-to-br from-primary to-secondary">
                   <Image
-                    src={DEVELOPER_IMAGES.kusnadi}
-                    alt="Kepala Sekolah"
+                    src={DEVELOPER_IMAGES.agusYuliono}
+                    alt="Kepala Sekolah Agus Yuliono"
                     fill
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const img = e.target as HTMLImageElement
-                      img.style.display = 'none'
-                    }}
+                    className="w-full h-full object-cover relative z-10"
+                    priority
                   />
-                  {/* Fallback Avatar */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold">
-                    AS
+                  {/* Fallback Avatar - hidden behind image with z-0 */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold pointer-events-none z-0">
+                    AY
                   </div>
                 </div>
                 <div className="bg-primary text-white p-4 text-center">
@@ -368,7 +365,7 @@ export default function Home() {
                     "Assalamu'alaikum wr.wb."
                   </p>
                   <p className="text-foreground leading-relaxed">
-                    Puji syukur kepada Alloh SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerahNya sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab akan setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada.
+                    Puji syukur kepada Allah SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerah nya, sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada.
                   </p>
                   <p className="text-foreground leading-relaxed text-sm text-muted-foreground line-clamp-3">
                     Kami sadar sepenuhnya dalam rangka memajukan pendidikan di era berkembangnya Teknologi Informasi yang begitu pesat, sangat diperlukan berbagai sarana prasarana yang kondusif, kebutuhan berbagai informasi siswa, guru, orangtua maupun masyarakat...

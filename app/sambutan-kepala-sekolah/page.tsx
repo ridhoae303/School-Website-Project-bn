@@ -33,18 +33,15 @@ export default function SambutanKepalaSkolahPage() {
             <div className="rounded-lg overflow-hidden shadow-lg border-4 border-primary/20">
               <div className="relative w-full aspect-square bg-gradient-to-br from-primary to-secondary">
                 <Image
-                  src={DEVELOPER_IMAGES.kusnadi}
-                  alt="Kepala Sekolah"
+                  src={DEVELOPER_IMAGES.agusYuliono}
+                  alt="Kepala Sekolah Agus Yuliono"
                   fill
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.style.display = 'none'
-                  }}
+                  className="w-full h-full object-cover relative z-10"
+                  priority
                 />
-                {/* Fallback Avatar */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold">
-                  AS
+                {/* Fallback Avatar - hidden behind image */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-8xl font-bold pointer-events-none z-0">
+                  AY
                 </div>
               </div>
               <div className="bg-primary text-white p-6 text-center">
@@ -68,7 +65,7 @@ export default function SambutanKepalaSkolahPage() {
 
               <div className="space-y-6 text-foreground text-lg leading-relaxed">
                 <p>
-                  Puji syukur kepada Alloh SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerahNya sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab akan setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada. Kami sadar sepenuhnya dalam rangka memajukan pendidikan di era berkembangnya Teknologi Informasi yang begitu pesat, sangat diperlukan berbagai sarana prasarana yang kondusif, kebutuhan berbagai informasi siswa, guru, orangtua maupun masyarakat, sehingga kami berusaha mewujudkan hal tersebut semaksimal mungkin.
+                  Puji syukur kepada Allah SWT, Tuhan Yang Maha Esa yang telah memberikan rahmat dan anugerah nya, sehingga website SMK Patriot 1 Bekasi ini dapat terbit. Salah satu tujuan dari website ini adalah untuk menjawab setiap kebutuhan informasi dengan memanfaatkan sarana teknologi informasi yang ada. Kami sadar sepenuhnya bahwa dalam rangka memajukan pendidikan di era berkembangnya teknologi informasi yang begitu pesat, sangat diperlukan berbagai sarana dan prasarana yang kondusif, serta kebutuhan berbagai informasi dari siswa, guru, orangtua, maupun masyarakat. Oleh karena itu, kami berusaha mewujudkan hal tersebut semaksimal mungkin.
                 </p>
 
                 <p>
@@ -76,11 +73,11 @@ export default function SambutanKepalaSkolahPage() {
                 </p>
 
                 <p>
-                  Besar harapan kami, sarana ini dapat memberi manfaat bagi semua pihak yang ada dilingkup pendidikan dan pemerhati pendidikan secara khusus bagi SMK Patriot 1 Bekasi.
+                  Besar harapan kami, sarana ini dapat memberi manfaat bagi semua pihak yang ada di lingkup pendidikan dan pemerhati pendidikan, secara khusus bagi SMK Patriot 1 Bekasi.
                 </p>
 
                 <p>
-                  Akhirnya kami mengharapkan masukan dari berbagai pihak untuk website ini agar kami terus belajar dan meng-update diri, sehingga tampilan, isi dan mutu website akan terus berkembang dan lebih baik nantinya. Terima kasih atas kerjasamanya, maju terus untuk mencapai SMK Patriot 1 Bekasi yang lebih baik lagi.
+                  Akhirnya, kami mengharapkan masukan dari berbagai pihak untuk website ini agar kami terus belajar dan memperbarui diri. Dengan demikian, tampilan, isi, dan mutu website akan terus berkembang dan semakin baik di masa mendatang. Terima kasih atas kerja sama Anda, dan mari terus maju bersama untuk mencapai SMK Patriot 1 Bekasi yang lebih baik lagi.
                 </p>
 
                 <p className="italic font-semibold">

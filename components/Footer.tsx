@@ -129,8 +129,7 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-6 pt-6 border-t border-primary-foreground/20">
-              <p className="text-xs">Dikembangkan oleh:</p>
-              <p className="text-sm font-semibold">Ridhoae303 Team</p>
+              <p className="text-sm font-semibold">Created by ridhoae303</p>
             </div>
           </motion.div>
         </div>
@@ -143,10 +142,10 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="mb-2">
-            Created by Ridhoae303 team © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
+            Created by ridhoae303 © {currentYear} by SMK PATRIOT 1 BEKASI All rights reserved.
           </p>
           <p className="text-xs">
-            Powered by <strong>ridhoae303 Team</strong>
+            Powered by <strong>ridhoae303</strong>
           </p>
         </motion.div>
       </div>
