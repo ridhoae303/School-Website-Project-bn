@@ -133,11 +133,11 @@ export function Footer() {
                 Created by ridhoae303
               </p>
 
-              <p className="text-sm font-normal mt-4">
+              <p className="text-sm font-medium mt-4">
                 Note from <strong>ridhoae303</strong>:
               </p>
 
-              <blockquote className="text-sm font-medium border-l-4 pl-3 italic text-muted-foreground">
+              <blockquote className="text-sm font-bold border-l-4 pl-3 italic text-muted-foreground">
                 I’m not an otaku, but I like the anime One Piece and the game Blue Archive.
               </blockquote>
             </div>
