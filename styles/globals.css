@@ -43,7 +43,6 @@ body {
     0 0 8px rgba(0, 255, 255, 0.35),
     0 0 16px rgba(0, 150, 255, 0.15);
 }
-}
 
 @layer base {
   :root {
