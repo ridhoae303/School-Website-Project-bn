@@ -20,14 +20,12 @@ body {
   .shimmer {
     position: absolute;
     inset: 0;
-
     background: linear-gradient(90deg,
         transparent,
         rgba(0, 255, 255, 0.45),
         rgba(0, 120, 255, 0.35),
         rgba(0, 255, 255, 0.45),
         transparent);
-
     transform: translateX(-100%);
     animation: shimmerMove 2s infinite;
     pointer-events: none;
@@ -39,11 +37,22 @@ body {
     background: rgba(34, 211, 238, 0.08);
     color: rgb(103 232 249);
     padding: 0.75rem 1rem;
-
     box-shadow:
       0 0 12px rgba(0, 255, 255, 0.4),
       0 0 24px rgba(0, 150, 255, 0.2),
       inset 0 0 10px rgba(0, 255, 255, 0.05);
+  }
+
+  .blockquote-red {
+    border-left: 4px solid rgb(239 68 68);
+    border-radius: 0.5rem;
+    background: rgba(239, 68, 68, 0.08);
+    color: rgb(252 165 165);
+    padding: 0.75rem 1rem;
+    box-shadow:
+      0 0 12px rgba(255, 0, 0, 0.4),
+      0 0 24px rgba(255, 100, 0, 0.2),
+      inset 0 0 10px rgba(255, 0, 0, 0.05);
   }
 }
 
