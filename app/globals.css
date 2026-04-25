@@ -16,11 +16,45 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .shimmer {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 255, 255, 0.45),
+        rgba(0, 120, 255, 0.35),
+        rgba(0, 255, 255, 0.45),
+        transparent);
+
+    transform: translateX(-100%);
+    animation: shimmerMove 2s infinite;
+    pointer-events: none;
+  }
+
+  .blockquote-cyan {
+    border-left: 4px solid rgb(34 211 238);
+    border-radius: 0.5rem;
+    background: rgba(34, 211, 238, 0.08);
+    color: rgb(103 232 249);
+    padding: 0.75rem 1rem;
+
+    box-shadow:
+      0 0 12px rgba(0, 255, 255, 0.4),
+      0 0 24px rgba(0, 150, 255, 0.2),
+      inset 0 0 10px rgba(0, 255, 255, 0.05);
+  }
+}
+
+@keyframes shimmerMove {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @layer base {
   :root {
-    /* #111A51 = Biru Laut (hsl: 233 63% 31%), #FF592C = Orange (hsl: 15 100% 50%) */
     --background: 0 0% 100%;
     --foreground: 0 0% 12%;
     --card: 0 0% 100%;
