@@ -1,13 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Twitter } from 'lucide-react'
 import { SCHOOL_INFO } from '@/lib/constants'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const [toggled, setToggled] = useState(false)
 
   const socialLinks = [
     { icon: Facebook, href: 'https://facebook.com/smkpatriot1bekasi', label: 'Facebook' },
@@ -16,8 +17,16 @@ export function Footer() {
     { icon: Youtube, href: 'https://youtube.com/@smkpatriot1bekasi', label: 'YouTube' },
   ]
 
-  // Google Maps link
   const mapsLink = 'https://maps.google.com/?q=Jl.+Kalibaru+Timur,+Kec.+Medan+Satria+Kota+Bekasi'
+
+  const defaultText = "I'm not an otaku, but I like the anime One Piece and the game Blue Archive."
+  const toggledText = "Hey, what are you doing? I already told you I'm not an otaku!"
+
+  const textVariants = {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 }
+  }
 
   return (
     <motion.footer
@@ -28,7 +37,6 @@ export function Footer() {
       viewport={{ once: true }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Motto Section */}
         <motion.div
           className="mb-12 text-center pb-8 border-b border-primary-foreground/20"
           initial={{ opacity: 0, y: 20 }}
@@ -40,9 +48,7 @@ export function Footer() {
           </p>
         </motion.div>
 
-        {/* Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -81,7 +87,6 @@ export function Footer() {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +112,6 @@ export function Footer() {
             </div>
           </motion.div>
 
-          {/* Social Media */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -137,16 +141,34 @@ export function Footer() {
                 Note from <strong>ridhoae303</strong>:
               </p>
 
-              <blockquote className="text-sm font-medium mt-3 py-3 px-4 italic border-l-4 border-primary/30 bg-primary/5 rounded-sm">
-                <span className="block">
-                  I&apos;m not an otaku, but I like the anime One Piece and the game Blue Archive.
+              <motion.blockquote
+                className={`relative overflow-hidden text-sm font-medium mt-3 py-3 px-4 italic rounded-lg cursor-pointer select-none ${
+                  toggled ? 'blockquote-red' : 'blockquote-cyan'
+                }`}
+                whileTap={{ scale: 0.95 }}
+                onTap={() => setToggled(!toggled)}
+              >
+                <span className="relative z-10 block">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={toggled ? 'toggled' : 'default'}
+                      variants={textVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{ duration: 0.25 }}
+                      className="block"
+                    >
+                      {toggled ? toggledText : defaultText}
+                    </motion.span>
+                  </AnimatePresence>
                 </span>
-              </blockquote>
+                <span className="shimmer"></span>
+              </motion.blockquote>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Footer */}
         <motion.div
           className="border-t border-primary-foreground/20 pt-8 flex flex-col text-center text-sm"
           initial={{ opacity: 0 }}
