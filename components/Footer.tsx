@@ -137,8 +137,8 @@ export function Footer() {
                 Note from <strong>ridhoae303</strong>:
               </p>
 
-              <blockquote className="relative overflow-hidden text-sm font-medium mt-2 pl-3 italic blockquote-cyan">
-                <span className="relative z-10">
+              <blockquote className="relative overflow-hidden text-sm font-medium mt-3 py-3 px-4 italic blockquote-cyan rounded-lg">
+                <span className="relative z-10 block">
                   I&apos;m not an otaku, but I like the anime One Piece and the game Blue Archive.
                 </span>
                 <span className="shimmer"></span>
