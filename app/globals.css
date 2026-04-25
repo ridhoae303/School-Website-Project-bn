@@ -64,6 +64,7 @@ body {
 
 @layer base {
   :root {
+    /* #111A51 = Biru Laut (hsl: 233 63% 31%), #FF592C = Orange (hsl: 15 100% 50%) */
     --background: 0 0% 100%;
     --foreground: 0 0% 12%;
     --card: 0 0% 100%;
