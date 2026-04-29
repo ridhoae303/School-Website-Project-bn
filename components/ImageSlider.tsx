@@ -60,10 +60,12 @@ export function ImageSlider({
     const isRightSwipe = distance < -50
 
     if (isLeftSwipe) {
-      goToNext()
+      setDirection(1)
+      setCurrentIndex((prev) => (prev + 1) % images.length)
     }
     if (isRightSwipe) {
-      goToPrevious()
+      setDirection(-1)
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
     }
   }
 

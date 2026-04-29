@@ -76,10 +76,12 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
     const isRightSwipe = distance < -50
 
     if (isLeftSwipe) {
-      handleNext()
+      setDirection(1)
+      setCurrentImageIndex((prev) => (prev + 1) % images.length)
     }
     if (isRightSwipe) {
-      handlePrev()
+      setDirection(-1)
+      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
     }
   }
 
