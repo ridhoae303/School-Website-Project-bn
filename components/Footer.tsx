@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, X } from 'lucide-react'
 import { SCHOOL_INFO } from '@/lib/constants'
 
 export function Footer() {
@@ -11,10 +11,10 @@ export function Footer() {
   const [toggled, setToggled] = useState(false)
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com/smkpatriot1bekasi', label: 'Facebook' },
-    { icon: Twitter, href: 'https://twitter.com/smkpatriot1', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com/smkpatriot1bekasi', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com/@smkpatriot1bekasi', label: 'YouTube' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100079274297750', label: 'Facebook' },
+    { icon: X, href: 'https://x.com/osissmkpatriot1', label: 'X' },
+    { icon: Instagram, href: 'https://www.instagram.com/smk_patriot1', label: 'Instagram' },
+    { icon: Youtube, href: 'https://m.youtube.com/@smkpatriot1bekasi448', label: 'YouTube' },
   ]
 
   const mapsLink = 'https://maps.google.com/?q=Jl.+Kalibaru+Timur,+Kec.+Medan+Satria+Kota+Bekasi'
