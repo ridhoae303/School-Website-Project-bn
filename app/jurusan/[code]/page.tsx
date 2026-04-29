@@ -43,23 +43,49 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
   const codeKey = code?.toLowerCase() as keyof typeof JURUSAN_IMAGES || 'tkj'
   const data = jurusanData[codeKey] || jurusanData.tkj
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [direction, setDirection] = useState(0) // 1 for next, -1 for prev
+  const [direction, setDirection] = useState(1) // 1 for next, -1 for prev
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
   
   // Load images dari /public/images/jurusan/{code}/
   const images = JURUSAN_IMAGES[codeKey] || JURUSAN_IMAGES.tkj
 
   const handleNext = () => {
-    if (currentImageIndex < images.length - 1) {
-      setDirection(1)
-      setCurrentImageIndex(currentImageIndex + 1)
-    }
+    setDirection(1)
+    setCurrentImageIndex((prev) => (prev + 1) % images.length)
   }
 
   const handlePrev = () => {
-    if (currentImageIndex > 0) {
-      setDirection(-1)
-      setCurrentImageIndex(currentImageIndex - 1)
+    setDirection(-1)
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEnd(e.changedTouches[0].clientX)
+    handleSwipe()
+  }
+
+  const handleSwipe = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      handleNext()
     }
+    if (isRightSwipe) {
+      handlePrev()
+    }
+  }
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentImageIndex ? 1 : -1)
+    setCurrentImageIndex(index)
   }
 
   return (
@@ -82,13 +108,18 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <div className="relative bg-muted rounded-lg overflow-hidden h-96 mb-4">
+          <div 
+            className="relative bg-muted rounded-lg overflow-hidden h-96 mb-4 cursor-grab active:cursor-grabbing"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}
                 src={images[currentImageIndex]}
                 alt={`Slide ${currentImageIndex + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover select-none"
+                draggable={false}
                 initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
@@ -114,10 +145,7 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
             {images.map((_, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  setDirection(i > currentImageIndex ? 1 : -1)
-                  setCurrentImageIndex(i)
-                }}
+                onClick={() => goToSlide(i)}
                 className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${
                   i === currentImageIndex ? 'border-primary' : 'border-border'
                 }`}
