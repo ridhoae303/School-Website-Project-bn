@@ -13,7 +13,7 @@ export function Footer() {
   const socialLinks = [
     { icon: Facebook, href: 'https://facebook.com/smkpatriot1bekasi', label: 'Facebook' },
     { icon: Twitter, href: 'https://twitter.com/smkpatriot1', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com/smkpatriot1bekasi', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/smk_patriot1', label: 'Instagram' },
     { icon: Youtube, href: 'https://youtube.com/@smkpatriot1bekasi', label: 'YouTube' },
   ]
 
