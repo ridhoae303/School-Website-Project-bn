@@ -122,12 +122,14 @@ function HeroSlider() {
     // Swipe left (touchStart > touchEnd): move thumb from right to left = show next slide
     if (swipeDelta > swipeThreshold) {
       setDirection(1)
-      nextSlide()
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      setAutoplay(false)
     }
     // Swipe right (touchEnd > touchStart): move thumb from left to right = show previous slide
     else if (swipeDelta < -swipeThreshold) {
       setDirection(-1)
-      prevSlide()
+      setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+      setAutoplay(false)
     }
   }
 

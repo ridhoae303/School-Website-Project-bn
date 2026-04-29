@@ -259,9 +259,9 @@ export const SITE_CONFIG = {
   title: 'SMK PATRIOT 1 BEKASI',
   description: 'Sekolah Menengah Kejuruan PATRIOT 1 BEKASI - Mendidik, Memberdayakan, Membangun Masa Depan',
   socialLinks: {
-    facebook: 'https://facebook.com/smkpatriot1bekasi',
-    instagram: 'https://instagram.com/smkpatriot1bekasi',
-    youtube: 'https://youtube.com/smkpatriot1bekasi',
-    twitter: 'https://twitter.com/smkpatriot1',
+    facebook: 'https://www.facebook.com/profile.php?id=100079274297750',
+    instagram: 'https://www.instagram.com/smk_patriot1',
+    youtube: 'https://m.youtube.com/@smkpatriot1bekasi448',
+    x: 'https://x.com/osissmkpatriot1',
   },
 }
