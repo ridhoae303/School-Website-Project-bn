@@ -3,8 +3,21 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, X } from 'lucide-react'
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 import { SCHOOL_INFO } from '@/lib/constants'
+
+// Custom Twitter X Icon Component
+const TwitterXIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.75-5.868 6.75h-3.308l7.732-8.835L2.882 2.25h6.6l4.759 6.318L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+  </svg>
+)
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,7 +25,7 @@ export function Footer() {
 
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100079274297750', label: 'Facebook' },
-    { icon: X, href: 'https://x.com/osissmkpatriot1', label: 'X' },
+    { customIcon: TwitterXIcon, href: 'https://x.com/osissmkpatriot1', label: 'X' },
     { icon: Instagram, href: 'https://www.instagram.com/smk_patriot1', label: 'Instagram' },
     { icon: Youtube, href: 'https://m.youtube.com/@smkpatriot1bekasi448', label: 'YouTube' },
   ]
@@ -119,7 +132,7 @@ export function Footer() {
           >
             <h3 className="text-lg font-bold mb-6">Ikuti Kami</h3>
             <div className="flex gap-3 flex-wrap">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
+              {socialLinks.map(({ icon: Icon, customIcon: CustomIcon, href, label }) => (
                 <a
                   key={label}
                   href={href}
@@ -128,7 +141,7 @@ export function Footer() {
                   className="w-10 h-10 bg-primary-foreground/20 hover:bg-primary-foreground/40 rounded-lg flex items-center justify-center transition-colors"
                   title={label}
                 >
-                  <Icon size={20} />
+                  {CustomIcon ? <CustomIcon size={20} /> : <Icon size={20} />}
                 </a>
               ))}
             </div>
