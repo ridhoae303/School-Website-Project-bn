@@ -8,6 +8,7 @@ import { cetakFormulirSchema } from '@/lib/validators'
 
 export default function CetakFormulirPage() {
   const [formData, setFormData] = useState({
+    name: '',
     noPendaftaran: '',
     tglLahir: '',
   })

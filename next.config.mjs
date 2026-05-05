@@ -5,6 +5,7 @@
 
 import { fileURLToPath } from 'url'
 import path from 'path'
+import userConfigImport from './next.user-config.mjs'
 
 const __v0_turbopack_root = undefined ?? path.dirname(fileURLToPath(import.meta.url))
 
