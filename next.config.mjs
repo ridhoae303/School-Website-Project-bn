@@ -5,14 +5,20 @@
 
 import { fileURLToPath } from 'url'
 import path from 'path'
-import userConfigImport from './next.user-config.mjs'
 
 const __v0_turbopack_root = undefined ?? path.dirname(fileURLToPath(import.meta.url))
 
 export default async function v0NextConfig(phase, { defaultConfig }) {
-  const userConfig = typeof userConfigImport === 'function'
-    ? await userConfigImport(phase, { defaultConfig })
-    : userConfigImport
+  let userConfig = {}
+  try {
+    const userConfigImport = await import('./next.user-config.mjs')
+    userConfig = typeof userConfigImport.default === 'function'
+      ? await userConfigImport.default(phase, { defaultConfig })
+      : (userConfigImport.default || {})
+  } catch (e) {
+    // Fallback to empty config if next.user-config.mjs doesn't exist
+    userConfig = {}
+  }
 
   return {
   ...userConfig,
