@@ -2,7 +2,7 @@ import React from 'react'
 import { Metadata } from 'next'
 import { HeroSection } from '@/components/HeroSection'
 import { Container } from '@/components/Container'
-import { AchievementCard } from '@/components/AchievementCard'
+import { AchievementCard, type AchievementCardProps } from '@/components/AchievementCard'
 import { ACHIEVEMENT_IMAGES } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Penghargaan dan prestasi siswa SMK PATRIOT 1 BEKASI',
 }
 
-const achievements = [
+const achievements: AchievementCardProps[] = [
   {
     title: 'Juara 1 Kompetisi Robotika Nasional',
     description: 'Tim robotika SMK PATRIOT meraih medali emas di ajang kompetisi robotika tingkat nasional',

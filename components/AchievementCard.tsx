@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { cardHoverVariants } from '@/lib/animations'
 import { Card } from './ui/card'
 
-interface AchievementCardProps {
+export interface AchievementCardProps {
   title: string
   description: string
   image: string
