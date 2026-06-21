@@ -190,7 +190,7 @@ function HeroSlider() {
             key={i}
             onClick={() => goToSlide(i)}
             className={`w-3 h-3 rounded-full transition-all ${
-              i === currentSlide
+              i === state.currentSlide
                 ? 'bg-white w-8'
                 : 'bg-white/50 hover:bg-white/70'
             }`}
