@@ -2,6 +2,7 @@
 
 import { db } from '@/lib/db'
 import { submissions } from '@/lib/db/schema'
+import { eq, desc } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 
 export async function saveSubmission(data: {
@@ -37,13 +38,13 @@ export async function saveSubmission(data: {
 
 export async function getSubmissions(formType?: string) {
   try {
-    let query = db.select().from(submissions)
-
-    if (formType) {
-      query = query.where((t) => t.formType === formType) as any
-    }
-
-    const result = await query.orderBy((t) => t.createdAt)
+    const whereClause = formType ? eq(submissions.formType, formType) : undefined
+    
+    const result = await db
+      .select()
+      .from(submissions)
+      .where(whereClause || undefined)
+      .orderBy(desc(submissions.createdAt))
 
     return result
   } catch (error) {
@@ -57,7 +58,7 @@ export async function updateSubmissionStatus(id: string, status: string) {
     await db
       .update(submissions)
       .set({ status })
-      .where((t) => t.id === id)
+      .where(eq(submissions.id, id))
 
     revalidatePath('/admin/submissions')
     return { success: true }
@@ -69,7 +70,7 @@ export async function updateSubmissionStatus(id: string, status: string) {
 
 export async function deleteSubmission(id: string) {
   try {
-    await db.delete(submissions).where((t) => t.id === id)
+    await db.delete(submissions).where(eq(submissions.id, id))
 
     revalidatePath('/admin/submissions')
     return { success: true }
