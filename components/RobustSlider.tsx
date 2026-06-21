@@ -32,7 +32,7 @@ export function RobustSlider({
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
-  const autoplayRef = useRef<NodeJS.Timeout>()
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null)
 
   // Safe state update function that combines index and direction
   const updateSlide = useCallback((newIndex: number, newDirection: number) => {
