@@ -73,36 +73,43 @@ interface ModalItem {
 
 // Hero Slider Component
 function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [state, setState] = useState({ currentSlide: 0, direction: 1 })
   const [autoplay, setAutoplay] = useState(true)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const [direction, setDirection] = useState(1)
 
   useEffect(() => {
     if (!autoplay) return
     const timer = setInterval(() => {
-      setDirection(1)
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      setState((prev) => ({
+        currentSlide: (prev.currentSlide + 1) % heroSlides.length,
+        direction: 1,
+      }))
     }, 7000)
     return () => clearInterval(timer)
   }, [autoplay])
 
   const goToSlide = (index: number) => {
-    setDirection(index > currentSlide ? 1 : -1)
-    setCurrentSlide(index)
+    setState((prev) => ({
+      currentSlide: index,
+      direction: index > prev.currentSlide ? 1 : -1,
+    }))
     setAutoplay(false)
   }
 
   const nextSlide = () => {
-    setDirection(1)
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    setState((prev) => ({
+      currentSlide: (prev.currentSlide + 1) % heroSlides.length,
+      direction: 1,
+    }))
     setAutoplay(false)
   }
 
   const prevSlide = () => {
-    setDirection(-1)
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+    setState((prev) => ({
+      currentSlide: (prev.currentSlide - 1 + heroSlides.length) % heroSlides.length,
+      direction: -1,
+    }))
     setAutoplay(false)
   }
 
@@ -121,14 +128,18 @@ function HeroSlider() {
     
     // Swipe left (touchStart > touchEnd): move thumb from right to left = show next slide
     if (swipeDelta > swipeThreshold) {
-      setDirection(1)
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      setState((prev) => ({
+        currentSlide: (prev.currentSlide + 1) % heroSlides.length,
+        direction: 1,
+      }))
       setAutoplay(false)
     }
     // Swipe right (touchEnd > touchStart): move thumb from left to right = show previous slide
     else if (swipeDelta < -swipeThreshold) {
-      setDirection(-1)
-      setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+      setState((prev) => ({
+        currentSlide: (prev.currentSlide - 1 + heroSlides.length) % heroSlides.length,
+        direction: -1,
+      }))
       setAutoplay(false)
     }
   }
@@ -141,16 +152,16 @@ function HeroSlider() {
     >
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentSlide}
+          key={state.currentSlide}
           className="absolute inset-0"
-          initial={{ x: direction > 0 ? 1000 : -1000, opacity: 0 }}
+          initial={{ x: state.direction > 0 ? 1000 : -1000, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          exit={{ x: direction > 0 ? -1000 : 1000, opacity: 0 }}
+          exit={{ x: state.direction > 0 ? -1000 : 1000, opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <img
-            src={heroSlides[currentSlide].src}
-            alt={heroSlides[currentSlide].alt}
+            src={heroSlides[state.currentSlide].src}
+            alt={heroSlides[state.currentSlide].alt}
             className="w-full h-full object-cover"
             width={1200}
             height={500}

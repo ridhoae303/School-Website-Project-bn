@@ -42,8 +42,7 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
   const { code } = React.use(params)
   const codeKey = code?.toLowerCase() as keyof typeof JURUSAN_IMAGES || 'tkj'
   const data = jurusanData[codeKey] || jurusanData.tkj
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [direction, setDirection] = useState(1) // 1 for next, -1 for prev
+  const [state, setState] = useState({ currentImageIndex: 0, direction: 1 })
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   
@@ -51,13 +50,17 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
   const images = JURUSAN_IMAGES[codeKey] || JURUSAN_IMAGES.tkj
 
   const handleNext = () => {
-    setDirection(1)
-    setCurrentImageIndex((prev) => (prev + 1) % images.length)
+    setState((prev) => ({
+      currentImageIndex: (prev.currentImageIndex + 1) % images.length,
+      direction: 1,
+    }))
   }
 
   const handlePrev = () => {
-    setDirection(-1)
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+    setState((prev) => ({
+      currentImageIndex: (prev.currentImageIndex - 1 + images.length) % images.length,
+      direction: -1,
+    }))
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -76,18 +79,24 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
     const isRightSwipe = distance < -50
 
     if (isLeftSwipe) {
-      setDirection(1)
-      setCurrentImageIndex((prev) => (prev + 1) % images.length)
+      setState((prev) => ({
+        currentImageIndex: (prev.currentImageIndex + 1) % images.length,
+        direction: 1,
+      }))
     }
     if (isRightSwipe) {
-      setDirection(-1)
-      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+      setState((prev) => ({
+        currentImageIndex: (prev.currentImageIndex - 1 + images.length) % images.length,
+        direction: -1,
+      }))
     }
   }
 
   const goToSlide = (index: number) => {
-    setDirection(index > currentImageIndex ? 1 : -1)
-    setCurrentImageIndex(index)
+    setState((prev) => ({
+      currentImageIndex: index,
+      direction: index > prev.currentImageIndex ? 1 : -1,
+    }))
   }
 
   return (
@@ -117,14 +126,14 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
           >
             <AnimatePresence mode="wait">
               <motion.img
-                key={currentImageIndex}
-                src={images[currentImageIndex]}
-                alt={`Slide ${currentImageIndex + 1}`}
+                key={state.currentImageIndex}
+                src={images[state.currentImageIndex]}
+                alt={`Slide ${state.currentImageIndex + 1}`}
                 className="w-full h-full object-cover select-none"
                 draggable={false}
-                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+                initial={{ opacity: 0, x: state.direction > 0 ? 100 : -100 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                exit={{ opacity: 0, x: state.direction > 0 ? -100 : 100 }}
                 transition={{ duration: 0.3 }}
               />
             </AnimatePresence>
@@ -149,7 +158,7 @@ export default function JurusanDetailPage({ params }: { params: Promise<{ code: 
                 key={i}
                 onClick={() => goToSlide(i)}
                 className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${
-                  i === currentImageIndex ? 'border-primary' : 'border-border'
+                  i === state.currentImageIndex ? 'border-primary' : 'border-border'
                 }`}
               >
                 <img src={images[i]} alt={`Thumb ${i}`} className="w-full h-full object-cover" />
