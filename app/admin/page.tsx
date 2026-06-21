@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { BookOpen, Users, Image, FileText } from 'lucide-react'
+import { BookOpen, Users, Image, FileText, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard - SMK PATRIOT 1 BEKASI',
@@ -37,6 +37,13 @@ export default function AdminDashboard() {
       icon: FileText,
       href: '/admin/content',
       color: 'bg-orange-50',
+    },
+    {
+      title: 'Form Submissions',
+      description: 'Lihat semua pengajuan form dari website',
+      icon: Mail,
+      href: '/admin/submissions',
+      color: 'bg-red-50',
     },
   ]
 

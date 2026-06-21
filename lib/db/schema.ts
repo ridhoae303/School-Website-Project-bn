@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean } from 'drizzle-orm/pg-core'
+import { pgTable, text, timestamp, boolean, json, uuid } from 'drizzle-orm/pg-core'
 
 // --- Better Auth required tables -------------------------------------------
 // Column names are camelCase to match Better Auth's defaults. Do not rename.
@@ -77,3 +77,17 @@ export const verification = pgTable('verification', {
 //   userId: text("userId")
 //     .notNull()
 //     .references(() => user.id, { onDelete: "cascade" }),
+
+export const submissions = pgTable('submissions', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  formType: text('form_type').notNull(),
+  name: text('name'),
+  email: text('email'),
+  phone: text('phone'),
+  subject: text('subject'),
+  message: text('message'),
+  data: json('data').default({}),
+  status: text('status').default('new'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+})
