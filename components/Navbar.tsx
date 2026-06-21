@@ -108,46 +108,55 @@ export function Navbar() {
             </div>
 
             {/* Desktop Navigation - More Dropdown */}
-            <div className="hidden lg:block relative">
-              <button
-                onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                className="text-sm text-white hover:bg-white/20 px-3 py-2 flex items-center rounded transition-colors"
-              >
-                Lainnya
-                <ChevronDown size={14} className={`ml-1 transition-transform ${moreDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {moreDropdownOpen && (
-                <div className="absolute right-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg z-50">
-                  {SECONDARY_NAV_ITEMS.map((item, idx) => (
-                    <div key={item.label}>
-                      {item.submenu ? (
-                        <div className="relative group">
-                          <button className="w-full text-left px-4 py-2.5 hover:bg-muted text-sm transition-colors flex items-center justify-between">
-                            {item.label}
-                            <ChevronDown size={14} />
-                          </button>
-                          <div className="hidden group-hover:block absolute left-full top-0 ml-1 bg-white border border-border rounded-lg shadow-lg min-w-max">
-                            {item.submenu.map((subitem) => (
-                              <Link key={subitem.href} href={subitem.href} onClick={() => setMoreDropdownOpen(false)}>
-                                <div className="px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors whitespace-nowrap">
-                                  {subitem.label}
-                                </div>
-                              </Link>
-                            ))}
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="relative">
+                <button
+                  onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
+                  className="text-sm text-white hover:bg-white/20 px-3 py-2 flex items-center rounded transition-colors"
+                >
+                  Lainnya
+                  <ChevronDown size={14} className={`ml-1 transition-transform ${moreDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {moreDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-0 w-56 bg-white text-foreground border border-border rounded-lg shadow-lg z-50">
+                    {SECONDARY_NAV_ITEMS.map((item, idx) => (
+                      <div key={item.label}>
+                        {item.submenu ? (
+                          <div className="relative group">
+                            <button className="w-full text-left px-4 py-2.5 hover:bg-muted text-sm transition-colors flex items-center justify-between">
+                              {item.label}
+                              <ChevronDown size={14} />
+                            </button>
+                            <div className="hidden group-hover:block absolute left-full top-0 ml-1 bg-white border border-border rounded-lg shadow-lg min-w-max">
+                              {item.submenu.map((subitem) => (
+                                <Link key={subitem.href} href={subitem.href} onClick={() => setMoreDropdownOpen(false)}>
+                                  <div className="px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors whitespace-nowrap">
+                                    {subitem.label}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <Link href={item.href} onClick={() => setMoreDropdownOpen(false)}>
-                          <div className="px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors">
-                            {item.label}
-                          </div>
-                        </Link>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
+                        ) : (
+                          <Link href={item.href} onClick={() => setMoreDropdownOpen(false)}>
+                            <div className="px-4 py-2.5 hover:bg-muted text-sm text-foreground transition-colors">
+                              {item.label}
+                            </div>
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Admin Button */}
+              <Link href="/admin/login">
+                <button className="text-sm text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded transition-colors font-semibold">
+                  Admin
+                </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Toggle */}

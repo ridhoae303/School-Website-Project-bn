@@ -1,139 +1,133 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import React from 'react'
+import { Metadata } from 'next'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { LogOut } from 'lucide-react'
+import { pool } from '@/lib/db'
+import { Clock, FileText, Target } from 'lucide-react'
+import Link from 'next/link'
 
-interface Ujian {
-  id: string
-  mapel: string
-  waktu: string
-  status: 'belum' | 'sedang' | 'selesai'
+export const metadata: Metadata = {
+  title: 'Dashboard Ujian Online - SMK PATRIOT 1 BEKASI',
+  description: 'Daftar ujian online yang tersedia',
 }
 
-export default function UjianDashboard() {
-  const [ujianList, setUjianList] = useState<Ujian[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
+interface Exam {
+  id: string
+  title: string
+  subject: string
+  description: string
+  duration_minutes: number
+  total_questions: number
+  passing_score: number
+  status: string
+}
 
-  useEffect(() => {
-    const token = localStorage.getItem('ujianToken')
-    if (!token) {
-      router.push('/ujian-online')
-      return
-    }
-
-    // Fetch daftar ujian
-    const fetchUjian = async () => {
-      try {
-        const response = await fetch('https://smkspatriot1bekasi.my.id/ujian/daftar', {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          setUjianList(data)
-        } else if (response.status === 401) {
-          localStorage.removeItem('ujianToken')
-          router.push('/ujian-online')
-        }
-      } catch (err) {
-        console.error('Error fetching ujian:', err)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchUjian()
-  }, [router])
-
-  const handleLogout = () => {
-    localStorage.removeItem('ujianToken')
-    router.push('/ujian-online')
+async function getPublishedExams(): Promise<Exam[]> {
+  try {
+    const client = await pool.connect()
+    const result = await client.query(
+      `SELECT id, title, subject, description, duration_minutes, total_questions, 
+              passing_score, status
+       FROM exams
+       WHERE status = 'published'
+       ORDER BY created_at DESC`
+    )
+    client.release()
+    return result.rows
+  } catch (error) {
+    console.error('[v0] Error fetching exams:', error)
+    return []
   }
+}
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'belum':
-        return 'bg-muted'
-      case 'sedang':
-        return 'bg-secondary'
-      case 'selesai':
-        return 'bg-primary'
-      default:
-        return 'bg-muted'
-    }
-  }
+export default async function UjianDashboard() {
+  const exams = await getPublishedExams()
 
   return (
-    <div className="min-h-screen bg-white py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-primary">Daftar Ujian</h1>
-            <p className="text-muted-foreground mt-2">Pilih ujian untuk mengerjakan</p>
-          </div>
-          <Button
-            variant="outline"
-            onClick={handleLogout}
-            className="gap-2"
-          >
-            <LogOut size={18} />
-            Keluar
-          </Button>
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-background">
+      {/* Header */}
+      <header className="bg-primary text-white py-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-2">Daftar Ujian Online</h1>
+          <p className="text-white/90">Pilih ujian yang ingin Anda ikuti</p>
         </div>
+      </header>
 
-        {isLoading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-secondary" />
-            <p className="text-muted-foreground mt-4">Memuat data ujian...</p>
-          </div>
-        ) : ujianList.length === 0 ? (
-          <div className="bg-muted rounded-lg p-8 text-center">
-            <p className="text-muted-foreground">Tidak ada ujian tersedia saat ini</p>
-          </div>
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto p-4 py-12">
+        {exams.length === 0 ? (
+          <Card>
+            <CardContent className="pt-6 text-center text-muted-foreground">
+              <p>Saat ini belum ada ujian yang tersedia. Silahkan cek kembali nanti.</p>
+            </CardContent>
+          </Card>
         ) : (
-          <div className="grid gap-6">
-            {ujianList.map((ujian, index) => (
-              <motion.div
-                key={ujian.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white border border-border rounded-lg p-6 hover:shadow-lg transition-shadow"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {exams.map((exam) => (
+              <Card
+                key={exam.id}
+                className="hover:shadow-lg transition-shadow overflow-hidden"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {ujian.mapel}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Waktu: {ujian.waktu}
+                <CardHeader>
+                  <CardTitle className="line-clamp-2">{exam.title}</CardTitle>
+                  <CardDescription>{exam.subject}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {exam.description && (
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {exam.description}
                     </p>
+                  )}
+
+                  <div className="grid grid-cols-3 gap-2 py-2 bg-muted p-3 rounded-lg">
+                    <div className="text-center">
+                      <div className="flex justify-center mb-1">
+                        <Clock className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-xs font-semibold">{exam.duration_minutes} menit</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="flex justify-center mb-1">
+                        <FileText className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-xs font-semibold">{exam.total_questions} soal</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="flex justify-center mb-1">
+                        <Target className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-xs font-semibold">{exam.passing_score}%</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className={`px-4 py-2 rounded-lg text-white text-sm font-semibold ${getStatusColor(ujian.status)}`}>
-                      {ujian.status === 'belum' && 'Belum Dimulai'}
-                      {ujian.status === 'sedang' && 'Sedang Berlangsung'}
-                      {ujian.status === 'selesai' && 'Selesai'}
-                    </span>
-                    <Button
-                      disabled={ujian.status === 'belum' || ujian.status === 'selesai'}
-                      className="bg-secondary hover:bg-secondary/90"
-                    >
-                      {ujian.status === 'belum' && 'Menunggu'}
-                      {ujian.status === 'sedang' && 'Mulai Ujian'}
-                      {ujian.status === 'selesai' && 'Selesai'}
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
+
+                  <Button className="w-full" size="sm">
+                    Mulai Ujian
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
           </div>
         )}
-      </div>
+
+        {/* Info Section */}
+        <Card className="mt-12 bg-blue-50 border-blue-200">
+          <CardHeader>
+            <CardTitle className="text-base">Petunjuk Penggunaan</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm space-y-2 text-muted-foreground">
+            <p>• Pastikan koneksi internet Anda stabil sebelum memulai ujian</p>
+            <p>• Waktu ujian akan dimulai setelah Anda klik tombol "Mulai Ujian"</p>
+            <p>• Anda harus menyelesaikan ujian dalam waktu yang ditentukan</p>
+            <p>• Hasil ujian akan ditampilkan setelah Anda menyelesaikan semua soal</p>
+          </CardContent>
+        </Card>
+
+        <div className="mt-6 text-center">
+          <Link href="/ujian-online">
+            <Button variant="outline">Kembali ke Login</Button>
+          </Link>
+        </div>
+      </main>
     </div>
   )
 }
