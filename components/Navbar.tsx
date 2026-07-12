@@ -107,7 +107,7 @@ export function Navbar() {
             </div>
 
             {/* Desktop Navigation - More Dropdown */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-6">
               <div className="relative">
                 <button
                   onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
@@ -150,10 +150,7 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* Separator */}
-              <div className="w-px h-6 bg-white/30" />
-
-              {/* Admin Button */}
+                {/* Admin Button */}
               <Link href="/admin/login">
                 <button className="text-sm text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded transition-colors font-semibold">
                   Admin
