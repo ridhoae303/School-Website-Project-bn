@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Plus, Trash2, AlertCircle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
-import { savePhoto, deletePhoto, getPhotos } from '@/app/actions/photos'
+import { createPhoto, deletePhoto, getPhotos } from '@/app/actions/photos'
 import { toast } from 'sonner'
 
 interface Photo {
@@ -40,8 +40,12 @@ export default function PhotosManagementPage() {
   const loadPhotos = async () => {
     try {
       setIsLoading(true)
-      const data = await getPhotos()
-      setPhotos(data)
+      const result = await getPhotos()
+      if (result.success && result.data) {
+        setPhotos(result.data)
+      } else {
+        toast.error('Gagal memuat foto')
+      }
     } catch (error) {
       console.error('[v0] Error loading photos:', error)
       toast.error('Gagal memuat foto')
@@ -58,21 +62,26 @@ export default function PhotosManagementPage() {
 
     try {
       setIsSaving(true)
-      await savePhoto({
+      const result = await createPhoto({
         title: formData.title,
-        description: formData.description || null,
-        category: formData.category || null,
+        description: formData.description || undefined,
+        category: formData.category || undefined,
         photoUrl: formData.photoUrl,
       })
-      toast.success('Foto berhasil ditambahkan')
-      setShowForm(false)
-      setFormData({
-        title: '',
-        description: '',
-        category: '',
-        photoUrl: '',
-      })
-      await loadPhotos()
+      
+      if (result.success) {
+        toast.success('Foto berhasil ditambahkan')
+        setShowForm(false)
+        setFormData({
+          title: '',
+          description: '',
+          category: '',
+          photoUrl: '',
+        })
+        await loadPhotos()
+      } else {
+        toast.error(result.error || 'Gagal menambahkan foto')
+      }
     } catch (error) {
       console.error('[v0] Error saving photo:', error)
       toast.error('Gagal menambahkan foto')
@@ -85,9 +94,13 @@ export default function PhotosManagementPage() {
     if (!confirm('Apakah Anda yakin ingin menghapus foto ini?')) return
 
     try {
-      await deletePhoto(id)
-      toast.success('Foto berhasil dihapus')
-      await loadPhotos()
+      const result = await deletePhoto(id)
+      if (result.success) {
+        toast.success('Foto berhasil dihapus')
+        await loadPhotos()
+      } else {
+        toast.error(result.error || 'Gagal menghapus foto')
+      }
     } catch (error) {
       console.error('[v0] Error deleting photo:', error)
       toast.error('Gagal menghapus foto')
