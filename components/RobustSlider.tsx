@@ -49,7 +49,11 @@ export function RobustSlider({
       }))
     }, autoplayInterval)
 
-    return () => clearInterval(autoplayRef.current)
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current)
+      }
+    }
   }, [autoplay, autoplayInterval, images.length])
 
   const handlePrevious = useCallback(() => {

@@ -157,6 +157,13 @@ export function Navbar() {
                   Admin
                 </button>
               </Link>
+
+              {/* Ujian Login Button */}
+              <Link href="/ujian-online/login">
+                <button className="text-sm text-white bg-secondary hover:bg-secondary/90 px-4 py-2 rounded transition-colors font-semibold">
+                  Login Ujian
+                </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Toggle */}
