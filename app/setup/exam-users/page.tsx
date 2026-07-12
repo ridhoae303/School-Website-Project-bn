@@ -17,16 +17,9 @@ export default function SetupExamUsersPage() {
     setSuccess(false)
 
     try {
-      const result = await initializeExamUsers()
-      
-      if (result.success) {
-        setSuccess(true)
-        setTimeout(() => {
-          window.location.href = '/ujian-online/login'
-        }, 2000)
-      } else {
-        setError(result.message || 'Gagal mengatur exam users')
-      }
+      // This page is only accessible to admins during setup
+      // Credentials must be configured via environment variables or secure admin panel
+      setError('Setup harus dilakukan melalui admin panel atau environment variables untuk keamanan')
     } catch (err) {
       setError('Terjadi kesalahan: ' + (err instanceof Error ? err.message : 'Unknown error'))
     } finally {
@@ -42,18 +35,14 @@ export default function SetupExamUsersPage() {
           <CardDescription>Initialize exam login credentials</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-3 bg-muted p-4 rounded-lg text-sm">
-            <p className="font-semibold">Credentials yang akan di-setup:</p>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>
-                <strong>Username:</strong> ridhoae303<br />
-                <strong>Password:</strong> hayase yuuka best girl
-              </li>
-              <li>
-                <strong>Username:</strong> Kusnadi, S.Kom.<br />
-                <strong>Password:</strong> 085691706159
-              </li>
-            </ul>
+          <div className="space-y-3 bg-blue-50 border border-blue-200 p-4 rounded-lg text-sm">
+            <p className="font-semibold text-blue-900">Informasi Penting:</p>
+            <p className="text-blue-800">
+              Untuk keamanan dan privasi, setup exam users harus dilakukan melalui:<br/>
+              1. Admin Panel yang dilindungi otentikasi<br/>
+              2. Environment variables yang aman<br/>
+              3. Database admin yang teroksi dengan proper access control
+            </p>
           </div>
 
           {success && (
@@ -70,14 +59,23 @@ export default function SetupExamUsersPage() {
             </div>
           )}
 
-          <Button 
-            onClick={handleSetup}
-            disabled={loading || success}
-            className="w-full"
-            size="lg"
-          >
-            {loading ? 'Mengatur...' : 'Setup Exam Users'}
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline"
+              onClick={() => window.location.href = '/ujian-online/login'}
+              className="w-full"
+              size="lg"
+            >
+              Kembali ke Login
+            </Button>
+            <Button 
+              onClick={() => window.location.href = '/admin/login'}
+              className="w-full"
+              size="lg"
+            >
+              Ke Admin Panel
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </div>

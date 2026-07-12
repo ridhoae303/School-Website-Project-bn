@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 import { ArrowLeft, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { validateExamLogin } from '@/app/actions/exam-auth'
@@ -91,20 +92,15 @@ export default function UjianLoginPage() {
                 />
               </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium mb-2">
-                  Password
-                </label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Masukkan password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  disabled={loading}
-                  required
-                />
-              </div>
+              <PasswordInput
+                id="password"
+                label="Password"
+                placeholder="Masukkan password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                required
+              />
 
               <Button 
                 type="submit" 
@@ -118,9 +114,7 @@ export default function UjianLoginPage() {
             {/* Info Box */}
             <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-xs text-blue-900">
-                <strong>Demo Account:</strong><br/>
-                Username: ridhoae303<br/>
-                Password: hayase yuuka best girl
+                <strong>Masukkan username dan password yang telah diberikan oleh sekolah.</strong>
               </p>
             </div>
           </CardContent>

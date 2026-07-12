@@ -22,7 +22,6 @@ const PRIMARY_NAV_ITEMS = [
     { label: 'Cetak Formulir', href: '/cetak-formulir' },
     { label: 'Download Formulir', href: '/download-formulir' },
   ]},
-  { label: 'Ujian Online', href: '/ujian-online' },
 ]
 
 // Secondary nav items (shown in "More" dropdown on desktop)
@@ -150,6 +149,9 @@ export function Navbar() {
                   </div>
                 )}
               </div>
+
+              {/* Separator */}
+              <div className="w-px h-6 bg-white/30" />
 
               {/* Admin Button */}
               <Link href="/admin/login">
