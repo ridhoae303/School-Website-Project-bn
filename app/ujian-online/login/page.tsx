@@ -64,7 +64,14 @@ export default function UjianLoginPage() {
             {error && (
               <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-700">{error}</p>
+                <div className="flex-1">
+                  <p className="text-sm text-red-700">{error}</p>
+                  {error.includes('Terjadi kesalahan server') && (
+                    <p className="text-xs text-red-600 mt-2">
+                      Sistem belum ter-setup. <Link href="/setup/exam-users" className="underline font-semibold hover:text-red-800">Setup di sini</Link>
+                    </p>
+                  )}
+                </div>
               </div>
             )}
 
