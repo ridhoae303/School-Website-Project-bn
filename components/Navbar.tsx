@@ -22,7 +22,6 @@ const PRIMARY_NAV_ITEMS = [
     { label: 'Cetak Formulir', href: '/cetak-formulir' },
     { label: 'Download Formulir', href: '/download-formulir' },
   ]},
-  { label: 'Ujian Online', href: '/ujian-online' },
 ]
 
 // Secondary nav items (shown in "More" dropdown on desktop)
@@ -108,7 +107,7 @@ export function Navbar() {
             </div>
 
             {/* Desktop Navigation - More Dropdown */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-6">
               <div className="relative">
                 <button
                   onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
@@ -151,7 +150,7 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* Admin Button */}
+                {/* Admin Button */}
               <Link href="/admin/login">
                 <button className="text-sm text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded transition-colors font-semibold">
                   Admin

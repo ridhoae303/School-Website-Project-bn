@@ -126,6 +126,23 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                   )}
                 </div>
               ))}
+
+              {/* Separator */}
+              <div className="my-4 border-t border-border" />
+
+              {/* Admin and Ujian Login Buttons */}
+              <div className="space-y-2">
+                <Link href="/admin/login" onClick={handleClose}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold">
+                    Admin
+                  </Button>
+                </Link>
+                <Link href="/ujian-online/login" onClick={handleClose}>
+                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold">
+                    Login Ujian
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </>

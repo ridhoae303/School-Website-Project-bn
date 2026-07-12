@@ -57,20 +57,13 @@ export async function validateExamLogin(
   }
 }
 
-export async function initializeExamUsers() {
+// This function should only be called during deployment or manual setup
+// DO NOT expose user credentials in client-side code or logs
+export async function initializeExamUsers(
+  users: Array<{ username: string; password: string }>
+) {
   try {
     const client = await pool.connect()
-
-    const users = [
-      {
-        username: 'ridhoae303',
-        password: 'hayase yuuka best girl',
-      },
-      {
-        username: 'Kusnadi, S.Kom.',
-        password: '085691706159',
-      },
-    ]
 
     for (const user of users) {
       const hashedPassword = await bcrypt.hash(user.password, 10)

@@ -3,26 +3,20 @@
 import { pool } from '@/lib/db'
 import bcrypt from 'bcrypt'
 
-const ADMINS = [
-  {
-    id: '550e8400-e29b-41d4-a716-446655440001',
-    email: 'ridhoae303@example.com',
-    name: 'ridhoae303',
-    password: 'hayase yuuka best girl',
-  },
-  {
-    id: '550e8400-e29b-41d4-a716-446655440002',
-    email: 'kusnadi@example.com',
-    name: 'Kusnadi, S.Kom.',
-    password: '085691706159',
-  },
-]
+// For security: Admin credentials should be set via environment variables or secure admin panel
+// DO NOT hardcode credentials in source code
+interface AdminSetupData {
+  id: string
+  email: string
+  name: string
+  password: string
+}
 
-export async function setupAdminPasswords() {
+export async function setupAdminPasswords(admins: AdminSetupData[]) {
   try {
     const client = await pool.connect()
     
-    for (const admin of ADMINS) {
+    for (const admin of admins) {
       // Hash the password
       const hashedPassword = await bcrypt.hash(admin.password, 10)
       
