@@ -7,7 +7,7 @@ export const SCHOOL_INFO = {
   phone: '085691706159',
   whatsapp: 'https://wa.me/6285691706159?text=Permisi+saya+mau+ada+keperluan+mengenai+pendaftaran+siswa,+nomor+ini+saya+dapatkan+dari+website+SMK+PATRIOT+1+Bekasi.',
   email: 'smkpatriot1bekasi@gmail.com',
-  website: 'www.smkpatriot1.sch.id',
+  website: 'www.smkspatriot1bekasi.my.id',
   foundedYear: 2005,
   description: 'Sekolah Menengah Kejuruan (SMK) PATRIOT 1 BEKASI adalah institusi pendidikan yang berkomitmen untuk menghasilkan lulusan yang berkualitas, terampil, dan berakhlak mulia.',
 }
@@ -125,7 +125,7 @@ export const JURUSAN_IMAGES = {
 // Developer Page Images
 export const DEVELOPER_IMAGES = {
   mohammedRidho: '/images/developer/ridhoae303.jpg', // Avatar in grid cards
-  mohammedRidhoHero: '/images/developer/miyako.jpg', // Avatar in top profile section
+  mohammedRidhoHero: '/images/developer/profile.jpg', // Avatar in top profile section
   mohammedRidhoProfile: '/images/developer/ridho-profile.jpg',
   abyanRuby: '/images/developer/abyan-ruby.jpg',
   kusnadi: '/images/developer/kusnadi.jpg',
